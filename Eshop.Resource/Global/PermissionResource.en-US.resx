@@ -1,0 +1,552 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="AddOrEditPersonUser" xml:space="preserve">
+    <value>Add Or Edit PersonUser</value>
+  </data>
+  <data name="AddOrUpdate" xml:space="preserve">
+    <value>Add Or Update</value>
+  </data>
+  <data name="AddPermission" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AddRangeChartPostPerson" xml:space="preserve">
+    <value>Add Range Post To Person</value>
+  </data>
+  <data name="AddUserForCustomers" xml:space="preserve">
+    <value>Add User For Customers</value>
+  </data>
+  <data name="Authentication" xml:space="preserve">
+    <value>Authentication</value>
+  </data>
+  <data name="BankInfo" xml:space="preserve">
+    <value>Bank Information</value>
+  </data>
+  <data name="ChangeDesignApprove" xml:space="preserve">
+    <value>Change Design Approve</value>
+  </data>
+  <data name="ChangeOrderStatus" xml:space="preserve">
+    <value>Change Order Status</value>
+  </data>
+  <data name="ChangePlateState" xml:space="preserve">
+    <value>Change Plate State</value>
+  </data>
+  <data name="ChangeUserPassword" xml:space="preserve">
+    <value>Change User Password</value>
+  </data>
+  <data name="Chart" xml:space="preserve">
+    <value>Organization Chart</value>
+  </data>
+  <data name="ChartPost" xml:space="preserve">
+    <value>Organization Chart Posts</value>
+  </data>
+  <data name="ChartPostPerson" xml:space="preserve">
+    <value>ChartPost Persons</value>
+  </data>
+  <data name="ChartType" xml:space="preserve">
+    <value>Chart Type</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="ComplementaryOperationDepartment" xml:space="preserve">
+    <value>Complementary Operation Department</value>
+  </data>
+  <data name="ContractType" xml:space="preserve">
+    <value>Contract Type</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Customer</value>
+  </data>
+  <data name="CustomerUserInfoController" xml:space="preserve">
+    <value>Customer User Information</value>
+  </data>
+  <data name="DeleteAddedRip" xml:space="preserve">
+    <value>Delete Added RipColor </value>
+  </data>
+  <data name="DeletePermission" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteUserForCustomers" xml:space="preserve">
+    <value>Delete User For Customers</value>
+  </data>
+  <data name="DependentInfo" xml:space="preserve">
+    <value>Dependent Information</value>
+  </data>
+  <data name="DesigningDepartment" xml:space="preserve">
+    <value>Designing Department</value>
+  </data>
+  <data name="Driver" xml:space="preserve">
+    <value>Drivers</value>
+  </data>
+  <data name="EditPermission" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EditUser" xml:space="preserve">
+    <value>Edit User</value>
+  </data>
+  <data name="FinancialDepartment" xml:space="preserve">
+    <value>Financial Department</value>
+  </data>
+  <data name="GetAllDesigner" xml:space="preserve">
+    <value>Get All Designer</value>
+  </data>
+  <data name="GetAllOrderForAdmin" xml:space="preserve">
+    <value>Get All Order For Admin</value>
+  </data>
+  <data name="GetAllPersonForChartPost" xml:space="preserve">
+    <value>Get All Person For ChartPost</value>
+  </data>
+  <data name="GetAllPersonUserInfo" xml:space="preserve">
+    <value>Get AllPerson UserInfo</value>
+  </data>
+  <data name="GetAllProcessStep" xml:space="preserve">
+    <value>GetAll Process Step</value>
+  </data>
+  <data name="GetAllWorkingPlate" xml:space="preserve">
+    <value>Get All Working Plate</value>
+  </data>
+  <data name="GetComplementaryOperationInfo" xml:space="preserve">
+    <value>Get ComplementaryOperation Info</value>
+  </data>
+  <data name="GetDesignerKanbanFilter" xml:space="preserve">
+    <value>Get Designer Kanban Filter</value>
+  </data>
+  <data name="GetInsuranceInfoByPersonId" xml:space="preserve">
+    <value>GetInsuranceInfoByPersonId</value>
+  </data>
+  <data name="GetKlischeAssemblyDimensions" xml:space="preserve">
+    <value>Get Klische Assembly Dimensions</value>
+  </data>
+  <data name="GetKlischeCutsAndPacking" xml:space="preserve">
+    <value>Get KlischeCuts And Packing</value>
+  </data>
+  <data name="GetOrderColorSelection" xml:space="preserve">
+    <value>Get Order ColorSelection</value>
+  </data>
+  <data name="GetOrderPackaging" xml:space="preserve">
+    <value>Get Order Packaging</value>
+  </data>
+  <data name="GetOrderRipColorAngles" xml:space="preserve">
+    <value>Get Order Rip ColorAngles</value>
+  </data>
+  <data name="GetOrderRipColors" xml:space="preserve">
+    <value>Get OrderRip Colors</value>
+  </data>
+  <data name="GetOrdersAssignToDesigner" xml:space="preserve">
+    <value>Get Orders Assign To Designer</value>
+  </data>
+  <data name="GetOrderSending" xml:space="preserve">
+    <value>GetOrderSending</value>
+  </data>
+  <data name="GetOrderStepLog" xml:space="preserve">
+    <value>Get Order StepLog </value>
+  </data>
+  <data name="GetPersonPosts" xml:space="preserve">
+    <value>View Posts Of Person</value>
+  </data>
+  <data name="GetPersonsByChartPost" xml:space="preserve">
+    <value>View Perons In Chart Post</value>
+  </data>
+  <data name="GetProductionDevicePersons" xml:space="preserve">
+    <value>Get Production Device Persons</value>
+  </data>
+  <data name="GetQCTypes" xml:space="preserve">
+    <value>Get Quality Control Types</value>
+  </data>
+  <data name="GetSingleOrderByOrderNumber" xml:space="preserve">
+    <value>Get Single Order By OrderNumber</value>
+  </data>
+  <data name="GetUserById" xml:space="preserve">
+    <value>Get User By Id</value>
+  </data>
+  <data name="GetUserByPersonId" xml:space="preserve">
+    <value>Get User By Person</value>
+  </data>
+  <data name="InsuranceInfo" xml:space="preserve">
+    <value>Insurance Information</value>
+  </data>
+  <data name="InsuranceJob" xml:space="preserve">
+    <value>Insurance Job Information</value>
+  </data>
+  <data name="InsuranceType" xml:space="preserve">
+    <value>Insurance Type Information</value>
+  </data>
+  <data name="KlischeAssemblyDepartment" xml:space="preserve">
+    <value>Klische Assembly Department</value>
+  </data>
+  <data name="KlischeCuttingDepartment" xml:space="preserve">
+    <value>Klische Cutting Department</value>
+  </data>
+  <data name="KlischePrice" xml:space="preserve">
+    <value>Klische Price</value>
+  </data>
+  <data name="KlischeThickness" xml:space="preserve">
+    <value>Klische Thickness</value>
+  </data>
+  <data name="KlischeType" xml:space="preserve">
+    <value>Klische Type</value>
+  </data>
+  <data name="KlischeTypeAndThickness" xml:space="preserve">
+    <value>Join KlischeType And Thickness</value>
+  </data>
+  <data name="LaserLayoutFilmProductionController" xml:space="preserve">
+    <value>Laser Layout And Film Production</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Orders</value>
+  </data>
+  <data name="OrderArchive" xml:space="preserve">
+    <value>Orders Archive</value>
+  </data>
+  <data name="OrderOnline" xml:space="preserve">
+    <value>OrderOnline</value>
+  </data>
+  <data name="OrderPackagingDepartment" xml:space="preserve">
+    <value>Order Packaging Department</value>
+  </data>
+  <data name="OrderRipDepartment" xml:space="preserve">
+    <value>Order Rip Department</value>
+  </data>
+  <data name="OrderSendingDepartment" xml:space="preserve">
+    <value>Order Sending Department</value>
+  </data>
+  <data name="OrderStepLog" xml:space="preserve">
+    <value>Order Step Log</value>
+  </data>
+  <data name="OrganizationUnit" xml:space="preserve">
+    <value>Organization Units</value>
+  </data>
+  <data name="Person" xml:space="preserve">
+    <value>Person Information</value>
+  </data>
+  <data name="PersonBankInfo" xml:space="preserve">
+    <value>Person Bank Information</value>
+  </data>
+  <data name="PersonContract" xml:space="preserve">
+    <value>Person Contract Information</value>
+  </data>
+  <data name="PersonGroup" xml:space="preserve">
+    <value>Person Group Information</value>
+  </data>
+  <data name="PersonUpdatePermission" xml:space="preserve">
+    <value>Person Update </value>
+  </data>
+  <data name="Plate" xml:space="preserve">
+    <value>Plate</value>
+  </data>
+  <data name="Post" xml:space="preserve">
+    <value>Organization Post</value>
+  </data>
+  <data name="PreProductionDepartment" xml:space="preserve">
+    <value>PreProduction QC Department</value>
+  </data>
+  <data name="PrintExitReceipt" xml:space="preserve">
+    <value>Print Exit Receipt</value>
+  </data>
+  <data name="ProductionDevice" xml:space="preserve">
+    <value>Production Device</value>
+  </data>
+  <data name="RoleController" xml:space="preserve">
+    <value>Roles</value>
+  </data>
+  <data name="ShippingPaymentType" xml:space="preserve">
+    <value>Shipping Payment Type</value>
+  </data>
+  <data name="TakeToPreviousStep" xml:space="preserve">
+    <value>Take Order To Previous Step</value>
+  </data>
+  <data name="UpdateOrderRipColorPlate" xml:space="preserve">
+    <value>Update Order RipColor Plate</value>
+  </data>
+  <data name="UpdateOrderRipColors" xml:space="preserve">
+    <value>Update Order Rip Colors</value>
+  </data>
+  <data name="UpdateUserForCustomers" xml:space="preserve">
+    <value>Update User For Customers</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="GetAllPermission" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="ProductionQCDepartment" xml:space="preserve">
+    <value>Production QC Department</value>
+  </data>
+  <data name="ChangeStatus" xml:space="preserve">
+    <value>Change Status</value>
+  </data>
+  <data name="MaterialRequest" xml:space="preserve">
+    <value>Material request</value>
+  </data>
+  <data name="ManagerReview" xml:space="preserve">
+    <value>Manager Review</value>
+  </data>
+  <data name="OrderDamage" xml:space="preserve">
+    <value>Order Damage</value>
+  </data>
+  <data name="PlateDamage" xml:space="preserve">
+    <value>Plate Damage</value>
+  </data>
+  <data name="SupervisorReview" xml:space="preserve">
+    <value>Supervisor Review</value>
+  </data>
+  <data name="ViewKanban" xml:space="preserve">
+    <value>View Kanban</value>
+  </data>
+  <data name="GetInvoice" xml:space="preserve">
+    <value>View Invoice Creation</value>
+  </data>
+  <data name="GetInvoicesByOrderId" xml:space="preserve">
+    <value>View Issued Invoices</value>
+  </data>
+  <data name="ProductionWarehouse" xml:space="preserve">
+    <value>Production Warehouse</value>
+  </data>
+  <data name="GetProductionWarehouse" xml:space="preserve">
+    <value>Get Production Warehouse</value>
+  </data>
+  <data name="GetProductionMaterialsByItemCode" xml:space="preserve">
+    <value>Get ProductionMaterials By ItemCode</value>
+  </data>
+  <data name="UploadExcel" xml:space="preserve">
+    <value>Upload Excel</value>
+  </data>
+  <data name="AddMaterialByItemCode" xml:space="preserve">
+    <value>Add Material By ItemCode</value>
+  </data>
+  <data name="AddMaterial" xml:space="preserve">
+    <value>Add Material</value>
+  </data>
+  <data name="ReviewOrderDamage" xml:space="preserve">
+    <value>Review Order Damage</value>
+  </data>
+  <data name="ReviewPlateDamage" xml:space="preserve">
+    <value>ReviewPlateDamage</value>
+  </data>
+  <data name="GetAllPartialMaterial" xml:space="preserve">
+    <value>Get All Partial Material</value>
+  </data>
+  <data name="PartialMaterial" xml:space="preserve">
+    <value>Partial Material</value>
+  </data>
+  <data name="AddOrUpdateProformaInvoice" xml:space="preserve">
+    <value>Add Or Update Proforma Invoice</value>
+  </data>
+  <data name="FiscalYear" xml:space="preserve">
+    <value>Fiscal Year</value>
+  </data>
+  <data name="GroupCausesDamage" xml:space="preserve">
+    <value>Group Causes Damage</value>
+  </data>
+  <data name="PostType" xml:space="preserve">
+    <value>Post Type</value>
+  </data>
+  <data name="GetAllOrdersInAllStepsCount" xml:space="preserve">
+    <value>Get All Orders In All Steps Count</value>
+  </data>
+  <data name="GetCustomerOrderRegisterCountChart" xml:space="preserve">
+    <value>Get Customer Order Register Count Chart</value>
+  </data>
+  <data name="GetDesignerOrderRegisterCountChart" xml:space="preserve">
+    <value>Get Designer Order Register Count Chart</value>
+  </data>
+  <data name="GetOrderCountChart" xml:space="preserve">
+    <value>Get Order Count Chart</value>
+  </data>
+  <data name="GetOrdersStatusStatistics" xml:space="preserve">
+    <value>Get Orders Status Statistics</value>
+  </data>
+  <data name="GetPlateCountChart" xml:space="preserve">
+    <value>Get Plate Count Chart</value>
+  </data>
+  <data name="RatioInvoiceType" xml:space="preserve">
+    <value>Ratio Invoice Type</value>
+  </data>
+  <data name="RatioOrderType" xml:space="preserve">
+    <value>Ratio Order Type</value>
+  </data>
+  <data name="GetDashboardView" xml:space="preserve">
+    <value>Get Dashboard View</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="DesignerGroup" xml:space="preserve">
+    <value>Designer Group</value>
+  </data>
+  <data name="AssignOrderToDesigner" xml:space="preserve">
+    <value>Assign Order To Designer</value>
+  </data>
+  <data name="DesignerQualityControlTypes" xml:space="preserve">
+    <value>Designer Quality Control Types</value>
+  </data>
+  <data name="ProcessStep" xml:space="preserve">
+    <value>Process Step</value>
+  </data>
+  <data name="QualityControlTypes" xml:space="preserve">
+    <value>Quality Control Types</value>
+  </data>
+  <data name="ReportFilterCategory" xml:space="preserve">
+    <value>Report Filter Category</value>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>Setting</value>
+  </data>
+  <data name="SettingGroup" xml:space="preserve">
+    <value>Setting Group</value>
+  </data>
+  <data name="TramType" xml:space="preserve">
+    <value>Tram Type</value>
+  </data>
+  <data name="ReportFilter" xml:space="preserve">
+    <value>Report Filter</value>
+  </data>
+  <data name="GetSendingsForDriver" xml:space="preserve">
+    <value>Get Sendings For Driver</value>
+  </data>
+  <data name="DeliverOrderSending" xml:space="preserve">
+    <value>Deliver Order Sending</value>
+  </data>
+  <data name="GetOrderSendingDetail" xml:space="preserve">
+    <value>Get Order Sending Detail</value>
+  </data>
+  <data name="GetDriversFilter" xml:space="preserve">
+    <value>Get Drivers Filter</value>
+  </data>
+  <data name="GetInvoiceReport" xml:space="preserve">
+    <value>Get Invoice Report</value>
+  </data>
+  <data name="GetOrderReport" xml:space="preserve">
+    <value>Get Order Report</value>
+  </data>
+  <data name="GetProductionDeviceReport" xml:space="preserve">
+    <value>Get Production Device Report</value>
+  </data>
+  <data name="GetProductionLogReport" xml:space="preserve">
+    <value>Get Production Log Report</value>
+  </data>
+  <data name="GetProformaInvoiceReport" xml:space="preserve">
+    <value>Get Proforma Invoice Report</value>
+  </data>
+</root>

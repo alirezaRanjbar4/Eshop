@@ -1,0 +1,555 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account" xml:space="preserve">
+    <value>حساب کاربری</value>
+  </data>
+  <data name="AddOrEditPersonUser" xml:space="preserve">
+    <value>افزودن یا ویرایش نام کاربری پرسنل</value>
+  </data>
+  <data name="AddOrUpdate" xml:space="preserve">
+    <value>افزودن و ویرایش</value>
+  </data>
+  <data name="AddPermission" xml:space="preserve">
+    <value>افزودن</value>
+  </data>
+  <data name="AddRangeChartPostPerson" xml:space="preserve">
+    <value>افزودن گروهی پست</value>
+  </data>
+  <data name="AddUserForCustomers" xml:space="preserve">
+    <value>افزودن اطلاعات کاربری مشتریان</value>
+  </data>
+  <data name="Authentication" xml:space="preserve">
+    <value>احراز هویت</value>
+  </data>
+  <data name="BankInfo" xml:space="preserve">
+    <value>اطلاعات بانک ها</value>
+  </data>
+  <data name="ChangeDesignApprove" xml:space="preserve">
+    <value>تغییر وضعیت تایید طرح</value>
+  </data>
+  <data name="ChangeOrderStatus" xml:space="preserve">
+    <value>تغییر وضعیت سفارش</value>
+  </data>
+  <data name="ChangePlateState" xml:space="preserve">
+    <value>تغییر وضعیت پلیت</value>
+  </data>
+  <data name="ChangeUserPassword" xml:space="preserve">
+    <value>تغییر کلمه عبور کاربر</value>
+  </data>
+  <data name="Chart" xml:space="preserve">
+    <value>چارت سازمانی</value>
+  </data>
+  <data name="ChartPost" xml:space="preserve">
+    <value>پست های چارت</value>
+  </data>
+  <data name="ChartPostPerson" xml:space="preserve">
+    <value>تخصیص پرسنل به پست های چارت</value>
+  </data>
+  <data name="ChartType" xml:space="preserve">
+    <value>نوع چارت</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>شهر</value>
+  </data>
+  <data name="ColorSelection" xml:space="preserve">
+    <value>انتخاب رنگ سفارش</value>
+  </data>
+  <data name="ComplementaryOperationDepartment" xml:space="preserve">
+    <value>عملیات تکمیلی</value>
+  </data>
+  <data name="ContractType" xml:space="preserve">
+    <value>نوع قرارداد</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>مشتری</value>
+  </data>
+  <data name="CustomerUserInfoController" xml:space="preserve">
+    <value>اطلاعات کاربری مشتری</value>
+  </data>
+  <data name="DeleteAddedRip" xml:space="preserve">
+    <value>حذف ریپ اضافه شده در چیدمان</value>
+  </data>
+  <data name="DeletePermission" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+  <data name="DeleteUserForCustomers" xml:space="preserve">
+    <value>حذف اطلاعات کاربری مشتریان</value>
+  </data>
+  <data name="DependentInfo" xml:space="preserve">
+    <value>افراد تحت تکفل</value>
+  </data>
+  <data name="DesigningDepartment" xml:space="preserve">
+    <value>بخش طراحی</value>
+  </data>
+  <data name="Driver" xml:space="preserve">
+    <value>رانندگان</value>
+  </data>
+  <data name="EditUser" xml:space="preserve">
+    <value>ویرایش اطلاعات کاربری</value>
+  </data>
+  <data name="FinancialDepartment" xml:space="preserve">
+    <value>واحد مالی</value>
+  </data>
+  <data name="GetAllDesigner" xml:space="preserve">
+    <value>نمایش طراح ها</value>
+  </data>
+  <data name="GetAllKlischePrice" xml:space="preserve">
+    <value>دریافت قیمت گذاری کلیشه</value>
+  </data>
+  <data name="GetAllOrderForAdmin" xml:space="preserve">
+    <value>مشاهده سفارش برای ادمین</value>
+  </data>
+  <data name="GetAllPersonForChartPost" xml:space="preserve">
+    <value>مشاهده همه پرسنل در پست های چارت</value>
+  </data>
+  <data name="GetAllPersonUserInfo" xml:space="preserve">
+    <value>مشاهده اطلاعات کاربری پرسنل</value>
+  </data>
+  <data name="GetAllProcessStep" xml:space="preserve">
+    <value>مشاهده مراحل</value>
+  </data>
+  <data name="GetAllWorkingPlate" xml:space="preserve">
+    <value>دریافت پلیت های فعال</value>
+  </data>
+  <data name="GetComplementaryOperationInfo" xml:space="preserve">
+    <value>مشاهده عملیات تکمیلی</value>
+  </data>
+  <data name="GetDesignerKanbanFilter" xml:space="preserve">
+    <value>دریافت فیلتر کانبان طراحان</value>
+  </data>
+  <data name="GetInsuranceInfoByPersonId" xml:space="preserve">
+    <value>مشاهده اطلاعات بیمه پرسنل</value>
+  </data>
+  <data name="GetKlischeAssemblyDimensions" xml:space="preserve">
+    <value>دریافت ابعاد کلیشه</value>
+  </data>
+  <data name="GetKlischeCutsAndPacking" xml:space="preserve">
+    <value>دریافت اطلاعات برش وبسته بندی</value>
+  </data>
+  <data name="GetOrderColorSelection" xml:space="preserve">
+    <value>دریافت رنگ های سفارش</value>
+  </data>
+  <data name="GetOrderPackaging" xml:space="preserve">
+    <value>دریافت اطلاعات بسته بندی</value>
+  </data>
+  <data name="GetOrderRipColorAngles" xml:space="preserve">
+    <value>مشاهده اطلاعات رنگ و زاویه</value>
+  </data>
+  <data name="GetOrderRipColors" xml:space="preserve">
+    <value>دریافت رنگهای سفارش</value>
+  </data>
+  <data name="GetOrdersAssignToDesigner" xml:space="preserve">
+    <value>مشاهده سفارش برای طراح</value>
+  </data>
+  <data name="GetOrderSending" xml:space="preserve">
+    <value>دریافت اطلاعات ارسال</value>
+  </data>
+  <data name="GetOrderStepLog" xml:space="preserve">
+    <value>مشاهده وضعیت سفارش</value>
+  </data>
+  <data name="GetPersonPosts" xml:space="preserve">
+    <value>مشاهده پست های پرسنل</value>
+  </data>
+  <data name="GetPersonsByChartPost" xml:space="preserve">
+    <value>مشاهده پرسنل بر اساس پست های چارت</value>
+  </data>
+  <data name="GetProductionDevicePersons" xml:space="preserve">
+    <value>دریافت اطلاعات پرسنل تولید</value>
+  </data>
+  <data name="GetQCTypes" xml:space="preserve">
+    <value>مشاهده آیتم های کنترل کیفی</value>
+  </data>
+  <data name="GetSingleOrderByOrderNumber" xml:space="preserve">
+    <value>جستجوی سفارش در مشاهده سفارش</value>
+  </data>
+  <data name="GetUserById" xml:space="preserve">
+    <value>دریافت اطلاعات کاربری با شناسه</value>
+  </data>
+  <data name="GetUserByPersonId" xml:space="preserve">
+    <value>دریافت اطلاعات کاربری پرسنل</value>
+  </data>
+  <data name="InsuranceInfo" xml:space="preserve">
+    <value>اطلاعات بیمه</value>
+  </data>
+  <data name="InsuranceJob" xml:space="preserve">
+    <value>اطلاعات شغل بیمه</value>
+  </data>
+  <data name="InsuranceType" xml:space="preserve">
+    <value>اطلاعات نوع بیمه</value>
+  </data>
+  <data name="KlischeAssemblyDepartment" xml:space="preserve">
+    <value>مونتاژ کلیشه</value>
+  </data>
+  <data name="KlischeCuttingDepartment" xml:space="preserve">
+    <value>واحد برش</value>
+  </data>
+  <data name="KlischePrice" xml:space="preserve">
+    <value>قیمت گذاری کلیشه</value>
+  </data>
+  <data name="KlischeThickness" xml:space="preserve">
+    <value>ضخامت کلیشه</value>
+  </data>
+  <data name="KlischeType" xml:space="preserve">
+    <value>نوع کلیشه</value>
+  </data>
+  <data name="KlischeTypeAndThickness" xml:space="preserve">
+    <value>ارتباط نوع کلیشه و ضخامت</value>
+  </data>
+  <data name="LaserLayoutFilmProductionController" xml:space="preserve">
+    <value>تولید فیلم و چیدمان لیزری</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>سفارشات</value>
+  </data>
+  <data name="OrderArchive" xml:space="preserve">
+    <value>آرشیو سفارشات</value>
+  </data>
+  <data name="OrderOnline" xml:space="preserve">
+    <value>سفارش آنلاین</value>
+  </data>
+  <data name="OrderPackagingDepartment" xml:space="preserve">
+    <value>واحد بسته بندی</value>
+  </data>
+  <data name="OrderRipDepartment" xml:space="preserve">
+    <value>بخش ریپ</value>
+  </data>
+  <data name="OrderSendingDepartment" xml:space="preserve">
+    <value>واحد ارسال</value>
+  </data>
+  <data name="OrderStepLog" xml:space="preserve">
+    <value>وضعیت سفارش</value>
+  </data>
+  <data name="OrganizationUnit" xml:space="preserve">
+    <value>واحد های سازمانی</value>
+  </data>
+  <data name="Person" xml:space="preserve">
+    <value>اطلاعات پرسنل</value>
+  </data>
+  <data name="PersonBankInfo" xml:space="preserve">
+    <value>اطلاعات بانکی پرسنل</value>
+  </data>
+  <data name="PersonContract" xml:space="preserve">
+    <value>قرارداد پرسنل</value>
+  </data>
+  <data name="PersonGroup" xml:space="preserve">
+    <value>گروه پرسنلی</value>
+  </data>
+  <data name="PersonUpdatePermission" xml:space="preserve">
+    <value>ویرایش پرسنل</value>
+  </data>
+  <data name="Plate" xml:space="preserve">
+    <value>پلیت</value>
+  </data>
+  <data name="Post" xml:space="preserve">
+    <value>پست سازمانی</value>
+  </data>
+  <data name="PreProductionDepartment" xml:space="preserve">
+    <value>کنترل کیفی پیش از تولید</value>
+  </data>
+  <data name="PrintExitReceipt" xml:space="preserve">
+    <value>چاپ برگ خروج</value>
+  </data>
+  <data name="ProductionDevice" xml:space="preserve">
+    <value>دستگاه تولید</value>
+  </data>
+  <data name="RoleController" xml:space="preserve">
+    <value>نقش سیستمی</value>
+  </data>
+  <data name="TakeToPreviousStep" xml:space="preserve">
+    <value>برگرداندن سفارش به مرحله قبل</value>
+  </data>
+  <data name="UpdateOrderRipColorPlate" xml:space="preserve">
+    <value>ویرایش رنگ پلیت</value>
+  </data>
+  <data name="UpdateOrderRipColors" xml:space="preserve">
+    <value>ویرایش رنگ های سفارش</value>
+  </data>
+  <data name="UpdatePermission" xml:space="preserve">
+    <value>ویرایش</value>
+  </data>
+  <data name="UpdateUserForCustomers" xml:space="preserve">
+    <value>ویرایش اطلاعات کاربری مشتریان</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>کاربران</value>
+  </data>
+  <data name="GetAllPermission" xml:space="preserve">
+    <value>مشاهده</value>
+  </data>
+  <data name="ProductionQCDepartment" xml:space="preserve">
+    <value>واحد کنترل کیفی تولید</value>
+  </data>
+  <data name="ChangeStatus" xml:space="preserve">
+    <value>تغییر وضعیت</value>
+  </data>
+  <data name="MaterialRequest" xml:space="preserve">
+    <value>درخواست کالا</value>
+  </data>
+  <data name="ManagerReview" xml:space="preserve">
+    <value>بازدید مدیر</value>
+  </data>
+  <data name="OrderDamage" xml:space="preserve">
+    <value>خرابی سفارش</value>
+  </data>
+  <data name="PlateDamage" xml:space="preserve">
+    <value>خرابی پلیت</value>
+  </data>
+  <data name="SupervisorReview" xml:space="preserve">
+    <value>بازدید سرپرست</value>
+  </data>
+  <data name="ViewKanban" xml:space="preserve">
+    <value>مشاهده کانبان</value>
+  </data>
+  <data name="GetInvoice" xml:space="preserve">
+    <value>مشاهده ایجاد فاکتور</value>
+  </data>
+  <data name="GetInvoicesByOrderId" xml:space="preserve">
+    <value>مشاهده فاکتورهای صادر شده</value>
+  </data>
+  <data name="ProductionWarehouse" xml:space="preserve">
+    <value>انبار تولید</value>
+  </data>
+  <data name="GetProductionMaterialsByItemCode" xml:space="preserve">
+    <value>مشاهده لیست یک کالا</value>
+  </data>
+  <data name="GetProductionWarehouse" xml:space="preserve">
+    <value>مشاهده اطلاعات کالاهای انبار</value>
+  </data>
+  <data name="UploadExcel" xml:space="preserve">
+    <value>آپلود فایل اکسل</value>
+  </data>
+  <data name="AddMaterialByItemCode" xml:space="preserve">
+    <value>افزودن با کد کالا</value>
+  </data>
+  <data name="AddMaterial" xml:space="preserve">
+    <value>افزودن کالا</value>
+  </data>
+  <data name="ReviewOrderDamage" xml:space="preserve">
+    <value>بازدید خرابی سفارش</value>
+  </data>
+  <data name="ReviewPlateDamage" xml:space="preserve">
+    <value>بازدید خرابی پلیت</value>
+  </data>
+  <data name="GetAllPartialMaterial" xml:space="preserve">
+    <value>مشاهده پارشیال ها</value>
+  </data>
+  <data name="PartialMaterial" xml:space="preserve">
+    <value>پارشیال</value>
+  </data>
+  <data name="AddOrUpdateProformaInvoice" xml:space="preserve">
+    <value>ایجاد و ویرایش پیش فاکتور</value>
+  </data>
+  <data name="FiscalYear" xml:space="preserve">
+    <value>سال مالی</value>
+  </data>
+  <data name="GroupCausesDamage" xml:space="preserve">
+    <value>عامل خرابی</value>
+  </data>
+  <data name="PostType" xml:space="preserve">
+    <value>نوع پست</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>داشبورد</value>
+  </data>
+  <data name="GetAllOrdersInAllStepsCount" xml:space="preserve">
+    <value>آمار تعداد سفارشات در هر مرحله</value>
+  </data>
+  <data name="GetCustomerOrderRegisterCountChart" xml:space="preserve">
+    <value>جدول تعداد سفارشات مشتریان</value>
+  </data>
+  <data name="GetDesignerOrderRegisterCountChart" xml:space="preserve">
+    <value>جدول تعداد سفارشات طراحان</value>
+  </data>
+  <data name="GetOrderCountChart" xml:space="preserve">
+    <value>جدول تعداد سفارشات</value>
+  </data>
+  <data name="GetOrdersStatusStatistics" xml:space="preserve">
+    <value>آمار سفارشات بر اساس وضعیت</value>
+  </data>
+  <data name="GetPlateCountChart" xml:space="preserve">
+    <value>جدول تعداد پلیت ها</value>
+  </data>
+  <data name="RatioInvoiceType" xml:space="preserve">
+    <value>جدول نسبت انواع فاکتور</value>
+  </data>
+  <data name="RatioOrderType" xml:space="preserve">
+    <value>جدول نسبت انواع سفارش</value>
+  </data>
+  <data name="GetDashboardView" xml:space="preserve">
+    <value>مشاهده داشبورد</value>
+  </data>
+  <data name="DesignerGroup" xml:space="preserve">
+    <value>گروه طراحی</value>
+  </data>
+  <data name="AssignOrderToDesigner" xml:space="preserve">
+    <value>تخصیص سفارش به طراح</value>
+  </data>
+  <data name="DesignerQualityControlTypes" xml:space="preserve">
+    <value>کنترل کیفی طراحی</value>
+  </data>
+  <data name="ProcessStep" xml:space="preserve">
+    <value>مراحله فرایند</value>
+  </data>
+  <data name="QualityControlTypes" xml:space="preserve">
+    <value>کنترل کیفی</value>
+  </data>
+  <data name="ReportFilterCategory" xml:space="preserve">
+    <value>دسته بندی گزارشات</value>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>تنظیمات</value>
+  </data>
+  <data name="SettingGroup" xml:space="preserve">
+    <value>گروه تنظیمات </value>
+  </data>
+  <data name="TramType" xml:space="preserve">
+    <value>نوع ترام</value>
+  </data>
+  <data name="ReportFilter" xml:space="preserve">
+    <value>گزارشات</value>
+  </data>
+  <data name="GetSendingsForDriver" xml:space="preserve">
+    <value>دریافت ارسال ها برای راننده</value>
+  </data>
+  <data name="DeliverOrderSending" xml:space="preserve">
+    <value>تحویل بسته ارسال</value>
+  </data>
+  <data name="GetOrderSendingDetail" xml:space="preserve">
+    <value>دریافت جزئیات ارسال سفارش</value>
+  </data>
+  <data name="GetDriversFilter" xml:space="preserve">
+    <value>دریافت فیلتر راننده ها</value>
+  </data>
+  <data name="GetInvoiceReport" xml:space="preserve">
+    <value>دریافت گزارش فاکتورها</value>
+  </data>
+  <data name="GetOrderReport" xml:space="preserve">
+    <value>دریافت گزارش سفارشات</value>
+  </data>
+  <data name="GetProductionDeviceReport" xml:space="preserve">
+    <value>دریافت گزارش دستگاه های تولید</value>
+  </data>
+  <data name="GetProductionLogReport" xml:space="preserve">
+    <value>دریافت گزارش لاگ تولید</value>
+  </data>
+  <data name="GetProformaInvoiceReport" xml:space="preserve">
+    <value>دریافت گزارش پیش فاکتور ها</value>
+  </data>
+</root>

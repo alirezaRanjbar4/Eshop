@@ -1,0 +1,209 @@
+﻿using AutoMapper;
+using Eshop.Common.ActionFilters.Response;
+using Eshop.DTO.General;
+using Eshop.Entity.General;
+using Eshop.Repository.General;
+using Microsoft.EntityFrameworkCore.Query;
+using System.Linq.Expressions;
+
+namespace Eshop.Service.General;
+
+public class BaseService<TModel> : IBaseService<TModel> where TModel : class, IBaseEntity
+{
+    protected readonly IBaseRepository<TModel> _baseRepository;
+    protected readonly IMapper _mapper;
+
+    public BaseService(IMapper mapper)
+    {
+        _mapper = mapper;
+    }
+
+    public BaseService(IBaseRepository<TModel> baseRepository, IMapper mapper) : this(mapper)
+    {
+        _baseRepository = baseRepository;
+    }
+
+
+    #region Query
+
+    public async Task<T> GetAsync<T>(Expression<Func<TModel, bool>> expression = null, Func<IQueryable<TModel>, IIncludableQueryable<TModel, object>> include = null, bool ignoreFilter = false, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var result = await _baseRepository.GetAsync(expression, include, ignoreFilter, cancellationToken);
+            var resultMap = _mapper.Map<T>(result);
+            return resultMap;
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+    }
+
+    public async Task<bool> IsExistAsync(Expression<Func<TModel, bool>> expression = null, Func<IQueryable<TModel>, IIncludableQueryable<TModel, object>> include = null, bool ignoreFilter = false, CancellationToken cancellationToken = default)
+    {
+        return await _baseRepository.IsExistAsync(expression, include, ignoreFilter, cancellationToken);
+    }
+
+    public async Task<int> CountAsync(Expression<Func<TModel, bool>> expression = null, Func<IQueryable<TModel>, IIncludableQueryable<TModel, object>> include = null, bool ignoreFilter = false, CancellationToken cancellationToken = default)
+    {
+        return await _baseRepository.CountAsync(expression, include, ignoreFilter, cancellationToken);
+    }
+
+    public async Task<List<T>> GetAllAsync<T>(Expression<Func<TModel, bool>> expression = null, Func<IQueryable<TModel>, IIncludableQueryable<TModel, object>> include = null, Func<IQueryable<TModel>, IOrderedQueryable<TModel>> orderBy = null, bool ignoreFilter = false, CancellationToken cancellationToken = default)
+    {
+        var result = await _baseRepository.GetAllAsync(expression, include, orderBy, ignoreFilter, cancellationToken);
+        var resultMap = _mapper.Map<List<T>>(result);
+        return resultMap;
+    }
+
+    public async Task<OperationResult<List<T>>> GetAllAsyncWithTotal<T>(BaseSearchDTO requestDto = default, Expression<Func<TModel, bool>> expression = null, Func<IQueryable<TModel>, IIncludableQueryable<TModel, object>> include = null, Func<IQueryable<TModel>, IOrderedQueryable<TModel>> orderBy = null, bool ignoreFilter = false, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var resultGetAll = await _baseRepository.GetAllAsyncWithTotal(requestDto, expression, include, orderBy, ignoreFilter, cancellationToken);
+            var resultMap = _mapper.Map<List<T>>(resultGetAll.Data);
+
+            return new OperationResult<List<T>>()
+            {
+                Data = resultMap,
+                TotalRecords = resultGetAll.TotalRecords,
+                Page = requestDto.Page,
+                PageSize = requestDto.PageSize,
+            };
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+    }
+
+    #endregion
+
+    #region Command
+
+    public async virtual Task<T> AddAsync<T>(T model, bool isSave = true, CancellationToken cancellationToken = default) where T : BaseDto
+    {
+        try
+        {
+            var resultMap = _mapper.Map<TModel>(model);
+            var resultAdd = await _baseRepository.AddAsync(resultMap, isSave, cancellationToken);
+
+            if (!resultAdd)
+                return null;
+
+            model.Id = resultMap.Id;
+
+            return model;
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+    }
+
+    public async Task<bool> AddRangeAsync<T>(IEnumerable<T> models, bool isSave = true, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var resultMap = _mapper.Map<IList<TModel>>(models);
+            var resultAdd = await _baseRepository.AddRangeAsync(resultMap, isSave, cancellationToken);
+
+            return resultAdd;
+        }
+        catch
+        {
+            throw;
+        }
+    }
+
+    public async virtual Task<T> UpdateAsync<T>(T model, bool isSave = true, bool ignoreFilter = true, CancellationToken cancellationToken = default) where T : BaseDto
+    {
+        try
+        {
+            var entityResult = await _baseRepository.GetAsync(x => x.Id == model.Id, null, ignoreFilter, cancellationToken);
+            _mapper.Map(model, entityResult);
+
+            var resultEdit = await _baseRepository.UpdateAsync(entityResult, isSave, cancellationToken);
+            return model;
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+    }
+
+    public virtual async Task<bool> UpdateRangeAsync<T>(IEnumerable<T> models, bool isSave = true, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var resultMap = _mapper.Map<IList<TModel>>(models);
+            var resultUpdate = await _baseRepository.UpdateRangeAsync(resultMap, isSave, cancellationToken);
+
+            return resultUpdate;
+        }
+        catch
+        {
+            throw;
+        }
+    }
+
+    public async virtual Task<bool> DeleteAsync(Guid id, bool isSave = true, bool ignoreFilter = true, bool LogicalDelete = true, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var findResult = await _baseRepository.GetAsync(x => x.Id == id, null, ignoreFilter, cancellationToken);
+            if (findResult == null)
+                return false;
+
+            return await _baseRepository.DeleteAsync(findResult, LogicalDelete, isSave, cancellationToken);
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+    }
+
+    public async Task<bool> DeleteRangeAsync<T>(IEnumerable<T> models, bool isSave = true, bool logicalDelete = true, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var resultMap = _mapper.Map<IList<TModel>>(models);
+            var resultDelete = await _baseRepository.DeleteRangeAsync(resultMap, logicalDelete, isSave, cancellationToken);
+
+            return resultDelete;
+        }
+        catch
+        {
+            throw;
+        }
+    }
+
+    #endregion
+
+    #region Dispose
+
+    private bool disposed = false;
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!disposed)
+        {
+            if (disposing)
+            {
+                if (_baseRepository != null)
+                    _baseRepository.Dispose();
+            }
+        }
+        disposed = true;
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    #endregion
+}
+
