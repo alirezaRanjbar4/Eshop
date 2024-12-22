@@ -6,7 +6,7 @@ namespace Eshop.DTO.Models
     {
         public string Name { get; set; }
         public Guid StoreId { get; set; }
-        public Guid ParentId { get; set; }
+        public Guid ParentId { get; set; } 
 
         public List<CategoryDTO> Childs { get; set; }
         public List<ProductCategoryDTO> ProductCategories { get; set; }
