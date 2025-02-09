@@ -5,7 +5,7 @@ using Eshop.Common.ActionFilters;
 using Eshop.Common.ActionFilters.Response;
 using Eshop.DTO.General;
 using Eshop.DTO.Identities.DynamicAccess;
-using Eshop.DTO.Models;
+using Eshop.DTO.Models.Vendor;
 using Eshop.Enum;
 using Eshop.Service.Models.Vendor;
 using Microsoft.AspNetCore.Authorization;
@@ -34,20 +34,15 @@ namespace Eshop.Api.Controllers.Models
         [HttpGet(nameof(GetAllVendor))]
         public async Task<List<VendorDTO>> GetAllVendor(CancellationToken cancellationToken)
         {
-            return await _vendorService.GetAllAsync<VendorDTO>(null, null, null, false, cancellationToken);
+            var storeId = User.FindFirst("StoreId") != null ? new Guid(User.FindFirst("StoreId").Value) : Guid.Empty;
+            return await _vendorService.GetAllAsync<VendorDTO>(x => x.StoreId == storeId, null, null, false, cancellationToken);
         }
 
 
-        [HttpPost(nameof(GetAllVendorWithTotal)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<OperationResult<List<VendorDTO>>> GetAllVendorWithTotal(BaseSearchDTO searchDTO, CancellationToken cancellationToken)
+        [HttpGet(nameof(GetVendor))]
+        public async Task<VendorDTO> GetVendor(Guid id, CancellationToken cancellationToken)
         {
-            return await _vendorService.GetAllAsyncWithTotal<VendorDTO>(
-                searchDTO,
-                x => string.IsNullOrEmpty(searchDTO.SearchTerm) || x.Name.Contains(searchDTO.SearchTerm),
-                null,
-                o => o.OrderByDescending(x => x.CreateDate),
-                false, cancellationToken);
+            return await _vendorService.GetAsync<VendorDTO>(x => x.Id == id, null, false, cancellationToken);
         }
 
 

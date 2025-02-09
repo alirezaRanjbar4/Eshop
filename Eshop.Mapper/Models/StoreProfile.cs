@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Eshop.DTO.Models;
+using Eshop.DTO.Models.Store;
 using Eshop.Entity.Models;
 
 namespace Eshop.Mapper.Models
