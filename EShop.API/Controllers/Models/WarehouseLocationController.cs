@@ -1,6 +1,6 @@
 ﻿using Asp.Versioning;
 using Eshop.Api.Components;
-using Eshop.Api.Controllers.Core;
+using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters;
 using Eshop.Common.ActionFilters.Response;
 using Eshop.DTO.General;
@@ -47,7 +47,8 @@ namespace Eshop.Api.Controllers.Models
                 x => string.IsNullOrEmpty(searchDTO.SearchTerm) || x.Name.Contains(searchDTO.SearchTerm),
                 null,
                 o => o.OrderByDescending(x => x.CreateDate),
-                false, cancellationToken);
+                false, 
+                cancellationToken);
         }
 
 

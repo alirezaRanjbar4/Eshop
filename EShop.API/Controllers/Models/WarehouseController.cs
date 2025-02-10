@@ -1,6 +1,6 @@
 ﻿using Asp.Versioning;
 using Eshop.Api.Components;
-using Eshop.Api.Controllers.Core;
+using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters;
 using Eshop.Common.ActionFilters.Response;
 using Eshop.DTO.General;

@@ -1,6 +1,6 @@
 ﻿using Asp.Versioning;
 using Eshop.Api.Components;
-using Eshop.Api.Controllers.Core;
+using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters;
 using Eshop.DTO.Identities.DynamicAccess;
 using Eshop.DTO.Models.Store;

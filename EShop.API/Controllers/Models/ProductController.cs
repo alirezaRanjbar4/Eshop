@@ -1,15 +1,16 @@
 ﻿using Asp.Versioning;
 using Eshop.Api.Components;
-using Eshop.Api.Controllers.Core;
+using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters;
 using Eshop.Common.ActionFilters.Response;
 using Eshop.DTO.General;
 using Eshop.DTO.Identities.DynamicAccess;
-using Eshop.DTO.Models;
+using Eshop.DTO.Models.Product;
 using Eshop.Enum;
 using Eshop.Service.Models.Product;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -40,14 +41,31 @@ namespace Eshop.Api.Controllers.Models
 
         [HttpPost(nameof(GetAllProductWithTotal)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
         [Authorize(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<OperationResult<List<ProductDTO>>> GetAllProductWithTotal(BaseSearchDTO searchDTO, CancellationToken cancellationToken)
+        public async Task<OperationResult<List<GetAllProductDTO>>> GetAllProductWithTotal(BaseSearchDTO searchDTO, CancellationToken cancellationToken)
         {
-            return await _productService.GetAllAsyncWithTotal<ProductDTO>(
+            return await _productService.GetAllAsyncWithTotal<GetAllProductDTO>(
                 searchDTO,
                 x => string.IsNullOrEmpty(searchDTO.SearchTerm) || x.Name.Contains(searchDTO.SearchTerm),
-                null,
+                i => i.Include(x => x.ProductCategories).ThenInclude(x => x.Category)
+                      .Include(x => x.ProductWarehouseLocations)
+                      .Include(x => x.ProductPrices),
                 o => o.OrderByDescending(x => x.CreateDate),
-                false, cancellationToken);
+                false,
+                cancellationToken);
+        }
+
+
+        [HttpPost(nameof(GetProduc)), DisplayName(nameof(PermissionResourceEnums.GetPermission))]
+        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        public async Task<GetProductDTO> GetProduc(Guid productId, CancellationToken cancellationToken)
+        {
+            return await _productService.GetAsync<GetProductDTO>(
+                x => x.Id == productId,
+                i => i.Include(x => x.ProductCategories).ThenInclude(x => x.Category)
+                      .Include(x => x.ProductWarehouseLocations).ThenInclude(x => x.WarehouseLocation).ThenInclude(x => x.Warehouse)
+                      .Include(x => x.ProductPrices),
+                false,
+                cancellationToken);
         }
 
 
@@ -56,8 +74,7 @@ namespace Eshop.Api.Controllers.Models
         [SuccessFilter(ResourceKey = GlobalResourceEnums.AddComplete, ResultType = ResultType.Success)]
         public async Task<bool> AddProduct([FromBody] ProductDTO product, CancellationToken cancellationToken)
         {
-            var result = await _productService.AddAsync(product, true, cancellationToken);
-            return result != null;
+            return await _productService.AddProduct(product, cancellationToken);
         }
 
 
@@ -66,8 +83,7 @@ namespace Eshop.Api.Controllers.Models
         [SuccessFilter(ResourceKey = GlobalResourceEnums.EditComplete, ResultType = ResultType.Success)]
         public async Task<bool> UpdateProduct([FromBody] ProductDTO product, CancellationToken cancellationToken)
         {
-            var result = await _productService.UpdateAsync(product, true, true, cancellationToken);
-            return result != null;
+            return await _productService.UpdateProduct(product, cancellationToken);
         }
 
 

@@ -1,7 +1,7 @@
 ﻿using Eshop.Common.ActionFilters;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Eshop.Api.Controllers.Core
+namespace Eshop.Api.Controllers.General
 {
     [Route($"api/v{{version:apiVersion}}/[controller]")]
     [ApiController]

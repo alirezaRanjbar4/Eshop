@@ -1,7 +1,7 @@
 ﻿using Eshop.DTO.General;
 using Eshop.Enum;
 
-namespace Eshop.DTO.Models
+namespace Eshop.DTO.Models.Product
 {
     public class ProductDTO : BaseDto
     {
@@ -10,8 +10,8 @@ namespace Eshop.DTO.Models
         public MeasurementUnit MeasurementUnit { get; set; }
         public bool OpenToSell { get; set; }
         public Guid StoreId { get; set; }
+        public long Price { get; set; }
 
         public List<ProductCategoryDTO> ProductCategories { get; set; }
-        public List<ProductWarehouseLocationDTO> ProductWarehouseLocations { get; set; }
     }
 }

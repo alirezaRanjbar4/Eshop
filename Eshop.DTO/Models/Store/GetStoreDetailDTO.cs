@@ -1,7 +1,7 @@
 ﻿using Eshop.DTO.General;
 using Eshop.DTO.Models.Vendor;
 
-namespace Eshop.DTO.Models
+namespace Eshop.DTO.Models.Store
 {
     public class GetStoreDetailDTO : BaseDto
     {

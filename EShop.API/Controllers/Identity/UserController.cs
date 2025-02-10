@@ -1,6 +1,6 @@
 ﻿using Asp.Versioning;
 using Eshop.Api.Components;
-using Eshop.Api.Controllers.Core;
+using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters;
 using Eshop.Common.ActionFilters.Response;
 using Eshop.DTO.Identities.DynamicAccess;
@@ -14,7 +14,7 @@ using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Eshop.Api.Controllers.Base
+namespace Eshop.Api.Controllers.Identity
 {
     [ApiVersion(VersionProperties.V1)]
     [Authorize]
