@@ -61,9 +61,10 @@ namespace Eshop.Api.Controllers.Models
         {
             return await _productService.GetAsync<GetProductDTO>(
                 x => x.Id == productId,
-                i => i.Include(x => x.ProductCategories).ThenInclude(x => x.Category)
+                i => i.Include(x => x.ProductCategories)
                       .Include(x => x.ProductWarehouseLocations).ThenInclude(x => x.WarehouseLocation).ThenInclude(x => x.Warehouse)
-                      .Include(x => x.ProductPrices),
+                      .Include(x => x.ProductPrices)
+                      .Include(x => x.Images),
                 false,
                 cancellationToken);
         }

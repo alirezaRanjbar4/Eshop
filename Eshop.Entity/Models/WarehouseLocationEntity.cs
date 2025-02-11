@@ -11,5 +11,7 @@ namespace Eshop.Entity.Models
         public virtual WarehouseEntity Warehouse { get; set; }
 
         public virtual ICollection<ProductWarehouseLocationEntity> ProductWarehouseLocations { get; set; }
+        public virtual ICollection<ProductTransferEntity> ProductTransfers { get; set; }
+
     }
 }

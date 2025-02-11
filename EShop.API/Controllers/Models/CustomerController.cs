@@ -47,7 +47,8 @@ namespace Eshop.Api.Controllers.Models
                 x => string.IsNullOrEmpty(searchDTO.SearchTerm) || x.Name.Contains(searchDTO.SearchTerm),
                 null,
                 o => o.OrderByDescending(x => x.CreateDate),
-                false, cancellationToken);
+                false,
+                cancellationToken);
         }
 
 
@@ -56,8 +57,8 @@ namespace Eshop.Api.Controllers.Models
         [SuccessFilter(ResourceKey = GlobalResourceEnums.AddComplete, ResultType = ResultType.Success)]
         public async Task<bool> AddCustomer([FromBody] CustomerDTO customer, CancellationToken cancellationToken)
         {
-            var result = await _customerService.AddAsync(customer, true, cancellationToken);
-            return result != null;
+            var storeId = User.FindFirst("StoreId") != null ? new Guid(User.FindFirst("StoreId").Value) : Guid.Empty;
+            return await _customerService.AddCustomer(customer, storeId, cancellationToken);
         }
 
 

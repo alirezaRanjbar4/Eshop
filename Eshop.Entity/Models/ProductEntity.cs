@@ -19,6 +19,7 @@ namespace Eshop.Entity.Models
         public virtual ICollection<ShoppingCardItemEntity> ShoppingCardItems { get; set; }
         public virtual ICollection<ImageEntity> Images { get; set; }
         public virtual ICollection<ProductPriceEntity> ProductPrices { get; set; }
+        public virtual ICollection<ProductTransferEntity> ProductTransfers { get; set; }
 
     }
 }

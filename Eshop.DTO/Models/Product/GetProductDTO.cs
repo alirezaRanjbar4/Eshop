@@ -11,10 +11,10 @@ namespace Eshop.DTO.Models.Product
         public bool OpenToSell { get; set; }
         public long Price { get; set; }
 
-
         public virtual ICollection<ProductCategoryDTO> ProductCategories { get; set; }
-        public virtual ICollection<ProductWarehouseLocationEntity> ProductWarehouseLocations { get; set; }
+        public virtual ICollection<GetAllProductWarehouseLocationDTO> ProductWarehouseLocations { get; set; }
         public virtual ICollection<ImageDTO> Images { get; set; }
         public virtual ICollection<CompleteProductPriceDTO> ProductPrices { get; set; }
+        public virtual ICollection<CompleteProductTransferDTO> ProductTransfers { get; set; }
     }
 }

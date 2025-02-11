@@ -40,4 +40,13 @@ namespace Eshop.Enum
         [Description("رد شده")]
         Type3 = 3,
     }
+    
+    public enum ProductTransferType
+    {
+        [Description("افزایش")]
+        Increase = 1,
+
+        [Description("کاهش")]
+        Decrease = 2
+    }
 }

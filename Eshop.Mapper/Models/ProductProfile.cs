@@ -13,6 +13,10 @@ namespace Eshop.Mapper.Models
                 .ForMember(des => des.Price, option => option.MapFrom(src => src.ProductPrices != null ? src.ProductPrices.Last().Price : 0))
                 .ReverseMap();
 
+            CreateMap<ProductEntity, GetProductDTO>()
+               .ForMember(des => des.Price, option => option.MapFrom(src => src.ProductPrices != null ? src.ProductPrices.Last().Price : 0))
+               .ReverseMap();
+
             CreateMap<ProductEntity, GetAllProductDTO>()
                 .ForMember(des => des.Category, option => option.MapFrom(src => src.ProductCategories != null ? src.ProductCategories.Select(x => x.Category.Name).ToString() : string.Empty))
                 .ForMember(des => des.TotalCount, option => option.MapFrom(src => src.ProductWarehouseLocations.Sum(x => x.Count)))

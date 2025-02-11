@@ -12,7 +12,7 @@ namespace Eshop.Mapper.Models
             CreateMap<ProductPriceEntity, ProductPriceDTO>().ReverseMap();
 
             CreateMap<ProductPriceEntity, CompleteProductPriceDTO>()
-                .ForMember(des => des.ExpiryDate, option => option.MapFrom(src => Utility.CalandarProvider.MiladiToShamsi(src.ExpiryDate)))
+                .ForMember(des => des.ExpiryDate, option => option.MapFrom(src => Utility.CalandarProvider.MiladiToShamsi(src.ExpiryDate, false)))
                 .ForMember(des => des.StartDate, option => option.MapFrom(src => Utility.CalandarProvider.UTCToShamsiWithIranTime(src.CreateDate, false)));
         }
     }
