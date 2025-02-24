@@ -69,8 +69,8 @@ namespace Eshop.Api
                         // TermsOfService = new Uri("https://example.com/terms"),
                         Contact = new OpenApiContact
                         {
-                            Name = "keyvan Developer",
-                            Email = "keyvan.alishiri@gmail.com",
+                            Name = "Alireza",
+                            Email = "arranjbar2@gmail.com",
                             Url = new Uri("https://webartdesign.ir"),
                         },
                     });
@@ -96,7 +96,7 @@ namespace Eshop.Api
                              {
                                  policy.AllowAnyHeader()
                                        .WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                                       .WithOrigins("http://localhost:3000", "http://185.103.129.113", "http://192.168.3.17", "http://192.168.3.17:71", "http://192.168.3.12", "http://erp.rasamflexo.ir", "http://rasamflexo.ir", "http://192.168.5.182:3000", "http://192.168.5.134:3000")
+                                       .WithOrigins("http://192.168.43.154", "http://192.168.5.134:3000")
                                        .AllowCredentials();
                              }));
 
