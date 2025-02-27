@@ -85,6 +85,8 @@ namespace Eshop.Service.Identity.Authentication.Service
                         var userPerson = await _userManager.Users
                                                            .Where(o => o.Id == user.Id)
                                                            .Include(x => x.UserRoles.Where(x => !x.Deleted)).ThenInclude(x => x.Role).ThenInclude(x => x.RoleClaims.Where(x => !x.Deleted))
+                                                           .Include(x => x.Vendor).ThenInclude(x => x.Store)
+                                                           .Include(x => x.Customer)
                                                            .FirstOrDefaultAsync();
 
                         if (userPerson != null && userPerson.UserRoles != null && userPerson.UserRoles.Count > 0)
