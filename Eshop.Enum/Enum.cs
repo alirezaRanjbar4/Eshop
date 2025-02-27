@@ -2,16 +2,28 @@
 
 namespace Eshop.Enum
 {
-    public enum StorType
+    public enum StoreType
     {
-        [Description("تایپ1")]
-        Type1 = 1,
+        [Description("فروش محصول")]
+        ProductSeller = 1,
 
-        [Description("تایپ2")]
-        Type2 = 2,
+        [Description("فروش خدمات")]
+        ServiceSeller = 2,
 
-        [Description("تایپ3")]
-        Type3 = 3,
+        [Description("ترکیبی")]
+        Mixed = 3,
+    }
+
+    public enum UserType
+    {
+        [Description("ادمین")]
+        Admin = 1,
+
+        [Description("فروشنده")]
+        Vendor = 2,
+
+        [Description("مشتری")]
+        Customer = 3,
     }
 
     public enum MeasurementUnit
