@@ -28,9 +28,9 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpGet(nameof(GetStoreDetail))]
-        public async Task<StoreDTO> GetStoreDetail(CancellationToken cancellationToken)
+        public async Task<StoreDTO> GetStoreDetail(Guid storeId,CancellationToken cancellationToken)
         {
-            var storeId = User.FindFirst("StoreId") != null ? new Guid(User.FindFirst("StoreId").Value) : Guid.Empty;
+            //var storeId = User.FindFirst("StoreId") != null ? new Guid(User.FindFirst("StoreId").Value) : Guid.Empty;
             return await _storeService.GetAsync<StoreDTO>(x => x.Id == storeId, null, false, cancellationToken);
         }
 

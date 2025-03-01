@@ -32,19 +32,19 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpGet(nameof(GetAllWarehouse))]
-        public async Task<List<WarehouseDTO>> GetAllWarehouse(CancellationToken cancellationToken)
+        public async Task<List<WarehouseDTO>> GetAllWarehouse(Guid storeId, CancellationToken cancellationToken)
         {
-            return await _warehouseService.GetAllAsync<WarehouseDTO>(null, null, null, false, cancellationToken);
+            return await _warehouseService.GetAllAsync<WarehouseDTO>(x => x.StoreId == storeId, null, null, false, cancellationToken);
         }
 
 
         [HttpPost(nameof(GetAllWarehouseWithTotal)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
         [Authorize(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<OperationResult<List<WarehouseDTO>>> GetAllWarehouseWithTotal(BaseSearchDTO searchDTO, CancellationToken cancellationToken)
+        public async Task<OperationResult<List<WarehouseDTO>>> GetAllWarehouseWithTotal(BaseSearchByIdDTO searchDTO, CancellationToken cancellationToken)
         {
             return await _warehouseService.GetAllAsyncWithTotal<WarehouseDTO>(
                 searchDTO,
-                x => string.IsNullOrEmpty(searchDTO.SearchTerm) || x.Name.Contains(searchDTO.SearchTerm),
+                x => x.StoreId == searchDTO.Id && (string.IsNullOrEmpty(searchDTO.SearchTerm) || x.Name.Contains(searchDTO.SearchTerm)),
                 null,
                 o => o.OrderByDescending(x => x.CreateDate),
                 false, cancellationToken);

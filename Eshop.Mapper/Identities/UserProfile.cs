@@ -75,8 +75,8 @@ namespace Eshop.Mapper.Identities
                         case Enum.UserType.Vendor:
                             des.Name = src.Vendor != null ? src.Vendor.Name : string.Empty;
                             des.StoreName = src.Vendor != null && src.Vendor.Store != null ? src.Vendor.Store.Name : string.Empty;
-                            des.StoreName = src.Vendor != null && src.Vendor.Store != null ? src.Vendor.Store.Name : string.Empty;
                             des.StoreType = src.Vendor != null && src.Vendor.Store != null ? src.Vendor.Store.StoreType : null;
+                            des.StoreId = src.Vendor != null ? src.Vendor.StoreId : null;
                             break;
                         case Enum.UserType.Customer:
                             des.Name = src.Customer.Name;

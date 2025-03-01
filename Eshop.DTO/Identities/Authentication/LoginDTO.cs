@@ -12,6 +12,7 @@ namespace Eshop.DTO.Identities.Authentication
 
         public string? StoreName { get; set; }
         public StoreType? StoreType { get; set; }
+        public Guid? StoreId { get; set; }
 
         public bool NeedCaptcha { get; set; }
         public string Token { get; set; }
