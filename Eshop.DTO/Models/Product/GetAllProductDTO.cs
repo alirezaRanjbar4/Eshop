@@ -1,5 +1,4 @@
 ﻿using Eshop.DTO.General;
-using Eshop.Enum;
 
 namespace Eshop.DTO.Models.Product
 {
