@@ -1,4 +1,5 @@
 ﻿using Eshop.Entity.General;
+using Eshop.Enum;
 
 namespace Eshop.Entity.Models
 {
@@ -10,6 +11,7 @@ namespace Eshop.Entity.Models
         public string Address { get; set; }
         public string Code { get; set; }
         public bool IsActive { get; set; }
+        public StoreType StoreType { get; set; }
 
         public virtual ICollection<ProductEntity> Products { get; set; }
         public virtual ICollection<WarehouseEntity> Warehouses { get; set; }

@@ -24,7 +24,7 @@ namespace Rasam.Data.ModelConfiguration.Models
 
             builder
                 .HasOne(x => x.User)
-                .WithOne()
+                .WithOne(x => x.Customer)
                 .HasForeignKey<CustomerEntity>(x => x.UserId)
                 .OnDelete(DeleteBehavior.Restrict);
         }

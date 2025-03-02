@@ -1,13 +1,19 @@
-﻿using Eshop.DTO.Identities.DynamicAccess;
+﻿using Eshop.DTO.General;
+using Eshop.DTO.Identities.DynamicAccess;
 using Eshop.DTO.Identities.User;
+using Eshop.Enum;
 
 namespace Eshop.DTO.Identities.Authentication
 {
-    public class LoginDTO
+    public class LoginDTO : BaseDto
     {
-        public Guid Id { get; set; }
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
+        public string Name { get; set; }
+        public UserType UserType { get; set; }
+
+        public string? StoreName { get; set; }
+        public StoreType? StoreType { get; set; }
+        public Guid? StoreId { get; set; }
+
         public bool NeedCaptcha { get; set; }
         public string Token { get; set; }
         public List<LoginUserRolesDTO> UserRoles { get; set; }

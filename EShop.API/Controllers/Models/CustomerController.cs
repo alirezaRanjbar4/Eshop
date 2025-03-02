@@ -1,4 +1,5 @@
 ﻿using Asp.Versioning;
+using DocumentFormat.OpenXml.Wordprocessing;
 using Eshop.Api.Components;
 using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters;
@@ -10,6 +11,7 @@ using Eshop.Enum;
 using Eshop.Service.Models.Customer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,20 +34,20 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpGet(nameof(GetAllCustomer))]
-        public async Task<List<CustomerDTO>> GetAllCustomer(CancellationToken cancellationToken)
+        public async Task<List<CustomerDTO>> GetAllCustomer(Guid storeId, CancellationToken cancellationToken)
         {
-            return await _customerService.GetAllAsync<CustomerDTO>(null, null, null, false, cancellationToken);
+            return await _customerService.GetAllAsync<CustomerDTO>(x => x.CustomerStores.Any(z => z.Id == storeId), i => i.Include(x => x.CustomerStores), null, false, cancellationToken);
         }
 
 
         [HttpPost(nameof(GetAllCustomerWithTotal)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
         [Authorize(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<OperationResult<List<CustomerDTO>>> GetAllCustomerWithTotal(BaseSearchDTO searchDTO, CancellationToken cancellationToken)
+        public async Task<OperationResult<List<CustomerDTO>>> GetAllCustomerWithTotal(BaseSearchByIdDTO searchDTO, CancellationToken cancellationToken)
         {
             return await _customerService.GetAllAsyncWithTotal<CustomerDTO>(
-                searchDTO,
-                x => string.IsNullOrEmpty(searchDTO.SearchTerm) || x.Name.Contains(searchDTO.SearchTerm),
-                null,
+            searchDTO,
+                x => x.CustomerStores.Any(z => z.Id == searchDTO.Id) && (string.IsNullOrEmpty(searchDTO.SearchTerm) || x.Name.Contains(searchDTO.SearchTerm)),
+                i => i.Include(x => x.CustomerStores),
                 o => o.OrderByDescending(x => x.CreateDate),
                 false,
                 cancellationToken);

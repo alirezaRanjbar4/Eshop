@@ -2,8 +2,6 @@
 using Eshop.Api.Components;
 using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters;
-using Eshop.Common.ActionFilters.Response;
-using Eshop.DTO.General;
 using Eshop.DTO.Identities.DynamicAccess;
 using Eshop.DTO.Models.Vendor;
 using Eshop.Enum;
@@ -13,7 +11,6 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -32,9 +29,9 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpGet(nameof(GetAllVendor))]
-        public async Task<List<VendorDTO>> GetAllVendor(CancellationToken cancellationToken)
+        public async Task<List<VendorDTO>> GetAllVendor(Guid storeId,CancellationToken cancellationToken)
         {
-            var storeId = User.FindFirst("StoreId") != null ? new Guid(User.FindFirst("StoreId").Value) : Guid.Empty;
+            //var storeId = User.FindFirst("StoreId") != null ? new Guid(User.FindFirst("StoreId").Value) : Guid.Empty;
             return await _vendorService.GetAllAsync<VendorDTO>(x => x.StoreId == storeId, null, null, false, cancellationToken);
         }
 

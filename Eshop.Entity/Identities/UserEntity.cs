@@ -1,4 +1,6 @@
 ﻿using Eshop.Entity.General;
+using Eshop.Entity.Models;
+using Eshop.Enum;
 using Microsoft.AspNetCore.Identity;
 
 namespace Eshop.Entity.Identities
@@ -17,6 +19,11 @@ namespace Eshop.Entity.Identities
 
         public int WrongPasswordCount { get; set; }
         public DateTime? LastLoginOn { get; set; }
+
+        public UserType UserType { get; set; }
+
+        public virtual VendorEntity? Vendor { get; set; }
+        public virtual CustomerEntity? Customer { get; set; }
 
         public virtual ICollection<UserClaimEntity> Claims { get; set; }
         public virtual ICollection<UserLoginEntity> Logins { get; set; }

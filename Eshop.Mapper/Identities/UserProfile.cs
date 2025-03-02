@@ -67,6 +67,23 @@ namespace Eshop.Mapper.Identities
                 .ForMember(dest => dest.Claims, opt => opt.Ignore())
                 .AfterMap((src, des) =>
                 {
+                    switch (src.UserType)
+                    {
+                        case Enum.UserType.Admin:
+                            des.Name = src.UserName;
+                            break;
+                        case Enum.UserType.Vendor:
+                            des.Name = src.Vendor != null ? src.Vendor.Name : string.Empty;
+                            des.StoreName = src.Vendor != null && src.Vendor.Store != null ? src.Vendor.Store.Name : string.Empty;
+                            des.StoreType = src.Vendor != null && src.Vendor.Store != null ? src.Vendor.Store.StoreType : null;
+                            des.StoreId = src.Vendor != null ? src.Vendor.StoreId : null;
+                            break;
+                        case Enum.UserType.Customer:
+                            des.Name = src.Customer.Name;
+                            break;
+                        default:
+                            break;
+                    }
                     if (src != null && src.UserRoles != null && src.UserRoles.Count > 0)
                     {
                         List<ActionDetailsDTO> actionDetails = new List<ActionDetailsDTO>();
@@ -77,7 +94,6 @@ namespace Eshop.Mapper.Identities
                             var userRole = src.UserRoles.ElementAt(i);
                             if (userRole != null && userRole.Role.RoleClaims.Any(x => !x.Deleted))
                             {
-                                // var roleClaims = userRole.Role.RoleClaims.GroupBy(x => x.ClaimValue.Split(':')[0]).SelectMany(g => g).ToList();
                                 var roleClaims = userRole.Role.RoleClaims.Where(x => !x.Deleted)
                                                                          .Where(x => x.ClaimValue.StartsWith(":")) // انتخاب تمامی موارد که با ":" شروع می‌شوند
                                                                          .Select(x => x.ClaimValue.Substring(1).Split(':')[0]) // استخراج بخش مشترک برای گروه‌بندی
