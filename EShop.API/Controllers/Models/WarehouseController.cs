@@ -59,7 +59,7 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpPost(nameof(AddWarehouse)), DisplayName(nameof(PermissionResourceEnums.AddPermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.AddComplete, ResultType = ResultType.Success)]
         public async Task<bool> AddWarehouse([FromBody] WarehouseDTO warehouse, CancellationToken cancellationToken)
         {
@@ -69,7 +69,7 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpPost(nameof(UpdateWarehouse)), DisplayName(nameof(PermissionResourceEnums.UpdatePermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.EditComplete, ResultType = ResultType.Success)]
         public async Task<bool> UpdateWarehouse([FromBody] WarehouseDTO warehouse, CancellationToken cancellationToken)
         {
@@ -79,7 +79,7 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpDelete(nameof(DeleteWarehouse)), DisplayName(nameof(PermissionResourceEnums.DeletePermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.DeleteComplete, ResultType = ResultType.Success)]
         public async Task<bool> DeleteWarehouse(Guid warehouseId, CancellationToken cancellationToken)
         {

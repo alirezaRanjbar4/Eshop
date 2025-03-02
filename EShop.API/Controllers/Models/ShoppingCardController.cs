@@ -39,7 +39,7 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpPost(nameof(GetAllShoppingCardItemWithTotal)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<OperationResult<List<ShoppingCardItemDTO>>> GetAllShoppingCardItemWithTotal(BaseSearchDTO searchDTO, CancellationToken cancellationToken)
         {
             return await _shoppingCardItemService.GetAllAsyncWithTotal<ShoppingCardItemDTO>(
@@ -52,7 +52,7 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpPost(nameof(AddShoppingCardItem)), DisplayName(nameof(PermissionResourceEnums.AddPermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.AddComplete, ResultType = ResultType.Success)]
         public async Task<bool> AddShoppingCardItem([FromBody] ShoppingCardItemDTO shoppingCardItem, CancellationToken cancellationToken)
         {
@@ -62,7 +62,7 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpPost(nameof(UpdateShoppingCardItem)), DisplayName(nameof(PermissionResourceEnums.UpdatePermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.EditComplete, ResultType = ResultType.Success)]
         public async Task<bool> UpdateShoppingCardItem([FromBody] ShoppingCardItemDTO shoppingCardItem, CancellationToken cancellationToken)
         {
@@ -72,7 +72,7 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpDelete(nameof(DeleteShoppingCardItem)), DisplayName(nameof(PermissionResourceEnums.DeletePermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.DeleteComplete, ResultType = ResultType.Success)]
         public async Task<bool> DeleteShoppingCardItem(Guid shoppingCardItemId, CancellationToken cancellationToken)
         {

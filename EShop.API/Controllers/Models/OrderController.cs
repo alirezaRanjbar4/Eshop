@@ -39,7 +39,7 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpPost(nameof(GetAllOrderWithTotal)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<OperationResult<List<OrderDTO>>> GetAllOrderWithTotal(BaseSearchDTO searchDTO, CancellationToken cancellationToken)
         {
             return await _orderService.GetAllAsyncWithTotal<OrderDTO>(
@@ -52,7 +52,7 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpPost(nameof(AddOrder)), DisplayName(nameof(PermissionResourceEnums.AddPermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.AddComplete, ResultType = ResultType.Success)]
         public async Task<bool> AddOrder([FromBody] OrderDTO order, CancellationToken cancellationToken)
         {
@@ -62,7 +62,7 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpPost(nameof(UpdateOrder)), DisplayName(nameof(PermissionResourceEnums.UpdatePermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.EditComplete, ResultType = ResultType.Success)]
         public async Task<bool> UpdateOrder([FromBody] OrderDTO order, CancellationToken cancellationToken)
         {
@@ -72,7 +72,7 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpDelete(nameof(DeleteOrder)), DisplayName(nameof(PermissionResourceEnums.DeletePermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.DeleteComplete, ResultType = ResultType.Success)]
         public async Task<bool> DeleteOrder(Guid orderId, CancellationToken cancellationToken)
         {

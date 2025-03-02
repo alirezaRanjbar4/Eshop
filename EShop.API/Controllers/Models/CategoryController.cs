@@ -39,7 +39,7 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpPost(nameof(GetAllCategoryWithTotal)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<OperationResult<List<CategoryDTO>>> GetAllCategoryWithTotal(BaseSearchDTO searchDTO, CancellationToken cancellationToken)
         {
             return await _tramTypeService.GetAllAsyncWithTotal<CategoryDTO>(
@@ -52,7 +52,7 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpPost(nameof(AddCategory)), DisplayName(nameof(PermissionResourceEnums.AddPermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.AddComplete, ResultType = ResultType.Success)]
         public async Task<bool> AddCategory([FromBody] CategoryDTO tramType, CancellationToken cancellationToken)
         {
@@ -62,7 +62,7 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpPost(nameof(UpdateCategory)), DisplayName(nameof(PermissionResourceEnums.UpdatePermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.EditComplete, ResultType = ResultType.Success)]
         public async Task<bool> UpdateCategory([FromBody] CategoryDTO tramType, CancellationToken cancellationToken)
         {
@@ -72,7 +72,7 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpDelete(nameof(DeleteCategory)), DisplayName(nameof(PermissionResourceEnums.DeletePermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.DeleteComplete, ResultType = ResultType.Success)]
         public async Task<bool> DeleteCategory(Guid tramTypeId, CancellationToken cancellationToken)
         {

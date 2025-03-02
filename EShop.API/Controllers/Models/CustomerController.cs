@@ -41,7 +41,7 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpPost(nameof(GetAllCustomerWithTotal)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<OperationResult<List<CustomerDTO>>> GetAllCustomerWithTotal(BaseSearchByIdDTO searchDTO, CancellationToken cancellationToken)
         {
             return await _customerService.GetAllAsyncWithTotal<CustomerDTO>(
@@ -55,7 +55,7 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpPost(nameof(AddCustomer)), DisplayName(nameof(PermissionResourceEnums.AddPermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.AddComplete, ResultType = ResultType.Success)]
         public async Task<bool> AddCustomer([FromBody] CustomerDTO customer, CancellationToken cancellationToken)
         {
@@ -65,7 +65,7 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpPost(nameof(UpdateCustomer)), DisplayName(nameof(PermissionResourceEnums.UpdatePermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.EditComplete, ResultType = ResultType.Success)]
         public async Task<bool> UpdateCustomer([FromBody] CustomerDTO customer, CancellationToken cancellationToken)
         {
@@ -75,7 +75,7 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpDelete(nameof(DeleteCustomer)), DisplayName(nameof(PermissionResourceEnums.DeletePermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.DeleteComplete, ResultType = ResultType.Success)]
         public async Task<bool> DeleteCustomer(Guid customerId, CancellationToken cancellationToken)
         {

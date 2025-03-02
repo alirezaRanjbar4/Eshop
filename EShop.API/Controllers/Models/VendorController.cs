@@ -29,7 +29,7 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpGet(nameof(GetAllVendor))]
-        public async Task<List<VendorDTO>> GetAllVendor(Guid storeId,CancellationToken cancellationToken)
+        public async Task<List<VendorDTO>> GetAllVendor(Guid storeId, CancellationToken cancellationToken)
         {
             //var storeId = User.FindFirst("StoreId") != null ? new Guid(User.FindFirst("StoreId").Value) : Guid.Empty;
             return await _vendorService.GetAllAsync<VendorDTO>(x => x.StoreId == storeId, null, null, false, cancellationToken);
@@ -44,27 +44,25 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpPost(nameof(AddVendor)), DisplayName(nameof(PermissionResourceEnums.AddPermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.AddComplete, ResultType = ResultType.Success)]
-        public async Task<bool> AddVendor([FromBody] VendorDTO vendor, CancellationToken cancellationToken)
+        public async Task<bool> AddVendor([FromBody] VendorUserDTO vendor, CancellationToken cancellationToken)
         {
-            var result = await _vendorService.AddAsync(vendor, true, cancellationToken);
-            return result != null;
+            return await _vendorService.AddVendor(vendor, cancellationToken);
         }
 
 
         [HttpPost(nameof(UpdateVendor)), DisplayName(nameof(PermissionResourceEnums.UpdatePermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.EditComplete, ResultType = ResultType.Success)]
-        public async Task<bool> UpdateVendor([FromBody] VendorDTO vendor, CancellationToken cancellationToken)
+        public async Task<bool> UpdateVendor([FromBody] VendorUserDTO vendor, CancellationToken cancellationToken)
         {
-            var result = await _vendorService.UpdateAsync(vendor, true, true, cancellationToken);
-            return result != null;
+            return await _vendorService.UpdateVendor(vendor, cancellationToken);
         }
 
 
         [HttpDelete(nameof(DeleteVendor)), DisplayName(nameof(PermissionResourceEnums.DeletePermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.DeleteComplete, ResultType = ResultType.Success)]
         public async Task<bool> DeleteVendor(Guid vendorId, CancellationToken cancellationToken)
         {

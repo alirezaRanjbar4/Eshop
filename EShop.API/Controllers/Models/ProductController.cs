@@ -40,7 +40,7 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpPost(nameof(GetAllProductWithTotal)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<OperationResult<List<GetAllProductDTO>>> GetAllProductWithTotal(BaseSearchByIdDTO searchDTO, CancellationToken cancellationToken)
         {
             return await _productService.GetAllAsyncWithTotal<GetAllProductDTO>(
@@ -56,7 +56,7 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpPost(nameof(GetProduct)), DisplayName(nameof(PermissionResourceEnums.GetPermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<GetProductDTO> GetProduct(Guid productId, CancellationToken cancellationToken)
         {
             return await _productService.GetAsync<GetProductDTO>(
@@ -71,7 +71,7 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpPost(nameof(AddProduct)), DisplayName(nameof(PermissionResourceEnums.AddPermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.AddComplete, ResultType = ResultType.Success)]
         public async Task<bool> AddProduct([FromBody] ProductDTO product, CancellationToken cancellationToken)
         {
@@ -80,7 +80,7 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpPost(nameof(UpdateProduct)), DisplayName(nameof(PermissionResourceEnums.UpdatePermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.EditComplete, ResultType = ResultType.Success)]
         public async Task<bool> UpdateProduct([FromBody] ProductDTO product, CancellationToken cancellationToken)
         {
@@ -89,7 +89,7 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpDelete(nameof(DeleteProduct)), DisplayName(nameof(PermissionResourceEnums.DeletePermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.DeleteComplete, ResultType = ResultType.Success)]
         public async Task<bool> DeleteProduct(Guid productId, CancellationToken cancellationToken)
         {

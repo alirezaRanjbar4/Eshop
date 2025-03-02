@@ -39,7 +39,7 @@ namespace Eshop.Api.Controllers.Models.Admin
 
 
         [HttpPost(nameof(GetAllStoreWithTotal)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<OperationResult<List<StoreDTO>>> GetAllStoreWithTotal(BaseSearchDTO searchDTO, CancellationToken cancellationToken)
         {
             return await _storeService.GetAllAsyncWithTotal<StoreDTO>(
@@ -52,7 +52,7 @@ namespace Eshop.Api.Controllers.Models.Admin
 
 
         [HttpPost(nameof(AddStore)), DisplayName(nameof(PermissionResourceEnums.AddPermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.AddComplete, ResultType = ResultType.Success)]
         public async Task<bool> AddStore([FromBody] StoreDTO store, CancellationToken cancellationToken)
         {
@@ -62,7 +62,7 @@ namespace Eshop.Api.Controllers.Models.Admin
 
 
         [HttpPost(nameof(UpdateStore)), DisplayName(nameof(PermissionResourceEnums.UpdatePermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.EditComplete, ResultType = ResultType.Success)]
         public async Task<bool> UpdateStore([FromBody] StoreDTO store, CancellationToken cancellationToken)
         {
@@ -72,7 +72,7 @@ namespace Eshop.Api.Controllers.Models.Admin
 
 
         [HttpDelete(nameof(DeleteStore)), DisplayName(nameof(PermissionResourceEnums.DeletePermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.DeleteComplete, ResultType = ResultType.Success)]
         public async Task<bool> DeleteStore(Guid storeId, CancellationToken cancellationToken)
         {
