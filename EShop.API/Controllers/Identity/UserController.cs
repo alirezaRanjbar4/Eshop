@@ -31,14 +31,14 @@ namespace Eshop.Api.Controllers.Identity
 
 
         [HttpPost(nameof(GetUser)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public UserSearchDTO GetUser([FromBody] UserSearchInput req) =>
            _userService.SearchUsers(req);
 
 
 
         [HttpPost(nameof(AddUser)), DisplayName(nameof(PermissionResourceEnums.AddPermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.AddComplete, ResultType = ResultType.Success)]
         public async Task<OperationResult<bool>> AddUser([FromBody] AddUserDTO dto, CancellationToken cancellationToken)
         {
@@ -47,7 +47,7 @@ namespace Eshop.Api.Controllers.Identity
 
 
         [HttpPut(nameof(EditUser)), DisplayName(nameof(PermissionResourceEnums.UpdatePermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.EditComplete, ResultType = ResultType.Success)]
         public async Task<OperationResult<bool>> EditUser([FromForm] EditUserDTO userDTO, CancellationToken cancellationToken)
         {
