@@ -8,6 +8,7 @@ using Eshop.Enum;
 using Eshop.Service.Models.Vendor;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,10 +30,10 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpGet(nameof(GetAllVendor))]
-        public async Task<List<VendorDTO>> GetAllVendor(Guid storeId, CancellationToken cancellationToken)
+        public async Task<List<VendorUserDTO>> GetAllVendor(Guid storeId, CancellationToken cancellationToken)
         {
             //var storeId = User.FindFirst("StoreId") != null ? new Guid(User.FindFirst("StoreId").Value) : Guid.Empty;
-            return await _vendorService.GetAllAsync<VendorDTO>(x => x.StoreId == storeId, null, null, false, cancellationToken);
+            return await _vendorService.GetAllAsync<VendorUserDTO>(x => x.StoreId == storeId, i => i.Include(x => x.User), null, false, cancellationToken);
         }
 
 
