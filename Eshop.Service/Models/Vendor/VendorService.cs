@@ -20,25 +20,27 @@ namespace Eshop.Service.Models.Vendor
         }
 
 
-        public async Task<bool> AddVendor(VendorUserDTO vendor, CancellationToken cancellationToken)
+        public async Task<bool> AddVendor(VendorUserDTO vendorUser, CancellationToken cancellationToken)
         {
-            var user = _mapper.Map<AddUserDTO>(vendor);
+            var user = _mapper.Map<AddUserDTO>(vendorUser);
             var addUserResult = await _userService.AddUser(user, cancellationToken);
             if (!addUserResult.Data)
                 return false;
 
+            var vendor = _mapper.Map<VendorDTO>(vendorUser);
             vendor.UserId = user.Id;
             var result = await AddAsync(vendor, true, cancellationToken);
             return result != null;
         }
 
-        public async Task<bool> UpdateVendor(VendorUserDTO vendor, CancellationToken cancellationToken)
+        public async Task<bool> UpdateVendor(VendorUserDTO vendorUser, CancellationToken cancellationToken)
         {
-            var user = _mapper.Map<EditUserDTO>(vendor);
+            var user = _mapper.Map<EditUserDTO>(vendorUser);
             var addUserResult = await _userService.EditUser(user, cancellationToken);
             if (!addUserResult.Data)
                 return false;
 
+            var vendor = _mapper.Map<VendorDTO>(vendorUser);
             var result = await UpdateAsync(vendor, true, true, cancellationToken);
             return result != null;
         }
