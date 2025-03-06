@@ -61,4 +61,13 @@ namespace Eshop.Enum
         [Description("کاهش")]
         Decrease = 2
     }
+    
+    public enum CategoryType
+    {
+        [Description("کالا")]
+        Product = 1,
+
+        [Description("سرویس")]
+        Service = 2
+    }
 }
