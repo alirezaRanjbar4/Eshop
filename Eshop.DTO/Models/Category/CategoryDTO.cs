@@ -7,7 +7,7 @@ namespace Eshop.DTO.Models.Category
     {
         public string Name { get; set; }
         public Guid StoreId { get; set; }
-        public Guid ParentId { get; set; }
+        public Guid? ParentId { get; set; }
         public CategoryType Type { get; set; }
         public string? String_Type { get; set; }
     }
