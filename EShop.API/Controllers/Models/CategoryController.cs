@@ -45,7 +45,9 @@ namespace Eshop.Api.Controllers.Models
         {
             return await _categoryService.GetAllAsyncWithTotal<CategoryDTO>(
                 searchDTO,
-                x => x.StoreId == searchDTO.StoreId && x.Type == searchDTO.Type && (string.IsNullOrEmpty(searchDTO.SearchTerm) || x.Name.Contains(searchDTO.SearchTerm)),
+                x => x.StoreId == searchDTO.StoreId &&
+                (searchDTO.Type == null || x.Type == searchDTO.Type) &&
+                (string.IsNullOrEmpty(searchDTO.SearchTerm) || x.Name.Contains(searchDTO.SearchTerm)),
                 null,
                 o => o.OrderByDescending(x => x.CreateDate),
                 false, cancellationToken);
