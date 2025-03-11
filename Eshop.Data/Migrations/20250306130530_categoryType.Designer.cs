@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Rasam.Data.DBContext;
 
@@ -11,9 +12,11 @@ using Rasam.Data.DBContext;
 namespace Rasam.Data.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20250306130530_categoryType")]
+    partial class categoryType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -550,9 +553,6 @@ namespace Rasam.Data.Migrations
                     b.Property<Guid?>("ProductId")
                         .HasColumnType("UniqueIdentifier");
 
-                    b.Property<Guid?>("ServiceEntityId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("URL")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -565,8 +565,6 @@ namespace Rasam.Data.Migrations
                     b.HasIndex("ModifiedById");
 
                     b.HasIndex("ProductId");
-
-                    b.HasIndex("ServiceEntityId");
 
                     b.ToTable("Image", "Model");
                 });
@@ -799,7 +797,7 @@ namespace Rasam.Data.Migrations
                     b.Property<long>("Price")
                         .HasColumnType("BigInt");
 
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid?>("ProductId")
                         .HasColumnType("UniqueIdentifier");
 
                     b.HasKey("Id");
@@ -910,140 +908,6 @@ namespace Rasam.Data.Migrations
                     b.HasIndex("WarehouseLocationId");
 
                     b.ToTable("ProductWarehouseLocation", "Model");
-                });
-
-            modelBuilder.Entity("Eshop.Entity.Models.ServiceCategoryEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("newsequentialid()");
-
-                    b.Property<Guid>("CategoryId")
-                        .HasColumnType("UniqueIdentifier");
-
-                    b.Property<Guid>("CreateById")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("Datetime");
-
-                    b.Property<bool>("Deleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
-                    b.Property<Guid?>("ModifiedById")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("Datetime");
-
-                    b.Property<Guid>("ServiceId")
-                        .HasColumnType("UniqueIdentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("CreateById");
-
-                    b.HasIndex("ModifiedById");
-
-                    b.HasIndex("ServiceId");
-
-                    b.ToTable("ServiceCategory", "Model");
-                });
-
-            modelBuilder.Entity("Eshop.Entity.Models.ServiceEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("newsequentialid()");
-
-                    b.Property<Guid>("CreateById")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("Datetime");
-
-                    b.Property<bool>("Deleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(4000)
-                        .HasColumnType("Nvarchar");
-
-                    b.Property<Guid?>("ModifiedById")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("Datetime");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("Nvarchar");
-
-                    b.Property<Guid>("StoreId")
-                        .HasColumnType("UniqueIdentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreateById");
-
-                    b.HasIndex("ModifiedById");
-
-                    b.HasIndex("StoreId");
-
-                    b.ToTable("Service", "Model");
-                });
-
-            modelBuilder.Entity("Eshop.Entity.Models.ServicePriceEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("newsequentialid()");
-
-                    b.Property<Guid>("CreateById")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("Datetime");
-
-                    b.Property<bool>("Deleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
-                    b.Property<DateTime>("ExpiryDate")
-                        .HasColumnType("Datetime");
-
-                    b.Property<Guid?>("ModifiedById")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("Datetime");
-
-                    b.Property<long>("Price")
-                        .HasColumnType("BigInt");
-
-                    b.Property<Guid?>("ServiceId")
-                        .HasColumnType("UniqueIdentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreateById");
-
-                    b.HasIndex("ModifiedById");
-
-                    b.HasIndex("ServiceId");
-
-                    b.ToTable("ServicePrice", "Model");
                 });
 
             modelBuilder.Entity("Eshop.Entity.Models.ShoppingCardItemEntity", b =>
@@ -1475,10 +1339,6 @@ namespace Rasam.Data.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.SetNull);
 
-                    b.HasOne("Eshop.Entity.Models.ServiceEntity", null)
-                        .WithMany("Images")
-                        .HasForeignKey("ServiceEntityId");
-
                     b.Navigation("CreateBy");
 
                     b.Navigation("ModifiedBy");
@@ -1630,8 +1490,7 @@ namespace Rasam.Data.Migrations
                     b.HasOne("Eshop.Entity.Models.ProductEntity", "Product")
                         .WithMany("ProductPrices")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("CreateBy");
 
@@ -1706,91 +1565,6 @@ namespace Rasam.Data.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("WarehouseLocation");
-                });
-
-            modelBuilder.Entity("Eshop.Entity.Models.ServiceCategoryEntity", b =>
-                {
-                    b.HasOne("Eshop.Entity.Models.CategoryEntity", "Category")
-                        .WithMany("ServiceCategories")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Eshop.Entity.Identities.UserEntity", "CreateBy")
-                        .WithMany()
-                        .HasForeignKey("CreateById")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Eshop.Entity.Identities.UserEntity", "ModifiedBy")
-                        .WithMany()
-                        .HasForeignKey("ModifiedById")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("Eshop.Entity.Models.ServiceEntity", "Service")
-                        .WithMany("ServiceCategories")
-                        .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-
-                    b.Navigation("CreateBy");
-
-                    b.Navigation("ModifiedBy");
-
-                    b.Navigation("Service");
-                });
-
-            modelBuilder.Entity("Eshop.Entity.Models.ServiceEntity", b =>
-                {
-                    b.HasOne("Eshop.Entity.Identities.UserEntity", "CreateBy")
-                        .WithMany()
-                        .HasForeignKey("CreateById")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Eshop.Entity.Identities.UserEntity", "ModifiedBy")
-                        .WithMany()
-                        .HasForeignKey("ModifiedById")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("Eshop.Entity.Models.StoreEntity", "Store")
-                        .WithMany("Services")
-                        .HasForeignKey("StoreId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("CreateBy");
-
-                    b.Navigation("ModifiedBy");
-
-                    b.Navigation("Store");
-                });
-
-            modelBuilder.Entity("Eshop.Entity.Models.ServicePriceEntity", b =>
-                {
-                    b.HasOne("Eshop.Entity.Identities.UserEntity", "CreateBy")
-                        .WithMany()
-                        .HasForeignKey("CreateById")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Eshop.Entity.Identities.UserEntity", "ModifiedBy")
-                        .WithMany()
-                        .HasForeignKey("ModifiedById")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("Eshop.Entity.Models.ServiceEntity", "Service")
-                        .WithMany("ServicePrices")
-                        .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.Navigation("CreateBy");
-
-                    b.Navigation("ModifiedBy");
-
-                    b.Navigation("Service");
                 });
 
             modelBuilder.Entity("Eshop.Entity.Models.ShoppingCardItemEntity", b =>
@@ -1958,8 +1732,6 @@ namespace Rasam.Data.Migrations
                     b.Navigation("Childs");
 
                     b.Navigation("ProductCategories");
-
-                    b.Navigation("ServiceCategories");
                 });
 
             modelBuilder.Entity("Eshop.Entity.Models.CustomerEntity", b =>
@@ -1993,15 +1765,6 @@ namespace Rasam.Data.Migrations
                     b.Navigation("ShoppingCardItems");
                 });
 
-            modelBuilder.Entity("Eshop.Entity.Models.ServiceEntity", b =>
-                {
-                    b.Navigation("Images");
-
-                    b.Navigation("ServiceCategories");
-
-                    b.Navigation("ServicePrices");
-                });
-
             modelBuilder.Entity("Eshop.Entity.Models.StoreEntity", b =>
                 {
                     b.Navigation("Categories");
@@ -2011,8 +1774,6 @@ namespace Rasam.Data.Migrations
                     b.Navigation("Orders");
 
                     b.Navigation("Products");
-
-                    b.Navigation("Services");
 
                     b.Navigation("Vendors");
 

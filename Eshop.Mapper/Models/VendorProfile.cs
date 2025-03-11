@@ -14,8 +14,10 @@ namespace Eshop.Mapper.Models
             CreateMap<VendorEntity, VendorUserDTO>()
                 .ForMember(des => des.UserName, option => option.MapFrom(src => src.User != null ? src.User.UserName : string.Empty))
                 .ForMember(des => des.Email, option => option.MapFrom(src => src.User != null ? src.User.Email : string.Empty))
-                .ForMember(des => des.PhoneNumber, option => option.MapFrom(src => src.User != null ? src.User.PhoneNumber : string.Empty))
-                .ReverseMap();
+                .ForMember(des => des.PhoneNumber, option => option.MapFrom(src => src.User != null ? src.User.PhoneNumber : string.Empty));
+
+
+            CreateMap<VendorUserDTO, VendorDTO>();
 
             CreateMap<VendorUserDTO, AddUserDTO>();
 
