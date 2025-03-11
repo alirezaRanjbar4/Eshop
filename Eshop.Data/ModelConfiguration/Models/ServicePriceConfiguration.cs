@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Rasam.Data.ModelConfiguration.Models
 {
-    public class ProductPriceConfiguration : IEntityTypeConfiguration<ProductPriceEntity>
+    public class ServicePriceConfiguration : IEntityTypeConfiguration<ServicePriceEntity>
     {
-        public void Configure(EntityTypeBuilder<ProductPriceEntity> builder)
+        public void Configure(EntityTypeBuilder<ServicePriceEntity> builder)
         {
-            builder.ToTable("ProductPrice", DbSchema.Model.ToString());
+            builder.ToTable("ServicePrice", DbSchema.Model.ToString());
             builder.HasKey(t => t.Id);
             builder.Property(x => x.Id).HasDefaultValueSql("newsequentialid()");
             builder.Property(x => x.CreateDate).HasColumnType(DataTypes.Datetime.ToString());
@@ -19,12 +19,12 @@ namespace Rasam.Data.ModelConfiguration.Models
 
             builder.Property(x => x.Price).HasColumnType(DataTypes.BigInt.ToString());
             builder.Property(x => x.ExpiryDate).HasColumnType(DataTypes.Datetime.ToString());
-            builder.Property(x => x.ProductId).HasColumnType(DataTypes.UniqueIdentifier.ToString());
+            builder.Property(x => x.ServiceId).HasColumnType(DataTypes.UniqueIdentifier.ToString());
 
             builder
-                .HasOne(x => x.Product)
-                .WithMany(x => x.ProductPrices)
-                .HasForeignKey(x => x.ProductId)
+                .HasOne(x => x.Service)
+                .WithMany(x => x.ServicePrices)
+                .HasForeignKey(x => x.ServiceId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

@@ -12,6 +12,6 @@ namespace Eshop.DTO.Models.Product
         public Guid StoreId { get; set; }
         public long Price { get; set; }
 
-        public List<ProductCategoryDTO> ProductCategories { get; set; }
+        public List<Guid> ProductCategoryIds { get; set; }
     }
 }

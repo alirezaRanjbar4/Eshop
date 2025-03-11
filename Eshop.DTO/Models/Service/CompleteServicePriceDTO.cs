@@ -1,13 +1,13 @@
 ﻿using Eshop.DTO.General;
 
-namespace Eshop.DTO.Models.Product
+namespace Eshop.DTO.Models.Service
 {
-    public class CompleteProductPriceDTO : BaseDto
+    public class CompleteServicePriceDTO : BaseDto
     {
         public long Price { get; set; }
         public string StartDate { get; set; }
         public string ExpiryDate { get; set; }
 
-        public Guid ProductId { get; set; }
+        public Guid ServiceId { get; set; }
     }
 }

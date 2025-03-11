@@ -14,6 +14,7 @@ namespace Eshop.Entity.Models
         public StoreType StoreType { get; set; }
 
         public virtual ICollection<ProductEntity> Products { get; set; }
+        public virtual ICollection<ServiceEntity> Services { get; set; }
         public virtual ICollection<WarehouseEntity> Warehouses { get; set; }
         public virtual ICollection<VendorEntity> Vendors { get; set; }
         public virtual ICollection<CustomerStoreEntity> CustomerStores { get; set; }

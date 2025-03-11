@@ -7,7 +7,7 @@ namespace Eshop.Entity.Models
         public long Price { get; set; }
         public DateTime ExpiryDate { get; set; }
 
-        public Guid? ProductId { get; set; }
-        public virtual ProductEntity? Product { get; set; }
+        public Guid ProductId { get; set; }
+        public ProductEntity Product { get; set; }
     }
 }

@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Rasam.Data.ModelConfiguration.Models
 {
-    public class ProductPriceConfiguration : IEntityTypeConfiguration<ProductPriceEntity>
+    public class ServiceConfiguration : IEntityTypeConfiguration<ServiceEntity>
     {
-        public void Configure(EntityTypeBuilder<ProductPriceEntity> builder)
+        public void Configure(EntityTypeBuilder<ServiceEntity> builder)
         {
-            builder.ToTable("ProductPrice", DbSchema.Model.ToString());
+            builder.ToTable("Service", DbSchema.Model.ToString());
             builder.HasKey(t => t.Id);
             builder.Property(x => x.Id).HasDefaultValueSql("newsequentialid()");
             builder.Property(x => x.CreateDate).HasColumnType(DataTypes.Datetime.ToString());
@@ -17,15 +17,15 @@ namespace Rasam.Data.ModelConfiguration.Models
             builder.HasOne(x => x.CreateBy).WithMany().HasForeignKey(x => x.CreateById).IsRequired().OnDelete(DeleteBehavior.Restrict);
             builder.HasOne(x => x.ModifiedBy).WithMany().HasForeignKey(x => x.ModifiedById).IsRequired(false).OnDelete(DeleteBehavior.Restrict);
 
-            builder.Property(x => x.Price).HasColumnType(DataTypes.BigInt.ToString());
-            builder.Property(x => x.ExpiryDate).HasColumnType(DataTypes.Datetime.ToString());
-            builder.Property(x => x.ProductId).HasColumnType(DataTypes.UniqueIdentifier.ToString());
+            builder.Property(x => x.Name).HasColumnType(DataTypes.Nvarchar.ToString()).HasMaxLength(100);
+            builder.Property(x => x.Description).HasColumnType(DataTypes.Nvarchar.ToString()).HasMaxLength(4000).IsRequired(false);
+            builder.Property(x => x.StoreId).HasColumnType(DataTypes.UniqueIdentifier.ToString()).IsRequired(true);
 
             builder
-                .HasOne(x => x.Product)
-                .WithMany(x => x.ProductPrices)
-                .HasForeignKey(x => x.ProductId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasOne(x => x.Store)
+                .WithMany(x => x.Services)
+                .HasForeignKey(x => x.StoreId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

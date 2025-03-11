@@ -14,5 +14,6 @@ namespace Eshop.Entity.Models
 
         public virtual ICollection<CategoryEntity> Childs { get; set; }
         public virtual ICollection<ProductCategoryEntity> ProductCategories { get; set; }
+        public virtual ICollection<ServiceCategoryEntity> ServiceCategories { get; set; }
     }
 }
