@@ -11,5 +11,6 @@ namespace Eshop.DTO.Models.Vendor
         public string? PassWord { get; set; }
         public Guid UserId { get; set; }
         public Guid StoreId { get; set; }
+        public Guid RoleId { get; set; }
     }
 }

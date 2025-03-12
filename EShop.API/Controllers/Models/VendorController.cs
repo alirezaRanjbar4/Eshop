@@ -2,7 +2,6 @@
 using Eshop.Api.Components;
 using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters;
-using Eshop.DTO.Identities.DynamicAccess;
 using Eshop.DTO.Models.Vendor;
 using Eshop.Enum;
 using Eshop.Service.Models.Vendor;

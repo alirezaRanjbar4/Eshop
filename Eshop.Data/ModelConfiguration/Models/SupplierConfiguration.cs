@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Rasam.Data.ModelConfiguration.Models
 {
-    public class CustomerStoreConfiguration : IEntityTypeConfiguration<CustomerStoreEntity>
+    public class SupplierConfiguration : IEntityTypeConfiguration<SupplierEntity>
     {
-        public void Configure(EntityTypeBuilder<CustomerStoreEntity> builder)
+        public void Configure(EntityTypeBuilder<SupplierEntity> builder)
         {
-            builder.ToTable("CustomerStore", DbSchema.Model.ToString());
+            builder.ToTable("Supplier", DbSchema.Model.ToString());
             builder.HasKey(t => t.Id);
             builder.Property(x => x.Id).HasDefaultValueSql("newsequentialid()");
             builder.Property(x => x.CreateDate).HasColumnType(DataTypes.Datetime.ToString());
@@ -17,18 +17,20 @@ namespace Rasam.Data.ModelConfiguration.Models
             builder.HasOne(x => x.CreateBy).WithMany().HasForeignKey(x => x.CreateById).IsRequired().OnDelete(DeleteBehavior.Restrict);
             builder.HasOne(x => x.ModifiedBy).WithMany().HasForeignKey(x => x.ModifiedById).IsRequired(false).OnDelete(DeleteBehavior.Restrict);
 
-            builder.Property(x => x.CustomerId).HasColumnType(DataTypes.UniqueIdentifier.ToString()).IsRequired(true);
-            builder.Property(x => x.StoreId).HasColumnType(DataTypes.UniqueIdentifier.ToString()).IsRequired(true);
+            builder.Property(x => x.Name).HasColumnType(DataTypes.Nvarchar.ToString()).HasMaxLength(50);
+            builder.Property(x => x.Address).HasColumnType(DataTypes.Nvarchar.ToString()).HasMaxLength(1000);
+            builder.Property(x => x.Phone).HasColumnType(DataTypes.Nvarchar.ToString()).HasMaxLength(50);
+            //builder.Property(x => x.UserId).HasColumnType(DataTypes.UniqueIdentifier.ToString()).IsRequired(true);
 
-            builder
-                .HasOne(x => x.Customer)
-                .WithMany(x => x.CustomerStores)
-                .HasForeignKey(x => x.CustomerId)
-                .OnDelete(DeleteBehavior.Restrict);
+            //builder
+            //    .HasOne(x => x.User)
+            //    .WithOne(x => x.Supplier)
+            //    .HasForeignKey<SupplierEntity>(x => x.UserId)
+            //    .OnDelete(DeleteBehavior.Restrict);
 
             builder
                .HasOne(x => x.Store)
-               .WithMany(x => x.CustomerStores)
+               .WithMany(x => x.Suppliers)
                .HasForeignKey(x => x.StoreId)
                .OnDelete(DeleteBehavior.Restrict);
         }

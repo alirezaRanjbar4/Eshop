@@ -18,15 +18,21 @@ namespace Rasam.Data.ModelConfiguration.Models
             builder.HasOne(x => x.ModifiedBy).WithMany().HasForeignKey(x => x.ModifiedById).IsRequired(false).OnDelete(DeleteBehavior.Restrict);
 
             builder.Property(x => x.Name).HasColumnType(DataTypes.Nvarchar.ToString()).HasMaxLength(50);
-            builder.Property(x => x.Address).HasColumnType(DataTypes.Nvarchar.ToString()).HasMaxLength(200);
+            builder.Property(x => x.Address).HasColumnType(DataTypes.Nvarchar.ToString()).HasMaxLength(1000);
             builder.Property(x => x.Phone).HasColumnType(DataTypes.Nvarchar.ToString()).HasMaxLength(50);
-            builder.Property(x => x.UserId).HasColumnType(DataTypes.UniqueIdentifier.ToString()).IsRequired(true);
+            //builder.Property(x => x.UserId).HasColumnType(DataTypes.UniqueIdentifier.ToString()).IsRequired(true);
+
+            //builder
+            //    .HasOne(x => x.User)
+            //    .WithOne(x => x.Customer)
+            //    .HasForeignKey<CustomerEntity>(x => x.UserId)
+            //    .OnDelete(DeleteBehavior.Restrict);
 
             builder
-                .HasOne(x => x.User)
-                .WithOne(x => x.Customer)
-                .HasForeignKey<CustomerEntity>(x => x.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
+               .HasOne(x => x.Store)
+               .WithMany(x => x.Customers)
+               .HasForeignKey(x => x.StoreId)
+               .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

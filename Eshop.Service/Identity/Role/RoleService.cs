@@ -25,7 +25,7 @@ namespace Eshop.Service.Identity.Role
         }
 
 
-        public async Task<OperationResult<List<RoleDTO>>> GetAll(BaseSearchDTO baseSearch, CancellationToken cancellationToken)
+        public async Task<OperationResult<List<RoleDTO>>> GetAllRolesWithTotal(BaseSearchDTO baseSearch, CancellationToken cancellationToken)
         {
             var roles = await _roleManager.Roles
                              .Where(x => !x.Deleted && (string.IsNullOrEmpty(baseSearch.SearchTerm) || x.Name.Contains(baseSearch.SearchTerm)))
@@ -50,6 +50,16 @@ namespace Eshop.Service.Identity.Role
             };
         }
 
+        public async Task<List<SimpleRoleDTO>> GetAllRoles(CancellationToken cancellationToken)
+        {
+            var roles = await _roleManager.Roles
+                             .Where(x => !x.Deleted)
+                             .OrderBy(o => o.Name)
+                             .ToListAsync(cancellationToken);
+
+            return _mapper.Map<List<SimpleRoleDTO>>(roles);
+        }
+
         public async Task<RoleDTO> Get(Guid id, CancellationToken cancellationToken)
         {
             var existing = await _roleManager.Roles.Include(x => x.UserRoles).FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
@@ -58,6 +68,12 @@ namespace Eshop.Service.Identity.Role
             dto.Claims = _mapper.Map<List<ClaimDTO>>(claims);
 
             return dto;
+        }
+
+        public async Task<RoleDTO> GetRoleByNameAsync(string name, CancellationToken cancellationToken)
+        {
+            var result = await _baseRepository.GetAsync(x => x.Name == name || x.NormalizedName == name, null, false, cancellationToken);
+            return _mapper.Map<RoleDTO>(result);
         }
 
         public async Task<OperationResult<Guid>> Add(AddRoleDTO role)
@@ -238,7 +254,7 @@ namespace Eshop.Service.Identity.Role
             if (roleId == Guid.Empty)
                 return null;
 
-            var role = await FindClaimsInRole(roleId,cancellationToken);
+            var role = await FindClaimsInRole(roleId, cancellationToken);
             if (role == null)
                 return null;
 

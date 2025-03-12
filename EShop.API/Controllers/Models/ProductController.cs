@@ -4,7 +4,6 @@ using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters;
 using Eshop.Common.ActionFilters.Response;
 using Eshop.DTO.General;
-using Eshop.DTO.Identities.DynamicAccess;
 using Eshop.DTO.Models.Product;
 using Eshop.Enum;
 using Eshop.Service.Models.Product;

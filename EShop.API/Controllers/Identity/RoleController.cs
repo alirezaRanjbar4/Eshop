@@ -30,11 +30,19 @@ namespace Eshop.Api.Controllers.Identity
         }
 
 
-        [HttpPost(nameof(GetAllRole)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<OperationResult<List<RoleDTO>>> GetAllRole([FromBody] BaseSearchDTO baseSearch, CancellationToken cancellationToken)
+        [HttpPost(nameof(GetAllRolesWithTotal)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        public async Task<OperationResult<List<RoleDTO>>> GetAllRolesWithTotal([FromBody] BaseSearchDTO baseSearch, CancellationToken cancellationToken)
         {
-            return await _roleService.GetAll(baseSearch, cancellationToken);
+            return await _roleService.GetAllRolesWithTotal(baseSearch, cancellationToken);
+        }
+
+
+        [HttpGet(nameof(GetAllRoles))]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        public async Task<List<SimpleRoleDTO>> GetAllRoles(CancellationToken cancellationToken)
+        {
+            return await _roleService.GetAllRoles(cancellationToken);
         }
 
 

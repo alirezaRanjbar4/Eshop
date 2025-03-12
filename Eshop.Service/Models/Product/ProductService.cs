@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Eshop.DTO.Models.Product;
+using Eshop.DTO.Models.Service;
 using Eshop.Entity.Models;
 using Eshop.Repository.Models.Product;
 using Eshop.Service.General;
@@ -52,7 +53,6 @@ namespace Eshop.Service.Models.Product
             {
                 if (findResult.Price != product.Price)
                 {
-                    await _productPriceService.AddAsync(new ProductPriceDTO() { Price = product.Price, ProductId = product.Id }, true, cancellationToken);
                     var prices = await _productPriceService.GetAllAsync<ProductPriceDTO>(
                         x => x.ProductId == product.Id,
                         null,
@@ -65,8 +65,8 @@ namespace Eshop.Service.Models.Product
                         var lastPrice = prices.First();
                         lastPrice.ExpiryDate = DateTime.UtcNow;
                         await _productPriceService.UpdateAsync(lastPrice, true, true, cancellationToken);
-
                     }
+                    await _productPriceService.AddAsync(new ProductPriceDTO() { Price = product.Price, ProductId = product.Id }, true, cancellationToken);
                 }
 
 
@@ -79,7 +79,8 @@ namespace Eshop.Service.Models.Product
                 var deleteList = findResult.ProductCategoryIds.Where(x => !product.ProductCategoryIds.Contains(x));
                 foreach (var categoryId in deleteList)
                 {
-                    await _productCategoryService.DeleteAsync(categoryId, true, true, true, cancellationToken);
+                    var item = await _productCategoryService.GetAsync<ProductCategoryDTO>(x => x.ProductId == product.Id && x.CategoryId == categoryId, null, false, cancellationToken);
+                    await _productCategoryService.DeleteAsync(item.Id, true, true, true, cancellationToken);
                 }
 
                 return true;

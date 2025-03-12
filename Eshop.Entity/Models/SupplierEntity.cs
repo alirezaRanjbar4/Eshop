@@ -3,7 +3,7 @@ using Eshop.Entity.Identities;
 
 namespace Eshop.Entity.Models
 {
-    public class CustomerEntity : BaseTrackedModel, IBaseEntity
+    public class SupplierEntity : BaseTrackedModel, IBaseEntity
     {
         public string Name { get; set; }
         public string Address { get; set; }
@@ -14,8 +14,5 @@ namespace Eshop.Entity.Models
 
         public Guid StoreId { get; set; }
         public virtual StoreEntity Store { get; set; }
-
-        public virtual ICollection<ShoppingCardItemEntity> ShoppingCardItems { get; set; }
-        public virtual ICollection<OrderEntity> Orders { get; set; }
     }
 }

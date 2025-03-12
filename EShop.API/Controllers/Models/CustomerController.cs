@@ -1,17 +1,15 @@
 ﻿using Asp.Versioning;
-using DocumentFormat.OpenXml.Wordprocessing;
 using Eshop.Api.Components;
 using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters;
 using Eshop.Common.ActionFilters.Response;
 using Eshop.DTO.General;
-using Eshop.DTO.Identities.DynamicAccess;
-using Eshop.DTO.Models;
+using Eshop.DTO.Models.Customer;
+using Eshop.DTO.Models.Vendor;
 using Eshop.Enum;
 using Eshop.Service.Models.Customer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,7 +34,7 @@ namespace Eshop.Api.Controllers.Models
         [HttpGet(nameof(GetAllCustomer))]
         public async Task<List<CustomerDTO>> GetAllCustomer(Guid storeId, CancellationToken cancellationToken)
         {
-            return await _customerService.GetAllAsync<CustomerDTO>(x => x.CustomerStores.Any(z => z.Id == storeId), i => i.Include(x => x.CustomerStores), null, false, cancellationToken);
+            return await _customerService.GetAllAsync<CustomerDTO>(x => x.StoreId == storeId, null, null, false, cancellationToken);
         }
 
 
@@ -46,8 +44,8 @@ namespace Eshop.Api.Controllers.Models
         {
             return await _customerService.GetAllAsyncWithTotal<CustomerDTO>(
             searchDTO,
-                x => x.CustomerStores.Any(z => z.Id == searchDTO.Id) && (string.IsNullOrEmpty(searchDTO.SearchTerm) || x.Name.Contains(searchDTO.SearchTerm)),
-                i => i.Include(x => x.CustomerStores),
+                x => x.StoreId == searchDTO.Id,
+                null,
                 o => o.OrderByDescending(x => x.CreateDate),
                 false,
                 cancellationToken);
@@ -59,8 +57,9 @@ namespace Eshop.Api.Controllers.Models
         [SuccessFilter(ResourceKey = GlobalResourceEnums.AddComplete, ResultType = ResultType.Success)]
         public async Task<bool> AddCustomer([FromBody] CustomerDTO customer, CancellationToken cancellationToken)
         {
-            var storeId = User.FindFirst("StoreId") != null ? new Guid(User.FindFirst("StoreId").Value) : Guid.Empty;
-            return await _customerService.AddCustomer(customer, storeId, cancellationToken);
+            //var storeId = User.FindFirst("StoreId") != null ? new Guid(User.FindFirst("StoreId").Value) : Guid.Empty;
+            var result = await _customerService.AddAsync(customer, true, cancellationToken);
+            return result != null;
         }
 
 

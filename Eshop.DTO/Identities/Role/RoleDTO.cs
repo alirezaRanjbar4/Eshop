@@ -10,6 +10,12 @@
 
     }
 
+    public class SimpleRoleDTO
+    {
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+    }
+
     public class ClaimDTO
     {
         public string Type { get; set; }

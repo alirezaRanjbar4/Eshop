@@ -52,7 +52,6 @@ namespace Eshop.Service.Models.Service
             {
                 if (findResult.Price != service.Price)
                 {
-                    await _servicePriceService.AddAsync(new ServicePriceDTO() { Price = service.Price, ServiceId = service.Id }, true, cancellationToken);
                     var prices = await _servicePriceService.GetAllAsync<ServicePriceDTO>(
                         x => x.ServiceId == service.Id,
                         null,
@@ -65,8 +64,8 @@ namespace Eshop.Service.Models.Service
                         var lastPrice = prices.First();
                         lastPrice.ExpiryDate = DateTime.UtcNow;
                         await _servicePriceService.UpdateAsync(lastPrice, true, true, cancellationToken);
-
                     }
+                    await _servicePriceService.AddAsync(new ServicePriceDTO() { Price = service.Price, ServiceId = service.Id }, true, cancellationToken);
                 }
 
 
@@ -79,7 +78,8 @@ namespace Eshop.Service.Models.Service
                 var deleteList = findResult.ServiceCategoryIds.Where(x => !service.ServiceCategoryIds.Contains(x));
                 foreach (var categoryId in deleteList)
                 {
-                    await _serviceCategoryService.DeleteAsync(categoryId, true, true, true, cancellationToken);
+                    var item = await _serviceCategoryService.GetAsync<ServiceCategoryDTO>(x => x.ServiceId == service.Id && x.CategoryId == categoryId, null, false, cancellationToken);
+                    await _serviceCategoryService.DeleteAsync(item.Id, true, true, true, cancellationToken);
                 }
 
                 return true;

@@ -114,6 +114,7 @@ namespace Eshop.Repository.Identities.User
             {
                 var user = _mapper.Map<UserEntity>(userDto);
                 user.PhoneNumber = user.PhoneNumber.ToPhone();
+                user.Activated = true;
 
                 if (string.IsNullOrEmpty(userDto.PassWord))
                     userDto.PassWord = Utility.SecurityHelper.GeneratePassword();
@@ -125,13 +126,7 @@ namespace Eshop.Repository.Identities.User
                     result.Message = string.Join(",", TranslateIdentityErrors(addResult.Errors));
                     return result;
                 };
-
-                var saveResult = await SaveChangesAsync(cancellationToken);
-                if (saveResult <= 0)
-                {
-                    result.Data = false;
-                    result.Message = "خطا سرور";
-                }
+                userDto.Id = user.Id;
 
                 return result;
             }
@@ -296,7 +291,7 @@ namespace Eshop.Repository.Identities.User
                 dbSet.Update(user);
                 var saveResult = await SaveChangesAsync(cancellationToken);
 
-                if (saveResult<=0)
+                if (saveResult <= 0)
                 {
                     return new OperationResult<bool>()
                     {
@@ -319,7 +314,7 @@ namespace Eshop.Repository.Identities.User
                     Message = ex.Message
                 };
             }
-            
+
         }
     }
 }

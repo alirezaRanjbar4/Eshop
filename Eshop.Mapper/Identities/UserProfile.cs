@@ -55,6 +55,8 @@ namespace Eshop.Mapper.Identities
             CreateMap<UserRoleDTO, UserRoleEntity>();
 
             CreateMap<RoleEntity, RoleDTO>();
+            CreateMap<RoleEntity, SimpleRoleDTO>();
+
             CreateMap<RoleEntity, GetRoleDTO>();
             CreateMap<RoleDTO, RoleEntity>();
             CreateMap<AddRoleDTO, RoleEntity>();

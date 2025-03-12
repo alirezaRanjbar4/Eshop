@@ -18,7 +18,7 @@ namespace Rasam.Data.ModelConfiguration.Models
             builder.HasOne(x => x.ModifiedBy).WithMany().HasForeignKey(x => x.ModifiedById).IsRequired(false).OnDelete(DeleteBehavior.Restrict);
 
             builder.Property(x => x.Price).HasColumnType(DataTypes.BigInt.ToString());
-            builder.Property(x => x.ExpiryDate).HasColumnType(DataTypes.Datetime.ToString());
+            builder.Property(x => x.ExpiryDate).HasColumnType(DataTypes.Datetime.ToString()).IsRequired(false);
             builder.Property(x => x.ProductId).HasColumnType(DataTypes.UniqueIdentifier.ToString());
 
             builder
