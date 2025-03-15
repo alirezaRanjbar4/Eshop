@@ -56,19 +56,19 @@ namespace Eshop.Api.Controllers.Identity
 
         [HttpPost(nameof(AddRole)), DisplayName(nameof(PermissionResourceEnums.AddPermission))]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.AddComplete, ResultType = ResultType.Success)]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<ActionResult> AddRole([FromBody] AddRoleDTO role) =>
              Ok(await _roleService.Add(role));
 
 
         [HttpPut(nameof(UpdateRole)), DisplayName(nameof(PermissionResourceEnums.UpdatePermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<ActionResult> UpdateRole([FromBody] AddRoleDTO role) =>
            Ok(await _roleService.Update(role.Id, role));
 
 
         [HttpDelete(nameof(DeleteRole)), DisplayName(nameof(PermissionResourceEnums.DeletePermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<ActionResult> DeleteRole(Guid roleid) =>
            Ok(await _roleService.DeleteRole(roleid));
 

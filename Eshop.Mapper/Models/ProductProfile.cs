@@ -19,9 +19,9 @@ namespace Eshop.Mapper.Models
                .ReverseMap();
 
             CreateMap<ProductEntity, GetAllProductDTO>()
-                .ForMember(des => des.Category, option => option.MapFrom(src => src.ProductCategories != null ? src.ProductCategories.Select(x => x.Category.Name).ToString() : string.Empty))
-                .ForMember(des => des.TotalCount, option => option.MapFrom(src => src.ProductWarehouseLocations.Sum(x => x.Count)))
-                .ForMember(des => des.Price, option => option.MapFrom(src => src.ProductPrices != null ? src.ProductPrices.Last().Price : 0))
+                .ForMember(des => des.Category, option => option.MapFrom(src => src.ProductCategories != null && src.ProductCategories.Any() ? string.Join("،", src.ProductCategories.Select(x => x.Category.Name)) : string.Empty))
+                .ForMember(des => des.TotalCount, option => option.MapFrom(src => src.ProductWarehouseLocations != null && src.ProductWarehouseLocations.Any() ? src.ProductWarehouseLocations.Sum(x => x.Count) : 0))
+                .ForMember(des => des.Price, option => option.MapFrom(src => src.ProductPrices != null && src.ProductPrices.Any(x => x.ExpiryDate == null) ? src.ProductPrices.OrderByDescending(x => x.CreateDate).First(x => x.ExpiryDate == null).Price : 0))
                 .ForMember(des => des.MeasurementUnit, option => option.MapFrom(src => src.MeasurementUnit.GetDescription()));
         }
     }

@@ -6,7 +6,6 @@ using Eshop.Common.ActionFilters.Response;
 using Eshop.DTO.Identities.DynamicAccess;
 using Eshop.DTO.Identities.User;
 using Eshop.Enum;
-using Eshop.Service.FileStorage.Interface;
 using Eshop.Service.Identity.User;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
