@@ -22,8 +22,8 @@ namespace Eshop.Enum
         [Description("فروشنده")]
         Vendor = 2,
 
-        [Description("مشتری")]
-        Customer = 3,
+        [Description("طرف حساب")]
+        AccountParty = 3,
     }
 
     public enum MeasurementUnit
@@ -69,5 +69,14 @@ namespace Eshop.Enum
 
         [Description("سرویس")]
         Service = 2
+    } 
+    
+    public enum AccountPartyType
+    {
+        [Description("مشتری")]
+        Customer = 1,
+
+        [Description("تامین کننده")]
+        Supplier = 2
     }
 }

@@ -16,7 +16,7 @@ namespace Eshop.IocConfig
                 cfg.AddMaps(assembly);
             });
             var mapper = configuration.CreateMapper();
-            services.AddAutoMapper(typeof(CustomerProfile));
+            services.AddAutoMapper(typeof(AccountPartyProfile));
 
             services.AddAutoMapper(assembly);
 

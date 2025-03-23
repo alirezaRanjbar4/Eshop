@@ -2,9 +2,9 @@
 using Eshop.Entity.Models;
 using Eshop.Repository.General;
 
-namespace Eshop.Repository.Models.Customer
+namespace Eshop.Repository.Models.AccountParty
 {
-    public interface ICustomerRepository : IBaseRepository<CustomerEntity>, IScopedDependency
+    public interface IAccountPartyRepository : IBaseRepository<AccountPartyEntity>, IScopedDependency
     {
     }
 }

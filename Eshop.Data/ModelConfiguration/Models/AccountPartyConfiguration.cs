@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Rasam.Data.ModelConfiguration.Models
 {
-    public class CustomerConfiguration : IEntityTypeConfiguration<CustomerEntity>
+    public class AccountPartyConfiguration : IEntityTypeConfiguration<AccountPartyEntity>
     {
-        public void Configure(EntityTypeBuilder<CustomerEntity> builder)
+        public void Configure(EntityTypeBuilder<AccountPartyEntity> builder)
         {
-            builder.ToTable("Customer", DbSchema.Model.ToString());
+            builder.ToTable("AccountParty", DbSchema.Model.ToString());
             builder.HasKey(t => t.Id);
             builder.Property(x => x.Id).HasDefaultValueSql("newsequentialid()");
             builder.Property(x => x.CreateDate).HasColumnType(DataTypes.Datetime.ToString());
@@ -20,17 +20,18 @@ namespace Rasam.Data.ModelConfiguration.Models
             builder.Property(x => x.Name).HasColumnType(DataTypes.Nvarchar.ToString()).HasMaxLength(50);
             builder.Property(x => x.Address).HasColumnType(DataTypes.Nvarchar.ToString()).HasMaxLength(1000);
             builder.Property(x => x.Phone).HasColumnType(DataTypes.Nvarchar.ToString()).HasMaxLength(50);
+            builder.Property(x => x.Type).HasColumnType(DataTypes.Tinyint.ToString());
             //builder.Property(x => x.UserId).HasColumnType(DataTypes.UniqueIdentifier.ToString()).IsRequired(true);
 
             //builder
             //    .HasOne(x => x.User)
-            //    .WithOne(x => x.Customer)
-            //    .HasForeignKey<CustomerEntity>(x => x.UserId)
+            //    .WithOne(x => x.AccountParty)
+            //    .HasForeignKey<AccountPartyEntity>(x => x.UserId)
             //    .OnDelete(DeleteBehavior.Restrict);
 
             builder
                .HasOne(x => x.Store)
-               .WithMany(x => x.Customers)
+               .WithMany(x => x.AccountParties)
                .HasForeignKey(x => x.StoreId)
                .OnDelete(DeleteBehavior.Restrict);
         }
