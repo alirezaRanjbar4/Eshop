@@ -4,7 +4,7 @@ namespace Eshop.DTO.Models.Product
 {
     public class GetAllProductWarehouseLocationDTO : BaseDto
     {
-        public int Count { get; set; }
+        public float Count { get; set; }
         public string WarehouseLocation { get; set; }
         public string Warehouse { get; set; }
         public string Product { get; set; }

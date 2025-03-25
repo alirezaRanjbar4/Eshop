@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Eshop.DTO.Identities.User;
-using Eshop.DTO.Models.Customer;
+using Eshop.DTO.Models.AccountParty;
 using Eshop.DTO.Models.Vendor;
 using Eshop.Entity.Models;
 using Eshop.Repository.Models.Customer;
@@ -11,39 +11,39 @@ using Eshop.Service.Identity.UserRole;
 
 namespace Eshop.Service.Models.Customer
 {
-    public class CustomerService : BaseService<CustomerEntity>, ICustomerService
+    public class AccountPartyService : BaseService<AccountPartyEntity>, IAccountPartyService
     {
         //private readonly IUserService _userService;
         //private readonly IRoleService _roleService;
         //private readonly IUserRoleService _userRoleService;
-        public CustomerService(
+        public AccountPartyService(
             IMapper mapper,
-            ICustomerRepository CustomerRepository
+            IAccountPartyRepository AccountPartyRepository
             //IRoleService roleService,
             //IUserService userService,
             //IUserRoleService userRoleService
-            ) : base(CustomerRepository, mapper)
+            ) : base(AccountPartyRepository, mapper)
         {
             //_userService = userService;
             //_roleService = roleService;
             //_userRoleService = userRoleService;
         }
 
-        //public async Task<bool> AddCustomer(CustomerUserDTO customerUser, CancellationToken cancellationToken)
+        //public async Task<bool> AddAccountParty(AccountPartyUserDTO customerUser, CancellationToken cancellationToken)
         //{
         //    var user = _mapper.Map<AddUserDTO>(customerUser);
         //    var addUserResult = await _userService.AddUser(user, cancellationToken);
         //    if (!addUserResult.Data)
         //        return false;
 
-        //    var customer = _mapper.Map<CustomerDTO>(customerUser);
+        //    var customer = _mapper.Map<AccountPartyDTO>(customerUser);
         //    customer.UserId = user.Id;
         //    customer.Id = Guid.Empty;
-        //    var addCustomerresult = await AddAsync(customer, true, cancellationToken);
-        //    if (addCustomerresult == null)
+        //    var addAccountPartyresult = await AddAsync(customer, true, cancellationToken);
+        //    if (addAccountPartyresult == null)
         //        return false;
 
-        //    var customerRole = await _roleService.GetRoleByNameAsync("Customer", cancellationToken);
+        //    var customerRole = await _roleService.GetRoleByNameAsync("AccountParty", cancellationToken);
         //    var userRole = new UserRoleDTO
         //    {
         //        RoleId = customerRole.Id,
@@ -54,7 +54,7 @@ namespace Eshop.Service.Models.Customer
         //    return addUserRoleResult != null;
         //}
 
-        //public async Task<bool> UpdateCustomer(CustomerUserDTO customerUser, CancellationToken cancellationToken)
+        //public async Task<bool> UpdateAccountParty(AccountPartyUserDTO customerUser, CancellationToken cancellationToken)
         //{
         //    var user = _mapper.Map<EditUserDTO>(customerUser);
         //    user.Id = customerUser.UserId;
@@ -62,7 +62,7 @@ namespace Eshop.Service.Models.Customer
         //    if (!editUserResult.Data)
         //        return false;
 
-        //    var customer = _mapper.Map<CustomerDTO>(customerUser);
+        //    var customer = _mapper.Map<AccountPartyDTO>(customerUser);
         //    var result = await UpdateAsync(customer, true, true, cancellationToken);
         //    return result != null;
         //}

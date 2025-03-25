@@ -19,7 +19,7 @@ namespace Rasam.Data.ModelConfiguration.Models
 
             builder.Property(x => x.Count).HasColumnType(DataTypes.Int.ToString());
             builder.Property(x => x.ProductId).HasColumnType(DataTypes.UniqueIdentifier.ToString()).IsRequired(true);
-            builder.Property(x => x.CustomerId).HasColumnType(DataTypes.UniqueIdentifier.ToString()).IsRequired(true);
+            builder.Property(x => x.AccountPartyId).HasColumnType(DataTypes.UniqueIdentifier.ToString()).IsRequired(true);
 
             builder
                 .HasOne(x => x.Product)
@@ -28,9 +28,9 @@ namespace Rasam.Data.ModelConfiguration.Models
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
-                .HasOne(x => x.Customer)
+                .HasOne(x => x.AccountParty)
                 .WithMany(x => x.ShoppingCardItems)
-                .HasForeignKey(x => x.CustomerId)
+                .HasForeignKey(x => x.AccountPartyId)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

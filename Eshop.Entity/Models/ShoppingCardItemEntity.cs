@@ -6,8 +6,8 @@ namespace Eshop.Entity.Models
     {
         public int Count { get; set; }
 
-        public Guid CustomerId { get; set; }
-        public virtual CustomerEntity Customer { get; set; }
+        public Guid AccountPartyId { get; set; }
+        public virtual AccountPartyEntity AccountParty { get; set; }
 
         public Guid ProductId { get; set; }
         public virtual ProductEntity Product { get; set; }

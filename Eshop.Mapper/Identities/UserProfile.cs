@@ -55,7 +55,7 @@ namespace Eshop.Mapper.Identities
             CreateMap<UserRoleDTO, UserRoleEntity>();
 
             CreateMap<RoleEntity, RoleDTO>();
-            CreateMap<RoleEntity, SimpleRoleDTO>();
+           // CreateMap<RoleEntity, SimpleRoleDTO>();
 
             CreateMap<RoleEntity, GetRoleDTO>();
             CreateMap<RoleDTO, RoleEntity>();
@@ -80,8 +80,8 @@ namespace Eshop.Mapper.Identities
                             des.StoreType = src.Vendor != null && src.Vendor.Store != null ? src.Vendor.Store.StoreType : null;
                             des.StoreId = src.Vendor != null ? src.Vendor.StoreId : null;
                             break;
-                        case Enum.UserType.Customer:
-                            des.Name = src.Customer.Name;
+                        case Enum.UserType.AccountParty:
+                            des.Name = src.AccountParty.Name;
                             break;
                         default:
                             break;

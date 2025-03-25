@@ -7,8 +7,8 @@ namespace Eshop.Entity.Models
     {
         public OrderStatus Status { get; set; }
 
-        public Guid CustomerId { get; set; }
-        public virtual CustomerEntity Customer { get; set; }
+        public Guid AccountPartyId { get; set; }
+        public virtual AccountPartyEntity AccountParty { get; set; }
 
         public Guid StoreId { get; set; }
         public virtual StoreEntity Store { get; set; }

@@ -5,9 +5,9 @@ using Eshop.Service.General;
 
 namespace Eshop.Service.Models.Customer
 {
-    public interface ICustomerService : IBaseService<CustomerEntity>, IScopedDependency
+    public interface IAccountPartyService : IBaseService<AccountPartyEntity>, IScopedDependency
     {
-        //Task<bool> AddCustomer(CustomerUserDTO customerUser, CancellationToken cancellationToken);
-        //Task<bool> UpdateCustomer(CustomerUserDTO customerUser, CancellationToken cancellationToken);
+        //Task<bool> AddAccountParty(AccountPartyUserDTO customerUser, CancellationToken cancellationToken);
+        //Task<bool> UpdateAccountParty(AccountPartyUserDTO customerUser, CancellationToken cancellationToken);
     }
 }

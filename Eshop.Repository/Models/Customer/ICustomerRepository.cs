@@ -4,7 +4,7 @@ using Eshop.Repository.General;
 
 namespace Eshop.Repository.Models.Customer
 {
-    public interface ICustomerRepository : IBaseRepository<CustomerEntity>, IScopedDependency
+    public interface IAccountPartyRepository : IBaseRepository<AccountPartyEntity>, IScopedDependency
     {
     }
 }

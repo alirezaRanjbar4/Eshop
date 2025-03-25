@@ -84,99 +84,51 @@ public class BaseService<TModel> : IBaseService<TModel> where TModel : class, IB
 
     public async virtual Task<T> AddAsync<T>(T model, bool isSave = true, CancellationToken cancellationToken = default) where T : BaseDto
     {
-        try
-        {
-            var resultMap = _mapper.Map<TModel>(model);
-            var resultAdd = await _baseRepository.AddAsync(resultMap, isSave, cancellationToken);
+        var resultMap = _mapper.Map<TModel>(model);
+        var resultAdd = await _baseRepository.AddAsync(resultMap, isSave, cancellationToken);
 
-            if (!resultAdd)
-                return null;
+        if (!resultAdd)
+            return null;
 
-            model.Id = resultMap.Id;
+        model.Id = resultMap.Id;
 
-            return model;
-        }
-        catch (Exception ex)
-        {
-            throw;
-        }
+        return model;
     }
 
     public async Task<bool> AddRangeAsync<T>(IEnumerable<T> models, bool isSave = true, CancellationToken cancellationToken = default)
     {
-        try
-        {
-            var resultMap = _mapper.Map<IList<TModel>>(models);
-            var resultAdd = await _baseRepository.AddRangeAsync(resultMap, isSave, cancellationToken);
-
-            return resultAdd;
-        }
-        catch
-        {
-            throw;
-        }
+        var resultMap = _mapper.Map<IList<TModel>>(models);
+        return await _baseRepository.AddRangeAsync(resultMap, isSave, cancellationToken);
     }
 
     public async virtual Task<T> UpdateAsync<T>(T model, bool isSave = true, bool ignoreFilter = true, CancellationToken cancellationToken = default) where T : BaseDto
     {
-        try
-        {
-            var entityResult = await _baseRepository.GetAsync(x => x.Id == model.Id, null, ignoreFilter, cancellationToken);
-            _mapper.Map(model, entityResult);
+        var entityResult = await _baseRepository.GetAsync(x => x.Id == model.Id, null, ignoreFilter, cancellationToken);
+        _mapper.Map(model, entityResult);
 
-            var resultEdit = await _baseRepository.UpdateAsync(entityResult, isSave, cancellationToken);
-            return model;
-        }
-        catch (Exception ex)
-        {
-            throw;
-        }
+        var resultEdit = await _baseRepository.UpdateAsync(entityResult, isSave, cancellationToken);
+        return model;
     }
 
     public virtual async Task<bool> UpdateRangeAsync<T>(IEnumerable<T> models, bool isSave = true, CancellationToken cancellationToken = default)
     {
-        try
-        {
-            var resultMap = _mapper.Map<IList<TModel>>(models);
-            var resultUpdate = await _baseRepository.UpdateRangeAsync(resultMap, isSave, cancellationToken);
-
-            return resultUpdate;
-        }
-        catch
-        {
-            throw;
-        }
+        var resultMap = _mapper.Map<IList<TModel>>(models);
+        return await _baseRepository.UpdateRangeAsync(resultMap, isSave, cancellationToken);
     }
 
     public async virtual Task<bool> DeleteAsync(Guid id, bool isSave = true, bool ignoreFilter = true, bool LogicalDelete = true, CancellationToken cancellationToken = default)
     {
-        try
-        {
-            var findResult = await _baseRepository.GetAsync(x => x.Id == id, null, ignoreFilter, cancellationToken);
-            if (findResult == null)
-                return false;
+        var findResult = await _baseRepository.GetAsync(x => x.Id == id, null, ignoreFilter, cancellationToken);
+        if (findResult == null)
+            return false;
 
-            return await _baseRepository.DeleteAsync(findResult, LogicalDelete, isSave, cancellationToken);
-        }
-        catch (Exception ex)
-        {
-            throw;
-        }
+        return await _baseRepository.DeleteAsync(findResult, LogicalDelete, isSave, cancellationToken);
     }
 
     public async Task<bool> DeleteRangeAsync<T>(IEnumerable<T> models, bool isSave = true, bool logicalDelete = true, CancellationToken cancellationToken = default)
     {
-        try
-        {
-            var resultMap = _mapper.Map<IList<TModel>>(models);
-            var resultDelete = await _baseRepository.DeleteRangeAsync(resultMap, logicalDelete, isSave, cancellationToken);
-
-            return resultDelete;
-        }
-        catch
-        {
-            throw;
-        }
+        var resultMap = _mapper.Map<IList<TModel>>(models);
+        return await _baseRepository.DeleteRangeAsync(resultMap, logicalDelete, isSave, cancellationToken);
     }
 
     #endregion

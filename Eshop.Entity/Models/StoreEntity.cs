@@ -17,9 +17,10 @@ namespace Eshop.Entity.Models
         public virtual ICollection<ServiceEntity> Services { get; set; }
         public virtual ICollection<WarehouseEntity> Warehouses { get; set; }
         public virtual ICollection<VendorEntity> Vendors { get; set; }
-        public virtual ICollection<CustomerEntity> Customers { get; set; }
-        public virtual ICollection<SupplierEntity> Suppliers { get; set; }
+        public virtual ICollection<AccountPartyEntity> AccountParties { get; set; }
         public virtual ICollection<OrderEntity> Orders { get; set; }
         public virtual ICollection<CategoryEntity> Categories { get; set; }
+        public virtual ICollection<ReceiptEntity> Receipts { get; set; }
+        public virtual ICollection<TransferReceiptEntity> TransferReceipts { get; set; }
     }
 }

@@ -23,7 +23,7 @@ namespace Eshop.Entity.Identities
         public UserType UserType { get; set; }
 
         public virtual VendorEntity? Vendor { get; set; }
-        public virtual CustomerEntity? Customer { get; set; }
+        public virtual AccountPartyEntity? AccountParty { get; set; }
 
         public virtual ICollection<UserClaimEntity> Claims { get; set; }
         public virtual ICollection<UserLoginEntity> Logins { get; set; }

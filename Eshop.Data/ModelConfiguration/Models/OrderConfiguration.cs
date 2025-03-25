@@ -18,13 +18,13 @@ namespace Rasam.Data.ModelConfiguration.Models
             builder.HasOne(x => x.ModifiedBy).WithMany().HasForeignKey(x => x.ModifiedById).IsRequired(false).OnDelete(DeleteBehavior.Restrict);
 
             builder.Property(x => x.Status).HasColumnType(DataTypes.Tinyint.ToString());
-            builder.Property(x => x.CustomerId).HasColumnType(DataTypes.UniqueIdentifier.ToString()).IsRequired(true);
+            builder.Property(x => x.AccountPartyId).HasColumnType(DataTypes.UniqueIdentifier.ToString()).IsRequired(true);
             builder.Property(x => x.StoreId).HasColumnType(DataTypes.UniqueIdentifier.ToString()).IsRequired(true);
 
             builder
-                .HasOne(x => x.Customer)
+                .HasOne(x => x.AccountParty)
                 .WithMany(x => x.Orders)
-                .HasForeignKey(x => x.CustomerId)
+                .HasForeignKey(x => x.AccountPartyId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder

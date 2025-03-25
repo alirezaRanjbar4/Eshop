@@ -161,6 +161,9 @@ namespace Rasam.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<Guid?>("AccountPartyId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("Activated")
                         .HasColumnType("bit");
 
@@ -173,9 +176,6 @@ namespace Rasam.Data.Migrations
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("Datetime");
-
-                    b.Property<Guid?>("CustomerId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("Deleted")
                         .ValueGeneratedOnAdd()
@@ -239,7 +239,7 @@ namespace Rasam.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("AccountPartyId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -375,6 +375,62 @@ namespace Rasam.Data.Migrations
                     b.ToTable("UserToken", "Identity");
                 });
 
+            modelBuilder.Entity("Eshop.Entity.Models.AccountPartyEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("newsequentialid()");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("Nvarchar");
+
+                    b.Property<Guid>("CreateById")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("Datetime");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("Datetime");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("Nvarchar");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("Nvarchar");
+
+                    b.Property<Guid>("StoreId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte>("Type")
+                        .HasColumnType("Tinyint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreateById");
+
+                    b.HasIndex("ModifiedById");
+
+                    b.HasIndex("StoreId");
+
+                    b.ToTable("AccountParty", "Model");
+                });
+
             modelBuilder.Entity("Eshop.Entity.Models.CategoryEntity", b =>
                 {
                     b.Property<Guid>("Id")
@@ -424,59 +480,6 @@ namespace Rasam.Data.Migrations
                     b.HasIndex("StoreId");
 
                     b.ToTable("Category", "Model");
-                });
-
-            modelBuilder.Entity("Eshop.Entity.Models.CustomerEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier")
-                        .HasDefaultValueSql("newsequentialid()");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("Nvarchar");
-
-                    b.Property<Guid>("CreateById")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("Datetime");
-
-                    b.Property<bool>("Deleted")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(false);
-
-                    b.Property<Guid?>("ModifiedById")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("ModifiedDate")
-                        .HasColumnType("Datetime");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("Nvarchar");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("Nvarchar");
-
-                    b.Property<Guid>("StoreId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreateById");
-
-                    b.HasIndex("ModifiedById");
-
-                    b.HasIndex("StoreId");
-
-                    b.ToTable("Customer", "Model");
                 });
 
             modelBuilder.Entity("Eshop.Entity.Models.ImageEntity", b =>
@@ -539,14 +542,14 @@ namespace Rasam.Data.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("newsequentialid()");
 
+                    b.Property<Guid>("AccountPartyId")
+                        .HasColumnType("UniqueIdentifier");
+
                     b.Property<Guid>("CreateById")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("Datetime");
-
-                    b.Property<Guid>("CustomerId")
-                        .HasColumnType("UniqueIdentifier");
 
                     b.Property<bool>("Deleted")
                         .ValueGeneratedOnAdd()
@@ -567,9 +570,9 @@ namespace Rasam.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CreateById");
+                    b.HasIndex("AccountPartyId");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("CreateById");
 
                     b.HasIndex("ModifiedById");
 
@@ -834,8 +837,8 @@ namespace Rasam.Data.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("newsequentialid()");
 
-                    b.Property<int>("Count")
-                        .HasColumnType("Int");
+                    b.Property<double>("Count")
+                        .HasColumnType("Float");
 
                     b.Property<Guid>("CreateById")
                         .HasColumnType("uniqueidentifier");
@@ -871,6 +874,129 @@ namespace Rasam.Data.Migrations
                     b.HasIndex("WarehouseLocationId");
 
                     b.ToTable("ProductWarehouseLocation", "Model");
+                });
+
+            modelBuilder.Entity("Eshop.Entity.Models.ReceiptEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("newsequentialid()");
+
+                    b.Property<Guid>("AccountPartyId")
+                        .HasColumnType("UniqueIdentifier");
+
+                    b.Property<Guid>("CreateById")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("Datetime");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("Datetime");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(4000)
+                        .HasColumnType("Nvarchar");
+
+                    b.Property<bool>("IsFinalized")
+                        .HasColumnType("Bit");
+
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("Datetime");
+
+                    b.Property<Guid>("StoreId")
+                        .HasColumnType("UniqueIdentifier");
+
+                    b.Property<byte>("Type")
+                        .HasColumnType("Tinyint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountPartyId");
+
+                    b.HasIndex("CreateById");
+
+                    b.HasIndex("ModifiedById");
+
+                    b.HasIndex("StoreId");
+
+                    b.ToTable("Receipt", "Model");
+                });
+
+            modelBuilder.Entity("Eshop.Entity.Models.ReceiptItemEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("newsequentialid()");
+
+                    b.Property<double>("Count")
+                        .HasColumnType("Float");
+
+                    b.Property<Guid>("CreateById")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("Datetime");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(4000)
+                        .HasColumnType("Nvarchar");
+
+                    b.Property<int?>("DiscountPercent")
+                        .HasColumnType("Int");
+
+                    b.Property<long?>("DiscountPrice")
+                        .HasColumnType("BigInt");
+
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("Datetime");
+
+                    b.Property<long>("Price")
+                        .HasColumnType("BigInt");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("UniqueIdentifier");
+
+                    b.Property<Guid>("ReceiptId")
+                        .HasColumnType("UniqueIdentifier");
+
+                    b.Property<int?>("ValueAdded")
+                        .HasColumnType("Int");
+
+                    b.Property<Guid>("WarehouseLocationId")
+                        .HasColumnType("UniqueIdentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreateById");
+
+                    b.HasIndex("ModifiedById");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("ReceiptId");
+
+                    b.HasIndex("WarehouseLocationId");
+
+                    b.ToTable("ReceiptItem", "Model");
                 });
 
             modelBuilder.Entity("Eshop.Entity.Models.ServiceCategoryEntity", b =>
@@ -1014,6 +1140,9 @@ namespace Rasam.Data.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("newsequentialid()");
 
+                    b.Property<Guid>("AccountPartyId")
+                        .HasColumnType("UniqueIdentifier");
+
                     b.Property<int>("Count")
                         .HasColumnType("Int");
 
@@ -1022,9 +1151,6 @@ namespace Rasam.Data.Migrations
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("Datetime");
-
-                    b.Property<Guid>("CustomerId")
-                        .HasColumnType("UniqueIdentifier");
 
                     b.Property<bool>("Deleted")
                         .ValueGeneratedOnAdd()
@@ -1042,9 +1168,9 @@ namespace Rasam.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CreateById");
+                    b.HasIndex("AccountPartyId");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("CreateById");
 
                     b.HasIndex("ModifiedById");
 
@@ -1116,17 +1242,63 @@ namespace Rasam.Data.Migrations
                     b.ToTable("Store", "Model");
                 });
 
-            modelBuilder.Entity("Eshop.Entity.Models.SupplierEntity", b =>
+            modelBuilder.Entity("Eshop.Entity.Models.TransferReceiptEntity", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("newsequentialid()");
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(1000)
+                    b.Property<Guid>("CreateById")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("Datetime");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("Datetime");
+
+                    b.Property<bool>("Deleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(4000)
                         .HasColumnType("Nvarchar");
+
+                    b.Property<bool>("IsFinalized")
+                        .HasColumnType("Bit");
+
+                    b.Property<Guid?>("ModifiedById")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("Datetime");
+
+                    b.Property<Guid>("StoreId")
+                        .HasColumnType("UniqueIdentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreateById");
+
+                    b.HasIndex("ModifiedById");
+
+                    b.HasIndex("StoreId");
+
+                    b.ToTable("TransferReceipt", "Model");
+                });
+
+            modelBuilder.Entity("Eshop.Entity.Models.TransferReceiptItemEntity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("newsequentialid()");
+
+                    b.Property<double>("Count")
+                        .HasColumnType("Float");
 
                     b.Property<Guid>("CreateById")
                         .HasColumnType("uniqueidentifier");
@@ -1139,34 +1311,46 @@ namespace Rasam.Data.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
 
+                    b.Property<string>("Description")
+                        .HasMaxLength(4000)
+                        .HasColumnType("Nvarchar");
+
+                    b.Property<Guid>("EnteredWarehouseLocationId")
+                        .HasColumnType("UniqueIdentifier");
+
+                    b.Property<Guid>("EnteredWarehouseLocationId1")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ExitedWarehouseLocationId")
+                        .HasColumnType("UniqueIdentifier");
+
                     b.Property<Guid?>("ModifiedById")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("Datetime");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("Nvarchar");
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("UniqueIdentifier");
 
-                    b.Property<string>("Phone")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("Nvarchar");
-
-                    b.Property<Guid>("StoreId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<Guid>("TransferReceiptId")
+                        .HasColumnType("UniqueIdentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CreateById");
 
+                    b.HasIndex("EnteredWarehouseLocationId");
+
+                    b.HasIndex("EnteredWarehouseLocationId1");
+
                     b.HasIndex("ModifiedById");
 
-                    b.HasIndex("StoreId");
+                    b.HasIndex("ProductId");
 
-                    b.ToTable("Supplier", "Model");
+                    b.HasIndex("TransferReceiptId");
+
+                    b.ToTable("TransferReceiptItem", "Model");
                 });
 
             modelBuilder.Entity("Eshop.Entity.Models.VendorEntity", b =>
@@ -1339,11 +1523,11 @@ namespace Rasam.Data.Migrations
 
             modelBuilder.Entity("Eshop.Entity.Identities.UserEntity", b =>
                 {
-                    b.HasOne("Eshop.Entity.Models.CustomerEntity", "Customer")
+                    b.HasOne("Eshop.Entity.Models.AccountPartyEntity", "AccountParty")
                         .WithMany()
-                        .HasForeignKey("CustomerId");
+                        .HasForeignKey("AccountPartyId");
 
-                    b.Navigation("Customer");
+                    b.Navigation("AccountParty");
                 });
 
             modelBuilder.Entity("Eshop.Entity.Identities.UserLoginEntity", b =>
@@ -1387,6 +1571,32 @@ namespace Rasam.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Eshop.Entity.Models.AccountPartyEntity", b =>
+                {
+                    b.HasOne("Eshop.Entity.Identities.UserEntity", "CreateBy")
+                        .WithMany()
+                        .HasForeignKey("CreateById")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Eshop.Entity.Identities.UserEntity", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Eshop.Entity.Models.StoreEntity", "Store")
+                        .WithMany("AccountParties")
+                        .HasForeignKey("StoreId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("CreateBy");
+
+                    b.Navigation("ModifiedBy");
+
+                    b.Navigation("Store");
+                });
+
             modelBuilder.Entity("Eshop.Entity.Models.CategoryEntity", b =>
                 {
                     b.HasOne("Eshop.Entity.Identities.UserEntity", "CreateBy")
@@ -1416,32 +1626,6 @@ namespace Rasam.Data.Migrations
                     b.Navigation("ModifiedBy");
 
                     b.Navigation("Parent");
-
-                    b.Navigation("Store");
-                });
-
-            modelBuilder.Entity("Eshop.Entity.Models.CustomerEntity", b =>
-                {
-                    b.HasOne("Eshop.Entity.Identities.UserEntity", "CreateBy")
-                        .WithMany()
-                        .HasForeignKey("CreateById")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Eshop.Entity.Identities.UserEntity", "ModifiedBy")
-                        .WithMany()
-                        .HasForeignKey("ModifiedById")
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    b.HasOne("Eshop.Entity.Models.StoreEntity", "Store")
-                        .WithMany("Customers")
-                        .HasForeignKey("StoreId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("CreateBy");
-
-                    b.Navigation("ModifiedBy");
 
                     b.Navigation("Store");
                 });
@@ -1477,15 +1661,15 @@ namespace Rasam.Data.Migrations
 
             modelBuilder.Entity("Eshop.Entity.Models.OrderEntity", b =>
                 {
-                    b.HasOne("Eshop.Entity.Identities.UserEntity", "CreateBy")
-                        .WithMany()
-                        .HasForeignKey("CreateById")
+                    b.HasOne("Eshop.Entity.Models.AccountPartyEntity", "AccountParty")
+                        .WithMany("Orders")
+                        .HasForeignKey("AccountPartyId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Eshop.Entity.Models.CustomerEntity", "Customer")
-                        .WithMany("Orders")
-                        .HasForeignKey("CustomerId")
+                    b.HasOne("Eshop.Entity.Identities.UserEntity", "CreateBy")
+                        .WithMany()
+                        .HasForeignKey("CreateById")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -1500,9 +1684,9 @@ namespace Rasam.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("CreateBy");
+                    b.Navigation("AccountParty");
 
-                    b.Navigation("Customer");
+                    b.Navigation("CreateBy");
 
                     b.Navigation("ModifiedBy");
 
@@ -1697,6 +1881,82 @@ namespace Rasam.Data.Migrations
                     b.Navigation("WarehouseLocation");
                 });
 
+            modelBuilder.Entity("Eshop.Entity.Models.ReceiptEntity", b =>
+                {
+                    b.HasOne("Eshop.Entity.Models.AccountPartyEntity", "AccountParty")
+                        .WithMany("Receipts")
+                        .HasForeignKey("AccountPartyId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Eshop.Entity.Identities.UserEntity", "CreateBy")
+                        .WithMany()
+                        .HasForeignKey("CreateById")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Eshop.Entity.Identities.UserEntity", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Eshop.Entity.Models.StoreEntity", "Store")
+                        .WithMany("Receipts")
+                        .HasForeignKey("StoreId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("AccountParty");
+
+                    b.Navigation("CreateBy");
+
+                    b.Navigation("ModifiedBy");
+
+                    b.Navigation("Store");
+                });
+
+            modelBuilder.Entity("Eshop.Entity.Models.ReceiptItemEntity", b =>
+                {
+                    b.HasOne("Eshop.Entity.Identities.UserEntity", "CreateBy")
+                        .WithMany()
+                        .HasForeignKey("CreateById")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Eshop.Entity.Identities.UserEntity", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Eshop.Entity.Models.ProductEntity", "Product")
+                        .WithMany("ReceiptItems")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Eshop.Entity.Models.ReceiptEntity", "Receipt")
+                        .WithMany("Items")
+                        .HasForeignKey("ReceiptId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Eshop.Entity.Models.WarehouseLocationEntity", "WarehouseLocation")
+                        .WithMany("ReceiptItems")
+                        .HasForeignKey("WarehouseLocationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("CreateBy");
+
+                    b.Navigation("ModifiedBy");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Receipt");
+
+                    b.Navigation("WarehouseLocation");
+                });
+
             modelBuilder.Entity("Eshop.Entity.Models.ServiceCategoryEntity", b =>
                 {
                     b.HasOne("Eshop.Entity.Models.CategoryEntity", "Category")
@@ -1785,15 +2045,15 @@ namespace Rasam.Data.Migrations
 
             modelBuilder.Entity("Eshop.Entity.Models.ShoppingCardItemEntity", b =>
                 {
-                    b.HasOne("Eshop.Entity.Identities.UserEntity", "CreateBy")
-                        .WithMany()
-                        .HasForeignKey("CreateById")
+                    b.HasOne("Eshop.Entity.Models.AccountPartyEntity", "AccountParty")
+                        .WithMany("ShoppingCardItems")
+                        .HasForeignKey("AccountPartyId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Eshop.Entity.Models.CustomerEntity", "Customer")
-                        .WithMany("ShoppingCardItems")
-                        .HasForeignKey("CustomerId")
+                    b.HasOne("Eshop.Entity.Identities.UserEntity", "CreateBy")
+                        .WithMany()
+                        .HasForeignKey("CreateById")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -1808,9 +2068,9 @@ namespace Rasam.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("CreateBy");
+                    b.Navigation("AccountParty");
 
-                    b.Navigation("Customer");
+                    b.Navigation("CreateBy");
 
                     b.Navigation("ModifiedBy");
 
@@ -1835,7 +2095,7 @@ namespace Rasam.Data.Migrations
                     b.Navigation("ModifiedBy");
                 });
 
-            modelBuilder.Entity("Eshop.Entity.Models.SupplierEntity", b =>
+            modelBuilder.Entity("Eshop.Entity.Models.TransferReceiptEntity", b =>
                 {
                     b.HasOne("Eshop.Entity.Identities.UserEntity", "CreateBy")
                         .WithMany()
@@ -1849,7 +2109,7 @@ namespace Rasam.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Eshop.Entity.Models.StoreEntity", "Store")
-                        .WithMany("Suppliers")
+                        .WithMany("TransferReceipts")
                         .HasForeignKey("StoreId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1859,6 +2119,56 @@ namespace Rasam.Data.Migrations
                     b.Navigation("ModifiedBy");
 
                     b.Navigation("Store");
+                });
+
+            modelBuilder.Entity("Eshop.Entity.Models.TransferReceiptItemEntity", b =>
+                {
+                    b.HasOne("Eshop.Entity.Identities.UserEntity", "CreateBy")
+                        .WithMany()
+                        .HasForeignKey("CreateById")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Eshop.Entity.Models.WarehouseLocationEntity", "ExitedWarehouseLocation")
+                        .WithMany("ExitedTransferReceiptItems")
+                        .HasForeignKey("EnteredWarehouseLocationId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Eshop.Entity.Models.WarehouseLocationEntity", "EnteredWarehouseLocation")
+                        .WithMany("EnteredTransferReceiptItems")
+                        .HasForeignKey("EnteredWarehouseLocationId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Eshop.Entity.Identities.UserEntity", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedById")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Eshop.Entity.Models.ProductEntity", "Product")
+                        .WithMany("TransferReceiptItems")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Eshop.Entity.Models.TransferReceiptEntity", "TransferReceipt")
+                        .WithMany("Items")
+                        .HasForeignKey("TransferReceiptId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("CreateBy");
+
+                    b.Navigation("EnteredWarehouseLocation");
+
+                    b.Navigation("ExitedWarehouseLocation");
+
+                    b.Navigation("ModifiedBy");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("TransferReceipt");
                 });
 
             modelBuilder.Entity("Eshop.Entity.Models.VendorEntity", b =>
@@ -1967,6 +2277,15 @@ namespace Rasam.Data.Migrations
                     b.Navigation("Vendor");
                 });
 
+            modelBuilder.Entity("Eshop.Entity.Models.AccountPartyEntity", b =>
+                {
+                    b.Navigation("Orders");
+
+                    b.Navigation("Receipts");
+
+                    b.Navigation("ShoppingCardItems");
+                });
+
             modelBuilder.Entity("Eshop.Entity.Models.CategoryEntity", b =>
                 {
                     b.Navigation("Childs");
@@ -1974,13 +2293,6 @@ namespace Rasam.Data.Migrations
                     b.Navigation("ProductCategories");
 
                     b.Navigation("ServiceCategories");
-                });
-
-            modelBuilder.Entity("Eshop.Entity.Models.CustomerEntity", b =>
-                {
-                    b.Navigation("Orders");
-
-                    b.Navigation("ShoppingCardItems");
                 });
 
             modelBuilder.Entity("Eshop.Entity.Models.OrderEntity", b =>
@@ -2002,7 +2314,16 @@ namespace Rasam.Data.Migrations
 
                     b.Navigation("ProductWarehouseLocations");
 
+                    b.Navigation("ReceiptItems");
+
                     b.Navigation("ShoppingCardItems");
+
+                    b.Navigation("TransferReceiptItems");
+                });
+
+            modelBuilder.Entity("Eshop.Entity.Models.ReceiptEntity", b =>
+                {
+                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("Eshop.Entity.Models.ServiceEntity", b =>
@@ -2016,21 +2337,28 @@ namespace Rasam.Data.Migrations
 
             modelBuilder.Entity("Eshop.Entity.Models.StoreEntity", b =>
                 {
-                    b.Navigation("Categories");
+                    b.Navigation("AccountParties");
 
-                    b.Navigation("Customers");
+                    b.Navigation("Categories");
 
                     b.Navigation("Orders");
 
                     b.Navigation("Products");
 
+                    b.Navigation("Receipts");
+
                     b.Navigation("Services");
 
-                    b.Navigation("Suppliers");
+                    b.Navigation("TransferReceipts");
 
                     b.Navigation("Vendors");
 
                     b.Navigation("Warehouses");
+                });
+
+            modelBuilder.Entity("Eshop.Entity.Models.TransferReceiptEntity", b =>
+                {
+                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("Eshop.Entity.Models.WarehouseEntity", b =>
@@ -2040,9 +2368,15 @@ namespace Rasam.Data.Migrations
 
             modelBuilder.Entity("Eshop.Entity.Models.WarehouseLocationEntity", b =>
                 {
+                    b.Navigation("EnteredTransferReceiptItems");
+
+                    b.Navigation("ExitedTransferReceiptItems");
+
                     b.Navigation("ProductTransfers");
 
                     b.Navigation("ProductWarehouseLocations");
+
+                    b.Navigation("ReceiptItems");
                 });
 #pragma warning restore 612, 618
         }

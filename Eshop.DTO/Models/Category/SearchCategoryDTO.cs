@@ -1,7 +1,7 @@
 ﻿using Eshop.DTO.General;
 using Eshop.Enum;
 
-namespace Eshop.DTO.Models
+namespace Eshop.DTO.Models.Category
 {
     public class SearchCategoryDTO : BaseSearchDTO
     {
