@@ -4,7 +4,7 @@ namespace Eshop.Entity.Models
 {
     public class ProductWarehouseLocationEntity : BaseTrackedModel, IBaseEntity
     {
-        public int Count { get; set; }
+        public float Count { get; set; }
 
         public Guid WarehouseLocationId { get; set; }
         public virtual WarehouseLocationEntity WarehouseLocation { get; set; }

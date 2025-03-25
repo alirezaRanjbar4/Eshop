@@ -3,13 +3,13 @@ using Eshop.DTO.Identities.User;
 using Eshop.DTO.Models.AccountParty;
 using Eshop.DTO.Models.Vendor;
 using Eshop.Entity.Models;
-using Eshop.Repository.Models.AccountParty;
+using Eshop.Repository.Models.Customer;
 using Eshop.Service.General;
 using Eshop.Service.Identity.Role;
 using Eshop.Service.Identity.User;
 using Eshop.Service.Identity.UserRole;
 
-namespace Eshop.Service.Models.AccountParty
+namespace Eshop.Service.Models.Customer
 {
     public class AccountPartyService : BaseService<AccountPartyEntity>, IAccountPartyService
     {

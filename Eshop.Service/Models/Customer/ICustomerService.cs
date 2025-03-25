@@ -3,7 +3,7 @@ using Eshop.DTO.Models.Vendor;
 using Eshop.Entity.Models;
 using Eshop.Service.General;
 
-namespace Eshop.Service.Models.AccountParty
+namespace Eshop.Service.Models.Customer
 {
     public interface IAccountPartyService : IBaseService<AccountPartyEntity>, IScopedDependency
     {

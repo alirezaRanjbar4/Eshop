@@ -19,5 +19,6 @@ namespace Eshop.Entity.Models
 
         public virtual ICollection<ShoppingCardItemEntity> ShoppingCardItems { get; set; }
         public virtual ICollection<OrderEntity> Orders { get; set; }
+        public virtual ICollection<ReceiptEntity> Receipts { get; set; }
     }
 }

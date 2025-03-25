@@ -7,7 +7,7 @@ using Eshop.DTO.General;
 using Eshop.DTO.Models.AccountParty;
 using Eshop.DTO.Models.Vendor;
 using Eshop.Enum;
-using Eshop.Service.Models.AccountParty;
+using Eshop.Service.Models.Customer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;

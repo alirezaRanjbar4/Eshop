@@ -39,8 +39,8 @@ namespace Eshop.Enum
 
         [Description("متر")]
         Type4 = 4,
-    } 
-    
+    }
+
     public enum OrderStatus
     {
         [Description("در انتظار تایید")]
@@ -52,7 +52,7 @@ namespace Eshop.Enum
         [Description("رد شده")]
         Type3 = 3,
     }
-    
+
     public enum ProductTransferType
     {
         [Description("افزایش")]
@@ -61,7 +61,7 @@ namespace Eshop.Enum
         [Description("کاهش")]
         Decrease = 2
     }
-    
+
     public enum CategoryType
     {
         [Description("کالا")]
@@ -69,8 +69,8 @@ namespace Eshop.Enum
 
         [Description("سرویس")]
         Service = 2
-    } 
-    
+    }
+
     public enum AccountPartyType
     {
         [Description("مشتری")]
@@ -78,5 +78,14 @@ namespace Eshop.Enum
 
         [Description("تامین کننده")]
         Supplier = 2
+    }
+
+    public enum ReceiptType
+    {
+        [Description("ورودی")]
+        Enter = 1,
+
+        [Description("خروجی")]
+        Exit = 2
     }
 }

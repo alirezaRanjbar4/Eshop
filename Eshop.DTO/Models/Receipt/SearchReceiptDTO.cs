@@ -3,9 +3,9 @@ using Eshop.Enum;
 
 namespace Eshop.DTO.Models.Category
 {
-    public class SearchCategoryDTO : BaseSearchDTO
+    public class SearchReceiptDTO : BaseSearchDTO
     {
         public Guid StoreId { get; set; }
-        public CategoryType? Type { get; set; }
+        public ReceiptType? Type { get; set; }
     }
 }

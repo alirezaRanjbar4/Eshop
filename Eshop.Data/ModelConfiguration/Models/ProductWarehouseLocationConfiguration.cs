@@ -17,7 +17,7 @@ namespace Rasam.Data.ModelConfiguration.Models
             builder.HasOne(x => x.CreateBy).WithMany().HasForeignKey(x => x.CreateById).IsRequired().OnDelete(DeleteBehavior.Restrict);
             builder.HasOne(x => x.ModifiedBy).WithMany().HasForeignKey(x => x.ModifiedById).IsRequired(false).OnDelete(DeleteBehavior.Restrict);
 
-            builder.Property(x => x.Count).HasColumnType(DataTypes.Int.ToString());
+            builder.Property(x => x.Count).HasColumnType(DataTypes.Float.ToString());
             builder.Property(x => x.ProductId).HasColumnType(DataTypes.UniqueIdentifier.ToString()).IsRequired(true);
             builder.Property(x => x.WarehouseLocationId).HasColumnType(DataTypes.UniqueIdentifier.ToString()).IsRequired(true);
 

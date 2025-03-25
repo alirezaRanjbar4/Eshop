@@ -1,11 +1,14 @@
 ﻿using AutoMapper;
+using Eshop.Common.Exceptions;
 using Eshop.DTO.Identities.User;
 using Eshop.DTO.Models.Vendor;
 using Eshop.Entity.Models;
+using Eshop.Enum;
 using Eshop.Repository.Models.Vendor;
 using Eshop.Service.General;
 using Eshop.Service.Identity.User;
 using Eshop.Service.Identity.UserRole;
+using System.ComponentModel.DataAnnotations;
 
 namespace Eshop.Service.Models.Vendor
 {
@@ -28,8 +31,6 @@ namespace Eshop.Service.Models.Vendor
         {
             var user = _mapper.Map<AddUserDTO>(vendorUser);
             var addUserResult = await _userService.AddUser(user, cancellationToken);
-            if (!addUserResult.Data)
-                return false;
 
             var vendor = _mapper.Map<VendorDTO>(vendorUser);
             vendor.UserId = user.Id;

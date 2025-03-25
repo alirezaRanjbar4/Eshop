@@ -2,7 +2,7 @@
 using Eshop.Repository.General;
 using Rasam.Data.DBContext;
 
-namespace Eshop.Repository.Models.AccountParty
+namespace Eshop.Repository.Models.Customer
 {
     public class AccountPartyRepository : BaseRepository<AccountPartyEntity>, IAccountPartyRepository
     {

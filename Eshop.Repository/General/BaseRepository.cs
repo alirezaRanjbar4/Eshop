@@ -169,7 +169,7 @@ public class BaseRepository<TModel> : IBaseRepository<TModel> where TModel : cla
         }
         catch (Exception ex)
         {
-            throw;
+            throw new InvalidOperationException("An error occurred while adding the entity.", ex);
         }
     }
 
@@ -209,7 +209,7 @@ public class BaseRepository<TModel> : IBaseRepository<TModel> where TModel : cla
         }
         catch (Exception ex)
         {
-            throw;
+            throw new InvalidOperationException("An error occurred while editing the entity.", ex);
         }
     }
 
@@ -232,7 +232,7 @@ public class BaseRepository<TModel> : IBaseRepository<TModel> where TModel : cla
         }
         catch (Exception ex)
         {
-            throw;
+            throw new InvalidOperationException("An error occurred while deleting the entity.", ex);
         }
     }
 
@@ -255,7 +255,7 @@ public class BaseRepository<TModel> : IBaseRepository<TModel> where TModel : cla
         }
         catch (Exception ex)
         {
-            throw;
+            throw new InvalidOperationException("An error occurred while deleting the entity.", ex);
         }
     }
 
