@@ -5,7 +5,6 @@ using Eshop.Common.ActionFilters;
 using Eshop.Common.ActionFilters.Response;
 using Eshop.DTO.General;
 using Eshop.DTO.Identities.DynamicAccess;
-using Eshop.DTO.Models.Category;
 using Eshop.DTO.Models.Receipt;
 using Eshop.Enum;
 using Eshop.Service.Models.Receipt;

@@ -10,6 +10,10 @@ namespace Eshop.Mapper.Models
         {
             CreateMap<TransferReceiptEntity, TransferReceiptDTO>().ReverseMap();
 
+            CreateMap<AddTransferReceiptDTO, TransferReceiptEntity>();
+
+            CreateMap<AddTransferReceiptDTO, TransferReceiptDTO>();
+
             CreateMap<TransferReceiptItemEntity, TransferReceiptItemDTO>().ReverseMap();
         }
     }

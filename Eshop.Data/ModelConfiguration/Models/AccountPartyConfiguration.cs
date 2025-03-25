@@ -20,6 +20,7 @@ namespace Rasam.Data.ModelConfiguration.Models
             builder.Property(x => x.Name).HasColumnType(DataTypes.Nvarchar.ToString()).HasMaxLength(50);
             builder.Property(x => x.Address).HasColumnType(DataTypes.Nvarchar.ToString()).HasMaxLength(1000);
             builder.Property(x => x.Phone).HasColumnType(DataTypes.Nvarchar.ToString()).HasMaxLength(50);
+            builder.Property(x => x.CurrentCredit).HasColumnType(DataTypes.BigInt.ToString());
             builder.Property(x => x.Type).HasColumnType(DataTypes.Tinyint.ToString());
             //builder.Property(x => x.UserId).HasColumnType(DataTypes.UniqueIdentifier.ToString()).IsRequired(true);
 

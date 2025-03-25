@@ -87,5 +87,29 @@ namespace Eshop.Enum
 
         [Description("خروجی")]
         Exit = 2
+    } 
+    
+    public enum FinancialDocumentType
+    {
+        [Description("دریافت")]
+        Receive = 1,
+
+        [Description("پرداخت")]
+        Pay = 2
+    } 
+    
+    public enum FinancialDocumentPaymentMethod
+    {
+        [Description("دستگاه کارت خوان")]
+        Pos = 1,
+
+        [Description("نقد")]
+        Cash = 2,
+
+        [Description("جابه جایی بین بانکی")]
+        BankTransfer = 3,
+
+        [Description("چک بانکی")]
+        Cheque = 4
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Eshop.Entity.General;
-using Eshop.Entity.Identities;
 using Eshop.Enum;
 
 namespace Eshop.Entity.Models
@@ -10,6 +9,7 @@ namespace Eshop.Entity.Models
         public string Address { get; set; }
         public string Phone { get; set; }
         public AccountPartyType Type { get; set; }
+        public long CurrentCredit { get; set; }
 
         //public Guid UserId { get; set; }
         //public virtual UserEntity User { get; set; }
@@ -20,5 +20,6 @@ namespace Eshop.Entity.Models
         public virtual ICollection<ShoppingCardItemEntity> ShoppingCardItems { get; set; }
         public virtual ICollection<OrderEntity> Orders { get; set; }
         public virtual ICollection<ReceiptEntity> Receipts { get; set; }
+        public virtual ICollection<FinancialDocumentEntity> FinancialDocuments { get; set; }
     }
 }

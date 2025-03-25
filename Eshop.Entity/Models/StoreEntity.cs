@@ -22,5 +22,6 @@ namespace Eshop.Entity.Models
         public virtual ICollection<CategoryEntity> Categories { get; set; }
         public virtual ICollection<ReceiptEntity> Receipts { get; set; }
         public virtual ICollection<TransferReceiptEntity> TransferReceipts { get; set; }
+        public virtual ICollection<FinancialDocumentEntity> FinancialDocuments { get; set; }
     }
 }
