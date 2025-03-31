@@ -3,10 +3,9 @@ using Eshop.Api.Components;
 using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters;
 using Eshop.Common.ActionFilters.Response;
+using Eshop.Common.Enum;
 using Eshop.DTO.General;
-using Eshop.DTO.Identities.DynamicAccess;
 using Eshop.DTO.Models;
-using Eshop.Enum;
 using Eshop.Service.Models.WarehouseLocation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -32,22 +31,22 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpGet(nameof(GetAllWarehouseLocation))]
-        public async Task<List<WarehouseLocationDTO>> GetAllWarehouseLocation(CancellationToken cancellationToken)
+        public async Task<List<WarehouseLocationDTO>> GetAllWarehouseLocation(Guid warehouseId, CancellationToken cancellationToken)
         {
-            return await _warehouseService.GetAllAsync<WarehouseLocationDTO>(null, null, null, false, cancellationToken);
+            return await _warehouseService.GetAllAsync<WarehouseLocationDTO>(x => x.WarehouseId == warehouseId, null, null, false, cancellationToken);
         }
 
 
         [HttpPost(nameof(GetAllWarehouseLocationWithTotal)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
         //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<OperationResult<List<WarehouseLocationDTO>>> GetAllWarehouseLocationWithTotal(BaseSearchDTO searchDTO, CancellationToken cancellationToken)
+        public async Task<OperationResult<List<WarehouseLocationDTO>>> GetAllWarehouseLocationWithTotal(BaseSearchByIdDTO searchDTO, CancellationToken cancellationToken)
         {
             return await _warehouseService.GetAllAsyncWithTotal<WarehouseLocationDTO>(
                 searchDTO,
-                x => string.IsNullOrEmpty(searchDTO.SearchTerm) || x.Name.Contains(searchDTO.SearchTerm),
+                x => x.WarehouseId == searchDTO.Id && (string.IsNullOrEmpty(searchDTO.SearchTerm) || x.Name.Contains(searchDTO.SearchTerm)),
                 null,
                 o => o.OrderByDescending(x => x.CreateDate),
-                false, 
+                false,
                 cancellationToken);
         }
 

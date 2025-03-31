@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Eshop.Common.Enum;
 using Eshop.DTO.Identities.Authentication;
 using Eshop.DTO.Identities.DynamicAccess;
 using Eshop.DTO.Identities.Role;
@@ -71,16 +72,16 @@ namespace Eshop.Mapper.Identities
                 {
                     switch (src.UserType)
                     {
-                        case Enum.UserType.Admin:
+                        case UserType.Admin:
                             des.Name = src.UserName;
                             break;
-                        case Enum.UserType.Vendor:
+                        case UserType.Vendor:
                             des.Name = src.Vendor != null ? src.Vendor.Name : string.Empty;
                             des.StoreName = src.Vendor != null && src.Vendor.Store != null ? src.Vendor.Store.Name : string.Empty;
                             des.StoreType = src.Vendor != null && src.Vendor.Store != null ? src.Vendor.Store.StoreType : null;
                             des.StoreId = src.Vendor != null ? src.Vendor.StoreId : null;
                             break;
-                        case Enum.UserType.AccountParty:
+                        case UserType.AccountParty:
                             des.Name = src.AccountParty.Name;
                             break;
                         default:

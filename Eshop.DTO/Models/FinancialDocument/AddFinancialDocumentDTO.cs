@@ -1,9 +1,9 @@
-﻿using Eshop.Entity.General;
+﻿using Eshop.DTO.General;
 using Eshop.Common.Enum;
 
-namespace Eshop.Entity.Models
+namespace Eshop.DTO.Models.FinancialDocument
 {
-    public class FinancialDocumentEntity : BaseTrackedModel, IBaseEntity
+    public class AddFinancialDocumentDTO : BaseDto
     {
         public string? Description { get; set; }
         public long Amount { get; set; }
@@ -12,11 +12,8 @@ namespace Eshop.Entity.Models
         public FinancialDocumentPaymentMethod PaymentMethod { get; set; }
 
         public Guid StoreId { get; set; }
-        public virtual StoreEntity Store { get; set; }
-
         public Guid? AccountPartyId { get; set; }
-        public virtual AccountPartyEntity? AccountParty { get; set; }
 
-        public virtual ICollection<ReceiptFinancialDocumentEntity>? ReceiptFinancialDocuments { get; set; }
+        public List<Guid> ReceiptIds { get; set; }
     }
 }

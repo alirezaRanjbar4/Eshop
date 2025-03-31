@@ -1,4 +1,4 @@
-﻿namespace Eshop.Enum
+﻿namespace Eshop.Common.Enum
 {
     public enum GlobalResourceEnums
     {

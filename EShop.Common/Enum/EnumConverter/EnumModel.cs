@@ -1,4 +1,4 @@
-﻿namespace Eshop.Enum.EnumConverter
+﻿namespace Eshop.Common.Enum.EnumConverter
 {
     public class EnumModel : IEnumModel
     {

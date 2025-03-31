@@ -1,6 +1,6 @@
 ﻿using Eshop.Entity.General;
 using Eshop.Entity.Models;
-using Eshop.Enum;
+using Eshop.Common.Enum;
 using Microsoft.AspNetCore.Identity;
 
 namespace Eshop.Entity.Identities

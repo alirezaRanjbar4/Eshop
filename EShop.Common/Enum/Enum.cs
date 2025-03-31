@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Eshop.Enum
+namespace Eshop.Common.Enum
 {
     public enum StoreType
     {
@@ -87,8 +87,8 @@ namespace Eshop.Enum
 
         [Description("خروجی")]
         Exit = 2
-    } 
-    
+    }
+
     public enum FinancialDocumentType
     {
         [Description("دریافت")]
@@ -96,8 +96,8 @@ namespace Eshop.Enum
 
         [Description("پرداخت")]
         Pay = 2
-    } 
-    
+    }
+
     public enum FinancialDocumentPaymentMethod
     {
         [Description("دستگاه کارت خوان")]

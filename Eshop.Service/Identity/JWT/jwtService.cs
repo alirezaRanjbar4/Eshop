@@ -1,8 +1,8 @@
-﻿using Eshop.Common.Helpers.AppSetting.Mapper;
+﻿using Eshop.Common.Enum;
+using Eshop.Common.Helpers.AppSetting.Mapper;
 using Eshop.DTO.Identities.DynamicAccess;
 using Eshop.DTO.Identities.User;
 using Eshop.Entity.Identities;
-using Eshop.Enum;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.Globalization;
@@ -55,6 +55,7 @@ namespace Eshop.Service.Identity.JWT
             var Claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.Name,user.UserName),
+                new Claim("StoreId",user.Vendor!=null ? user.Vendor.StoreId.ToString() : string.Empty),
                 new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
                 new Claim(new ClaimsIdentityOptions().SecurityStampClaimType,user.SecurityStamp),
                 new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString())

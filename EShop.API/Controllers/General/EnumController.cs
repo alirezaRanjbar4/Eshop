@@ -1,6 +1,7 @@
 ﻿using Asp.Versioning;
 using Eshop.Api.Components;
-using Eshop.Enum.EnumConverter;
+using Eshop.Common.Enum;
+using Eshop.Common.Enum.EnumConverter;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -18,7 +19,7 @@ namespace Eshop.Api.Controllers.General
         public IActionResult GetEnumValues([FromBody] List<string> enumNames)
         {
             List<GetEnumsDTO> getEnums = new List<GetEnumsDTO>();
-            Assembly assembly = Assembly.GetAssembly(typeof(Enum.AuthenticationResourceEnums));
+            Assembly assembly = Assembly.GetAssembly(typeof(AuthenticationResourceEnums));
             if (enumNames != null && enumNames.Count() > 0)
             {
                 for (int i = 0; i < enumNames.Count(); i++)

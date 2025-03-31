@@ -1,4 +1,4 @@
-﻿using Eshop.Enum;
+﻿using Eshop.Common.Enum;
 using System.Collections.Generic;
 
 namespace Eshop.Common.Helpers.Resource

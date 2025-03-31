@@ -3,10 +3,10 @@ using Eshop.Api.Components;
 using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters;
 using Eshop.Common.ActionFilters.Response;
+using Eshop.Common.Enum;
 using Eshop.DTO.General;
 using Eshop.DTO.Identities.DynamicAccess;
 using Eshop.DTO.Models.Category;
-using Eshop.Enum;
 using Eshop.Service.Models.Category;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -32,9 +32,9 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpGet(nameof(GetAllCategory))]
-        public async Task<List<CategoryDTO>> GetAllCategory(Guid storeId, CategoryType type, CancellationToken cancellationToken)
+        public async Task<List<CategoryDTO>> GetAllCategory(CategoryType type, CancellationToken cancellationToken)
         {
-            return await _categoryService.GetAllAsync<CategoryDTO>(x => x.StoreId == storeId && x.Type == type, null, null, false, cancellationToken);
+            return await _categoryService.GetAllAsync<CategoryDTO>(x => x.StoreId == CurrentUserStoreId && x.Type == type, null, null, false, cancellationToken);
         }
 
 
@@ -44,7 +44,7 @@ namespace Eshop.Api.Controllers.Models
         {
             return await _categoryService.GetAllAsyncWithTotal<CategoryDTO>(
                 searchDTO,
-                x => x.StoreId == searchDTO.StoreId &&
+                x => x.StoreId == CurrentUserStoreId &&
                 (searchDTO.Type == null || x.Type == searchDTO.Type) &&
                 (string.IsNullOrEmpty(searchDTO.SearchTerm) || x.Name.Contains(searchDTO.SearchTerm)),
                 null,

@@ -1,5 +1,5 @@
-﻿using Eshop.Entity.General;
-using Eshop.Enum;
+﻿using Eshop.Common.Enum;
+using Eshop.Entity.General;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Query;

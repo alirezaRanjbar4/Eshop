@@ -3,10 +3,10 @@ using Eshop.Api.Components;
 using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters;
 using Eshop.Common.ActionFilters.Response;
+using Eshop.Common.Enum;
 using Eshop.DTO.General;
 using Eshop.DTO.Identities.DynamicAccess;
 using Eshop.DTO.Models;
-using Eshop.Enum;
 using Eshop.Service.Models.Warehouse;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -32,19 +32,19 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpGet(nameof(GetAllWarehouse))]
-        public async Task<List<WarehouseDTO>> GetAllWarehouse(Guid storeId, CancellationToken cancellationToken)
+        public async Task<List<WarehouseDTO>> GetAllWarehouse(CancellationToken cancellationToken)
         {
-            return await _warehouseService.GetAllAsync<WarehouseDTO>(x => x.StoreId == storeId, null, null, false, cancellationToken);
+            return await _warehouseService.GetAllAsync<WarehouseDTO>(x => x.StoreId == CurrentUserStoreId, null, null, false, cancellationToken);
         }
 
 
         [HttpPost(nameof(GetAllWarehouseWithTotal)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
         [Authorize(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<OperationResult<List<WarehouseDTO>>> GetAllWarehouseWithTotal(BaseSearchByIdDTO searchDTO, CancellationToken cancellationToken)
+        public async Task<OperationResult<List<WarehouseDTO>>> GetAllWarehouseWithTotal(BaseSearchDTO searchDTO, CancellationToken cancellationToken)
         {
             return await _warehouseService.GetAllAsyncWithTotal<WarehouseDTO>(
                 searchDTO,
-                x => x.StoreId == searchDTO.Id && (string.IsNullOrEmpty(searchDTO.SearchTerm) || x.Name.Contains(searchDTO.SearchTerm)),
+                x => x.StoreId == CurrentUserStoreId && (string.IsNullOrEmpty(searchDTO.SearchTerm) || x.Name.Contains(searchDTO.SearchTerm)),
                 null,
                 o => o.OrderByDescending(x => x.CreateDate),
                 false, cancellationToken);

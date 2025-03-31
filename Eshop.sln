@@ -22,8 +22,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eshop.Entity", "Eshop.Entit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eshop.Mapper", "Eshop.Mapper\Eshop.Mapper.csproj", "{34170BEB-AA0D-4DA9-B005-AF411EF0B605}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eshop.Enum", "Eshop.Enum\Eshop.Enum.csproj", "{F2ECB039-A7B0-4636-AEAA-894FEDCFFB74}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -70,10 +68,6 @@ Global
 		{34170BEB-AA0D-4DA9-B005-AF411EF0B605}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34170BEB-AA0D-4DA9-B005-AF411EF0B605}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34170BEB-AA0D-4DA9-B005-AF411EF0B605}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F2ECB039-A7B0-4636-AEAA-894FEDCFFB74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F2ECB039-A7B0-4636-AEAA-894FEDCFFB74}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F2ECB039-A7B0-4636-AEAA-894FEDCFFB74}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F2ECB039-A7B0-4636-AEAA-894FEDCFFB74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

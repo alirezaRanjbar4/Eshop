@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 
-namespace Eshop.Enum.EnumConverter
+namespace Eshop.Common.Enum.EnumConverter
 {
     public class EnumToListConverter<TEnum, TModel>
     where TEnum : System.Enum

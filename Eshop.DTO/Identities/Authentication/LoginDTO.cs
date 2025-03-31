@@ -1,7 +1,7 @@
 ﻿using Eshop.DTO.General;
 using Eshop.DTO.Identities.DynamicAccess;
 using Eshop.DTO.Identities.User;
-using Eshop.Enum;
+using Eshop.Common.Enum;
 
 namespace Eshop.DTO.Identities.Authentication
 {

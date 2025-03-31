@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Eshop.DTO.Models.Product;
 using Eshop.Entity.Models;
-using Eshop.Enum;
+using Eshop.Common.Enum;
 
 namespace Eshop.Mapper.Models
 {

@@ -1,4 +1,4 @@
-﻿using Eshop.Enum;
+﻿using Eshop.Common.Enum;
 using System;
 
 namespace Eshop.Common.Helpers.Utilities.Interface

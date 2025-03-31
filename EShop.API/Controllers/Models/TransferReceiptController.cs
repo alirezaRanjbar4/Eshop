@@ -3,9 +3,9 @@ using Eshop.Api.Components;
 using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters;
 using Eshop.Common.ActionFilters.Response;
+using Eshop.Common.Enum;
 using Eshop.DTO.General;
 using Eshop.DTO.Models.TransferReceipt;
-using Eshop.Enum;
 using Eshop.Service.Models.TransferReceipt;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -32,11 +32,11 @@ namespace Eshop.Api.Controllers.Models
 
         [HttpPost(nameof(GetAllTransferReceiptWithTotal)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
         //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<OperationResult<List<TransferReceiptDTO>>> GetAllTransferReceiptWithTotal(BaseSearchByIdDTO searchDTO, CancellationToken cancellationToken)
+        public async Task<OperationResult<List<TransferReceiptDTO>>> GetAllTransferReceiptWithTotal(BaseSearchDTO searchDTO, CancellationToken cancellationToken)
         {
             return await _transferReceiptService.GetAllAsyncWithTotal<TransferReceiptDTO>(
                 searchDTO,
-                x => x.StoreId == searchDTO.Id,
+                x => x.StoreId == CurrentUserStoreId,
                 null,
                 o => o.OrderByDescending(x => x.CreateDate),
                 false, cancellationToken);

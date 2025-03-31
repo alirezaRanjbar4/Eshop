@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Eshop.Common.ActionFilters.Response;
+using Eshop.Common.Enum;
 using Eshop.Common.Exceptions;
 using Eshop.Common.Helpers.Utilities.Utilities;
 using Eshop.DTO.Identities.Authentication;
 using Eshop.DTO.Identities.User;
 using Eshop.Entity.Identities;
-using Eshop.Enum;
 using Eshop.Service.Identity.Authentication.Interface;
 using Eshop.Service.Identity.JWT;
 using Microsoft.AspNetCore.Http;
@@ -87,7 +87,7 @@ namespace Eshop.Service.Identity.Authentication.Service
                                                            .Include(x => x.UserRoles.Where(x => !x.Deleted)).ThenInclude(x => x.Role).ThenInclude(x => x.RoleClaims.Where(x => !x.Deleted))
                                                            .Include(x => x.Vendor).ThenInclude(x => x.Store)
                                                            .Include(x => x.AccountParty)
-                                                           .FirstOrDefaultAsync();
+                                                           .FirstOrDefaultAsync(cancellationToken);
 
                         if (userPerson != null && userPerson.UserRoles != null && userPerson.UserRoles.Count > 0)
                         {

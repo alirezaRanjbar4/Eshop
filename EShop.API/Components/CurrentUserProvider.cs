@@ -1,5 +1,5 @@
-﻿using Eshop.Common.Helpers.Utilities.Interface;
-using Eshop.Enum;
+﻿using Eshop.Common.Enum;
+using Eshop.Common.Helpers.Utilities.Interface;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Globalization;

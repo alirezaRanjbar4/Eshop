@@ -3,9 +3,9 @@ using Eshop.Api.Components;
 using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters;
 using Eshop.Common.ActionFilters.Response;
+using Eshop.Common.Enum;
 using Eshop.DTO.General;
 using Eshop.DTO.Models.Product;
-using Eshop.Enum;
 using Eshop.Service.Models.Product;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -32,19 +32,19 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpGet(nameof(GetAllProduct))]
-        public async Task<List<ProductDTO>> GetAllProduct(Guid storeId, CancellationToken cancellationToken)
+        public async Task<List<ProductDTO>> GetAllProduct(CancellationToken cancellationToken)
         {
-            return await _productService.GetAllAsync<ProductDTO>(x => x.StoreId == storeId, null, null, false, cancellationToken);
+            return await _productService.GetAllAsync<ProductDTO>(x => x.StoreId == CurrentUserStoreId, null, null, false, cancellationToken);
         }
 
 
         [HttpPost(nameof(GetAllProductWithTotal)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
         //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<OperationResult<List<GetAllProductDTO>>> GetAllProductWithTotal(BaseSearchByIdDTO searchDTO, CancellationToken cancellationToken)
+        public async Task<OperationResult<List<GetAllProductDTO>>> GetAllProductWithTotal(BaseSearchDTO searchDTO, CancellationToken cancellationToken)
         {
             return await _productService.GetAllAsyncWithTotal<GetAllProductDTO>(
                 searchDTO,
-                x => x.StoreId == searchDTO.Id && (string.IsNullOrEmpty(searchDTO.SearchTerm) || x.Name.Contains(searchDTO.SearchTerm)),
+                x => x.StoreId == CurrentUserStoreId && (string.IsNullOrEmpty(searchDTO.SearchTerm) || x.Name.Contains(searchDTO.SearchTerm)),
                 i => i.Include(x => x.ProductCategories).ThenInclude(x => x.Category)
                       .Include(x => x.ProductWarehouseLocations)
                       .Include(x => x.ProductPrices),
@@ -59,7 +59,7 @@ namespace Eshop.Api.Controllers.Models
         public async Task<GetProductDTO> GetProduct(Guid productId, CancellationToken cancellationToken)
         {
             return await _productService.GetAsync<GetProductDTO>(
-                x => x.Id == productId,
+                x => x.Id == productId && x.StoreId == CurrentUserStoreId,
                 i => i.Include(x => x.ProductCategories)
                       .Include(x => x.ProductWarehouseLocations).ThenInclude(x => x.WarehouseLocation).ThenInclude(x => x.Warehouse)
                       .Include(x => x.ProductPrices)

@@ -1,6 +1,6 @@
-﻿using Eshop.Enum;
-using Eshop.Common.Helpers.Utilities.Interface;
+﻿using Eshop.Common.Helpers.Utilities.Interface;
 using System;
+using Eshop.Common.Enum;
 
 namespace Eshop.Common.Helpers.Utilities.Utilities.Providers
 {

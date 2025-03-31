@@ -1,7 +1,7 @@
 ﻿using Eshop.Common.ActionFilters.Response;
+using Eshop.Common.Enum;
 using Eshop.Common.Exceptions;
 using Eshop.Common.Helpers.Resource;
-using Eshop.Enum;
 using Eshop.Resource.Global;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;

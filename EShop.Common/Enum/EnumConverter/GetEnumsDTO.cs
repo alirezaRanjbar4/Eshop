@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Eshop.Enum.EnumConverter
+namespace Eshop.Common.Enum.EnumConverter
 {
     public class GetEnumsDTO
     {

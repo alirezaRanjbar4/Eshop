@@ -1,6 +1,8 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Linq;
+using System.Reflection;
 
-namespace Eshop.Enum
+namespace Eshop.Common.Enum
 {
     public static class EnumExtensions
     {

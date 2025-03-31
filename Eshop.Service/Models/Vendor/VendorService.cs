@@ -3,7 +3,7 @@ using Eshop.Common.Exceptions;
 using Eshop.DTO.Identities.User;
 using Eshop.DTO.Models.Vendor;
 using Eshop.Entity.Models;
-using Eshop.Enum;
+using Eshop.Common.Enum;
 using Eshop.Repository.Models.Vendor;
 using Eshop.Service.General;
 using Eshop.Service.Identity.User;

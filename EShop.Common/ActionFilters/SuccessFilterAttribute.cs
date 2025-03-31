@@ -1,7 +1,7 @@
 ﻿using Eshop.Common.ActionFilters.Response;
+using Eshop.Common.Enum;
 using Eshop.Common.Helpers.Resource;
 using Eshop.Common.Helpers.Utilities.Utilities;
-using Eshop.Enum;
 using Eshop.Resource.Global;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;

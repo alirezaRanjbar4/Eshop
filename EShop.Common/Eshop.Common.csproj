@@ -24,7 +24,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Eshop.Enum\Eshop.Enum.csproj" />
 		<ProjectReference Include="..\Eshop.Resource\Eshop.Resource.csproj" />
 	</ItemGroup>
 

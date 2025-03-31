@@ -2,13 +2,11 @@
 using Eshop.Api.Components;
 using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters;
-using Eshop.DTO.Identities.DynamicAccess;
+using Eshop.Common.Enum;
 using Eshop.DTO.Models.Store;
-using Eshop.Enum;
 using Eshop.Service.Models.Store;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,10 +26,9 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpGet(nameof(GetStoreDetail))]
-        public async Task<StoreDTO> GetStoreDetail(Guid storeId,CancellationToken cancellationToken)
+        public async Task<StoreDTO> GetStoreDetail(CancellationToken cancellationToken)
         {
-            //var storeId = User.FindFirst("StoreId") != null ? new Guid(User.FindFirst("StoreId").Value) : Guid.Empty;
-            return await _storeService.GetAsync<StoreDTO>(x => x.Id == storeId, null, false, cancellationToken);
+            return await _storeService.GetAsync<StoreDTO>(x => x.Id == CurrentUserStoreId, null, false, cancellationToken);
         }
 
 

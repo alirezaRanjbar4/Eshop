@@ -1,5 +1,5 @@
-﻿using Eshop.Common.Helpers.Resource;
-using Eshop.Enum;
+﻿using Eshop.Common.Enum;
+using Eshop.Common.Helpers.Resource;
 using System;
 
 namespace Eshop.Common.Exceptions

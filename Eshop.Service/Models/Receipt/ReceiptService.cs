@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Eshop.Common.Enum;
 using Eshop.DTO.Models.Product;
 using Eshop.DTO.Models.Receipt;
 using Eshop.Entity.Models;
@@ -59,7 +60,7 @@ namespace Eshop.Service.Models.Receipt
                     false,
                     cancellationToken);
 
-                if (receipt.Type == Enum.ReceiptType.Enter)
+                if (receipt.Type == ReceiptType.Enter)
                     productWarehouseLocation.Count += item.Count;
                 else
                     productWarehouseLocation.Count -= item.Count;

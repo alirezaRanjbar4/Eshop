@@ -2,8 +2,8 @@
 using Eshop.Api.Components;
 using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters;
+using Eshop.Common.Enum;
 using Eshop.DTO.Models.Vendor;
-using Eshop.Enum;
 using Eshop.Service.Models.Vendor;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -29,17 +29,16 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpGet(nameof(GetAllVendor))]
-        public async Task<List<VendorUserDTO>> GetAllVendor(Guid storeId, CancellationToken cancellationToken)
+        public async Task<List<VendorUserDTO>> GetAllVendor(CancellationToken cancellationToken)
         {
-            //var storeId = User.FindFirst("StoreId") != null ? new Guid(User.FindFirst("StoreId").Value) : Guid.Empty;
-            return await _vendorService.GetAllAsync<VendorUserDTO>(x => x.StoreId == storeId, i => i.Include(x => x.User), null, false, cancellationToken);
+            return await _vendorService.GetAllAsync<VendorUserDTO>(x => x.StoreId == CurrentUserStoreId, i => i.Include(x => x.User), null, false, cancellationToken);
         }
 
 
         [HttpGet(nameof(GetVendor))]
         public async Task<VendorDTO> GetVendor(Guid id, CancellationToken cancellationToken)
         {
-            return await _vendorService.GetAsync<VendorDTO>(x => x.Id == id, null, false, cancellationToken);
+            return await _vendorService.GetAsync<VendorDTO>(x => x.Id == id && x.StoreId == CurrentUserStoreId, null, false, cancellationToken);
         }
 
 

@@ -3,10 +3,8 @@ using Eshop.Api.Components;
 using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters;
 using Eshop.Common.ActionFilters.Response;
-using Eshop.DTO.General;
+using Eshop.Common.Enum;
 using Eshop.DTO.Models.AccountParty;
-using Eshop.DTO.Models.Vendor;
-using Eshop.Enum;
 using Eshop.Service.Models.Customer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -32,9 +30,9 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpGet(nameof(GetAllAccountParty))]
-        public async Task<List<AccountPartyDTO>> GetAllAccountParty(Guid storeId, AccountPartyType type, CancellationToken cancellationToken)
+        public async Task<List<AccountPartyDTO>> GetAllAccountParty(AccountPartyType type, CancellationToken cancellationToken)
         {
-            return await _accountPartyService.GetAllAsync<AccountPartyDTO>(x => x.StoreId == storeId && x.Type == type, null, null, false, cancellationToken);
+            return await _accountPartyService.GetAllAsync<AccountPartyDTO>(x => x.StoreId == CurrentUserStoreId && x.Type == type, null, null, false, cancellationToken);
         }
 
 
@@ -44,7 +42,7 @@ namespace Eshop.Api.Controllers.Models
         {
             return await _accountPartyService.GetAllAsyncWithTotal<AccountPartyDTO>(
             searchDTO,
-                x => x.StoreId == searchDTO.Id && x.Type == searchDTO.Type,
+                x => x.StoreId == CurrentUserStoreId && (searchDTO.Type == null || x.Type == searchDTO.Type),
                 null,
                 o => o.OrderByDescending(x => x.CreateDate),
                 false,
@@ -57,7 +55,6 @@ namespace Eshop.Api.Controllers.Models
         [SuccessFilter(ResourceKey = GlobalResourceEnums.AddComplete, ResultType = ResultType.Success)]
         public async Task<bool> AddAccountParty([FromBody] AccountPartyDTO accountParty, CancellationToken cancellationToken)
         {
-            //var storeId = User.FindFirst("StoreId") != null ? new Guid(User.FindFirst("StoreId").Value) : Guid.Empty;
             var result = await _accountPartyService.AddAsync(accountParty, true, cancellationToken);
             return result != null;
         }

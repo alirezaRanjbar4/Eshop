@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Eshop.Common.ActionFilters.Response;
+using Eshop.Common.Enum;
 using Eshop.Common.Exceptions;
 using Eshop.DTO.Identities.User;
 using Eshop.Entity.Identities;
-using Eshop.Enum;
 using Eshop.Repository.Identities.User;
 using Eshop.Service.General;
 
@@ -44,37 +44,37 @@ namespace Eshop.Service.Identity.User
                     switch (item.Code)
                     {
                         case "DuplicateUserName":
-                            validationExceptions.OperationState.ResourceKeyList.Add(Enum.User.DuplicateUserName);
+                            validationExceptions.OperationState.ResourceKeyList.Add(Common.Enum.User.DuplicateUserName);
                             break;
                         case "PasswordRequiresNonAlphanumeric":
-                            validationExceptions.OperationState.ResourceKeyList.Add(Enum.User.PasswordRequiresNonAlphanumeric);
+                            validationExceptions.OperationState.ResourceKeyList.Add(Common.Enum.User.PasswordRequiresNonAlphanumeric);
                             break;
                         case "PasswordRequiresDigit":
-                            validationExceptions.OperationState.ResourceKeyList.Add(Enum.User.PasswordRequiresDigit);
+                            validationExceptions.OperationState.ResourceKeyList.Add(Common.Enum.User.PasswordRequiresDigit);
                             break;
                         case "PasswordRequiresLower":
-                            validationExceptions.OperationState.ResourceKeyList.Add(Enum.User.PasswordRequiresLower);
+                            validationExceptions.OperationState.ResourceKeyList.Add(Common.Enum.User.PasswordRequiresLower);
                             break;
                         case "PasswordRequiresUpper":
-                            validationExceptions.OperationState.ResourceKeyList.Add(Enum.User.PasswordRequiresUpper);
+                            validationExceptions.OperationState.ResourceKeyList.Add(Common.Enum.User.PasswordRequiresUpper);
                             break;
                         case "PasswordTooShort":
-                            validationExceptions.OperationState.ResourceKeyList.Add(Enum.User.PasswordTooShort);
+                            validationExceptions.OperationState.ResourceKeyList.Add(Common.Enum.User.PasswordTooShort);
                             break;
                         case "InvalidUserName":
-                            validationExceptions.OperationState.ResourceKeyList.Add(Enum.User.InvalidUserName);
+                            validationExceptions.OperationState.ResourceKeyList.Add(Common.Enum.User.InvalidUserName);
                             break;
                         case "DuplicateEmail":
-                            validationExceptions.OperationState.ResourceKeyList.Add(Enum.User.DuplicateEmail);
+                            validationExceptions.OperationState.ResourceKeyList.Add(Common.Enum.User.DuplicateEmail);
                             break;
                         case "DuplicateRoleName":
-                            validationExceptions.OperationState.ResourceKeyList.Add(Enum.User.DuplicateRoleName);
+                            validationExceptions.OperationState.ResourceKeyList.Add(Common.Enum.User.DuplicateRoleName);
                             break;
                         case "PasswordMismatch":
-                            validationExceptions.OperationState.ResourceKeyList.Add(Enum.User.PasswordMismatch);
+                            validationExceptions.OperationState.ResourceKeyList.Add(Common.Enum.User.PasswordMismatch);
                             break;
                         case "IncorrectPassword":
-                            validationExceptions.OperationState.ResourceKeyList.Add(Enum.User.PasswordMismatch);
+                            validationExceptions.OperationState.ResourceKeyList.Add(Common.Enum.User.PasswordMismatch);
                             break;
 
                     }

@@ -3,9 +3,9 @@ using Eshop.Api.Components;
 using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters;
 using Eshop.Common.ActionFilters.Response;
+using Eshop.Common.Enum;
 using Eshop.DTO.General;
 using Eshop.DTO.Models.Service;
-using Eshop.Enum;
 using Eshop.Service.Models.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -32,19 +32,19 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpGet(nameof(GetAllService))]
-        public async Task<List<ServiceDTO>> GetAllService(Guid storeId, CancellationToken cancellationToken)
+        public async Task<List<ServiceDTO>> GetAllService(CancellationToken cancellationToken)
         {
-            return await _serviceService.GetAllAsync<ServiceDTO>(x => x.StoreId == storeId, null, null, false, cancellationToken);
+            return await _serviceService.GetAllAsync<ServiceDTO>(x => x.StoreId == CurrentUserStoreId, null, null, false, cancellationToken);
         }
 
 
         [HttpPost(nameof(GetAllServiceWithTotal)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
         //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<OperationResult<List<GetAllServiceDTO>>> GetAllServiceWithTotal(BaseSearchByIdDTO searchDTO, CancellationToken cancellationToken)
+        public async Task<OperationResult<List<GetAllServiceDTO>>> GetAllServiceWithTotal(BaseSearchDTO searchDTO, CancellationToken cancellationToken)
         {
             return await _serviceService.GetAllAsyncWithTotal<GetAllServiceDTO>(
                 searchDTO,
-                x => x.StoreId == searchDTO.Id && (string.IsNullOrEmpty(searchDTO.SearchTerm) || x.Name.Contains(searchDTO.SearchTerm)),
+                x => x.StoreId == CurrentUserStoreId && (string.IsNullOrEmpty(searchDTO.SearchTerm) || x.Name.Contains(searchDTO.SearchTerm)),
                 i => i.Include(x => x.ServiceCategories).ThenInclude(x => x.Category)
                       .Include(x => x.ServicePrices),
                 o => o.OrderByDescending(x => x.CreateDate),
@@ -58,7 +58,7 @@ namespace Eshop.Api.Controllers.Models
         public async Task<GetServiceDTO> GetService(Guid serviceId, CancellationToken cancellationToken)
         {
             return await _serviceService.GetAsync<GetServiceDTO>(
-                x => x.Id == serviceId,
+                x => x.Id == serviceId && x.StoreId == CurrentUserStoreId,
                 i => i.Include(x => x.ServiceCategories)
                       .Include(x => x.ServicePrices)
                       .Include(x => x.Images),

@@ -1,5 +1,5 @@
 ﻿using Eshop.Entity.General;
-using Eshop.Enum;
+using Eshop.Common.Enum;
 
 namespace Eshop.Entity.Models
 {

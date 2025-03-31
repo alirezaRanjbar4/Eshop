@@ -3,10 +3,8 @@ using Eshop.Api.Components;
 using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters;
 using Eshop.Common.ActionFilters.Response;
-using Eshop.DTO.General;
-using Eshop.DTO.Identities.DynamicAccess;
+using Eshop.Common.Enum;
 using Eshop.DTO.Models.Receipt;
-using Eshop.Enum;
 using Eshop.Service.Models.Receipt;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -37,7 +35,7 @@ namespace Eshop.Api.Controllers.Models
         {
             return await _receiptService.GetAllAsyncWithTotal<ReceiptDTO>(
                 searchDTO,
-                x => x.StoreId == searchDTO.StoreId &&
+                x => x.StoreId == CurrentUserStoreId &&
                 (searchDTO.Type == null || x.Type == searchDTO.Type),
                 null,
                 o => o.OrderByDescending(x => x.CreateDate),

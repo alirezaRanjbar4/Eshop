@@ -1,10 +1,10 @@
 ﻿using Eshop.Api.Components;
 using Eshop.Api.Middleware;
 using Eshop.Common.ActionFilters;
+using Eshop.Common.Enum;
 using Eshop.Common.Helpers.Utilities.Interface;
 using Eshop.Common.Helpers.Utilities.Utilities;
 using Eshop.DTO.Identities.DynamicAccess;
-using Eshop.Enum;
 using Eshop.IocConfig;
 using Eshop.Service.FileStorage.Interface;
 using Eshop.Service.FileStorage.Service;
