@@ -1,4 +1,5 @@
 ﻿using Eshop.DTO.General;
+using Eshop.DTO.Models.Product;
 
 namespace Eshop.DTO.Models.Service
 {

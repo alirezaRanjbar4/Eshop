@@ -3,11 +3,10 @@ using Eshop.Common.Enum;
 
 namespace Eshop.DTO.Models.FinancialDocument
 {
-    public class SearchFinancialDocumentDTO : BaseSearchDTO
+    public class SearchStorePaymentDTO : BaseSearchDTO
     {
-        public FinancialDocumentType? Type { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public Guid? AccountPartyId { get; set; }
+        public Guid? StoreId { get; set; }
     }
 }

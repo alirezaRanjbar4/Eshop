@@ -36,7 +36,8 @@ namespace Eshop.Api.Controllers.Models
             return await _receiptService.GetAllAsyncWithTotal<ReceiptDTO>(
                 searchDTO,
                 x => x.StoreId == CurrentUserStoreId &&
-                (searchDTO.Type == null || x.Type == searchDTO.Type),
+                (searchDTO.Type == null || x.Type == searchDTO.Type) &&
+                (searchDTO.AccountPartyId == null || searchDTO.AccountPartyId == Guid.Empty || x.AccountPartyId == searchDTO.AccountPartyId),
                 null,
                 o => o.OrderByDescending(x => x.CreateDate),
                 false, cancellationToken);

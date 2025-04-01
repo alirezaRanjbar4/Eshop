@@ -41,17 +41,6 @@ namespace Eshop.Common.Enum
         Type4 = 4,
     }
 
-    public enum OrderStatus
-    {
-        [Description("در انتظار تایید")]
-        Type1 = 1,
-
-        [Description("تحویل داده شده")]
-        Type2 = 2,
-
-        [Description("رد شده")]
-        Type3 = 3,
-    }
 
     public enum ProductTransferType
     {

@@ -1,11 +1,11 @@
 ﻿using Eshop.DTO.General;
 
-namespace Eshop.DTO.Models
+namespace Eshop.DTO.Models.Warehouse
 {
     public class WarehouseInventoryDTO : BaseDto
     {
         public string Product { get; set; }
         public string WarehouseLocation { get; set; }
-        public int Count { get; set; }
+        public float Count { get; set; }
     }
 }

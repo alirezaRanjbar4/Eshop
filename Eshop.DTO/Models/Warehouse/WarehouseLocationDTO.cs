@@ -1,6 +1,6 @@
 ﻿using Eshop.DTO.General;
 
-namespace Eshop.DTO.Models
+namespace Eshop.DTO.Models.Warehouse
 {
     public class WarehouseLocationDTO : BaseDto
     {

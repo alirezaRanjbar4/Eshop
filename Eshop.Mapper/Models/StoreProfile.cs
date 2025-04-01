@@ -9,6 +9,10 @@ namespace Eshop.Mapper.Models
         public StoreProfile()
         {
             CreateMap<StoreEntity, StoreDTO>().ReverseMap();
+
+            CreateMap<LimitedStoreDTO, StoreEntity>();
+
+            CreateMap<StorePaymentEntity, StorePaymentDTO>().ReverseMap();
         }
     }
 }

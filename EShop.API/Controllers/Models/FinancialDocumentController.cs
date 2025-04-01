@@ -36,7 +36,10 @@ namespace Eshop.Api.Controllers.Models
             return await _financialDocumentService.GetAllAsyncWithTotal<GetFinancialDocumentDTO>(
                 searchDTO,
                 x => x.StoreId == CurrentUserStoreId &&
-                (searchDTO.Type == null || x.Type == searchDTO.Type),
+                (searchDTO.Type == null || x.Type == searchDTO.Type) &&
+                (searchDTO.AccountPartyId == null || searchDTO.AccountPartyId == Guid.Empty || x.AccountPartyId == searchDTO.AccountPartyId) &&
+                (searchDTO.StartDate == null || x.Date >= searchDTO.StartDate) &&
+                (searchDTO.EndDate == null || x.Date <= searchDTO.EndDate),
                 null,
                 o => o.OrderByDescending(x => x.CreateDate),
                 false, cancellationToken);

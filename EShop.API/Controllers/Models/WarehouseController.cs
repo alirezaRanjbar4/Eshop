@@ -6,7 +6,7 @@ using Eshop.Common.ActionFilters.Response;
 using Eshop.Common.Enum;
 using Eshop.DTO.General;
 using Eshop.DTO.Identities.DynamicAccess;
-using Eshop.DTO.Models;
+using Eshop.DTO.Models.Warehouse;
 using Eshop.Service.Models.Warehouse;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -61,7 +61,7 @@ namespace Eshop.Api.Controllers.Models
         [HttpPost(nameof(AddWarehouse)), DisplayName(nameof(PermissionResourceEnums.AddPermission))]
         //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.AddComplete, ResultType = ResultType.Success)]
-        public async Task<bool> AddWarehouse([FromBody] WarehouseDTO warehouse, CancellationToken cancellationToken)
+        public async Task<bool> AddWarehouse([FromBody] AddWarehouseDTO warehouse, CancellationToken cancellationToken)
         {
             var result = await _warehouseService.AddAsync(warehouse, true, cancellationToken);
             return result != null;
@@ -71,10 +71,9 @@ namespace Eshop.Api.Controllers.Models
         [HttpPost(nameof(UpdateWarehouse)), DisplayName(nameof(PermissionResourceEnums.UpdatePermission))]
         //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.EditComplete, ResultType = ResultType.Success)]
-        public async Task<bool> UpdateWarehouse([FromBody] WarehouseDTO warehouse, CancellationToken cancellationToken)
+        public async Task<bool> UpdateWarehouse([FromBody] AddWarehouseDTO warehouse, CancellationToken cancellationToken)
         {
-            var result = await _warehouseService.UpdateAsync(warehouse, true, true, cancellationToken);
-            return result != null;
+            return await _warehouseService.UpdateWarehouse(warehouse, cancellationToken);
         }
 
 
