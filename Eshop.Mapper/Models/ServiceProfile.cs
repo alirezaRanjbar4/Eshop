@@ -19,7 +19,7 @@ namespace Eshop.Mapper.Models
                .ReverseMap();
 
             CreateMap<ServiceEntity, GetAllServiceDTO>()
-                .ForMember(des => des.Category, option => option.MapFrom(src => src.ServiceCategories != null ? src.ServiceCategories.Select(x => x.Category.Name).ToString() : string.Empty))
+                .ForMember(des => des.Category, option => option.MapFrom(src => src.ServiceCategories != null ? string.Join(",", src.ServiceCategories.Select(x => x.Category.Name)) : string.Empty))
                 .ForMember(des => des.Price, option => option.MapFrom(src => src.ServicePrices != null ? src.ServicePrices.Last().Price : 0));
 
             CreateMap<ServicePriceEntity, ServicePriceDTO>().ReverseMap();

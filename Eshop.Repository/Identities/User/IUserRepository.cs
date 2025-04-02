@@ -11,7 +11,7 @@ namespace Eshop.Repository.Identities.User
     {
         UserSearchDTO SearchUsers(UserSearchInput req);
         Task<OperationResult<bool>> AddUser(AddUserDTO dto, CancellationToken cancellationToken);
-        Task<OperationResult<bool>> EditUser(EditUserDTO userDto, CancellationToken cancellationToken);
+        Task<OperationResult<bool>> EditUser(AddUserDTO userDto, CancellationToken cancellationToken);
         Task<OperationResult<bool>> ChangeUserPassword(ChangeUserPasswordDTO dto, CancellationToken cancellationToken);
         Task<OperationResult<bool>> DeleteUser(string id, CancellationToken cancellationToken);
     }

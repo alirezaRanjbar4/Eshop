@@ -62,6 +62,7 @@ namespace Eshop.Mapper.Identities
             CreateMap<RoleDTO, RoleEntity>();
             CreateMap<AddRoleDTO, RoleEntity>();
             CreateMap<RoleEntity, BaseRoleDTO>();
+            CreateMap<RoleEntity, SimpleRoleDTO>();
 
             CreateMap<Claim, ClaimDTO>();
 

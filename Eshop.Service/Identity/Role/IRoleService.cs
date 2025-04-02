@@ -1,6 +1,5 @@
 ﻿using Eshop.Common.ActionFilters.Response;
 using Eshop.Common.Helpers.Utilities.Interface;
-using Eshop.DTO.General;
 using Eshop.DTO.Identities.DynamicAccess;
 using Eshop.DTO.Identities.Role;
 using Eshop.Entity.Identities;
@@ -11,7 +10,6 @@ namespace Eshop.Service.Identity.Role
 {
     public interface IRoleService : IBaseService<RoleEntity>, IScopedDependency
     {
-        Task<OperationResult<List<RoleDTO>>> GetAllRolesWithTotal(BaseSearchDTO baseSearch, CancellationToken cancellationToken);
         Task<List<SimpleRoleDTO>> GetAllRoles(CancellationToken cancellationToken);
         Task<IdentityResult> AddOrUpdateClaimsAsync(Guid roleId, string roleClaimType, IList<string> selectedRoleClaimValues);
         Task<RoleDTO> Get(Guid id, CancellationToken cancellationToken);

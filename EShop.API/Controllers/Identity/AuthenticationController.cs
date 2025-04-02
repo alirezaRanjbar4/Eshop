@@ -17,13 +17,10 @@ namespace Eshop.Api.Controllers.Identity
     public class AuthenticationController : BaseController
     {
         private readonly IAuthenticationService _authService;
-        private readonly IFileStorageService _fileStorageService;
         public AuthenticationController(
-            IAuthenticationService authService,
-            IFileStorageService fileStorageService)
+            IAuthenticationService authService)
         {
             _authService = authService;
-            _fileStorageService = fileStorageService;
         }
 
 

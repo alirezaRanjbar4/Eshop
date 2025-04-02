@@ -49,7 +49,7 @@ namespace Eshop.Api.Controllers.Identity
         [HttpPut(nameof(EditUser)), DisplayName(nameof(PermissionResourceEnums.UpdatePermission))]
         //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.EditComplete, ResultType = ResultType.Success)]
-        public async Task<OperationResult<bool>> EditUser([FromForm] EditUserDTO userDTO, CancellationToken cancellationToken)
+        public async Task<OperationResult<bool>> EditUser([FromForm] AddUserDTO userDTO, CancellationToken cancellationToken)
         {
             return await _userService.EditUser(userDTO, cancellationToken);
         }

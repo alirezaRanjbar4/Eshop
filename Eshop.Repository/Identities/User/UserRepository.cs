@@ -181,7 +181,7 @@ namespace Eshop.Repository.Identities.User
             return stringList;
         }
 
-        public async Task<OperationResult<bool>> EditUser(EditUserDTO dto, CancellationToken cancellationToken)
+        public async Task<OperationResult<bool>> EditUser(AddUserDTO dto, CancellationToken cancellationToken)
         {
             try
             {
@@ -214,6 +214,29 @@ namespace Eshop.Repository.Identities.User
                         Data = false,
                         Message = string.Join("***", editResult.Errors.Select(x => x.Description))
                     };
+                }
+
+                if (!string.IsNullOrEmpty(dto.PassWord))
+                {
+                    var removePassResult = await _userManager.RemovePasswordAsync(user);
+                    if (!removePassResult.Succeeded)
+                    {
+                        return new OperationResult<bool>()
+                        {
+                            Data = false,
+                            Message = string.Join("***", removePassResult.Errors.Select(x => x.Description))
+                        };
+                    }
+
+                    var addPassResult = await _userManager.AddPasswordAsync(user, dto.PassWord);
+                    if (!addPassResult.Succeeded)
+                    {
+                        return new OperationResult<bool>()
+                        {
+                            Data = false,
+                            Message = string.Join("***", addPassResult.Errors.Select(x => x.Description))
+                        };
+                    }
                 }
 
                 return new OperationResult<bool>()

@@ -25,31 +25,6 @@ namespace Eshop.Service.Identity.Role
         }
 
 
-        public async Task<OperationResult<List<RoleDTO>>> GetAllRolesWithTotal(BaseSearchDTO baseSearch, CancellationToken cancellationToken)
-        {
-            var roles = await _roleManager.Roles
-                             .Where(x => !x.Deleted && (string.IsNullOrEmpty(baseSearch.SearchTerm) || x.Name.Contains(baseSearch.SearchTerm)))
-                             .OrderBy(o => o.Name)
-                             .Skip((baseSearch.Page - 1) * baseSearch.PageSize)
-                             .Take(baseSearch.PageSize)
-                             .ToListAsync(cancellationToken);
-
-            var totalRecord = await _roleManager.Roles.Where(x => !x.Deleted && (string.IsNullOrEmpty(baseSearch.SearchTerm) || x.Name.Contains(baseSearch.SearchTerm))).OrderBy(o => o.Name).CountAsync(cancellationToken);
-            var dtos = _mapper.Map<List<RoleDTO>>(roles);
-
-            foreach (var item in dtos)
-            {
-                var roleResult = await _roleManager.Roles.Include(x => x.UserRoles).FirstOrDefaultAsync(x => x.UserRoles.Any(x => x.RoleId == item.Id));
-                item.Quantity = roleResult != null ? roleResult.UserRoles.Count() : 0;
-            }
-
-            return new OperationResult<List<RoleDTO>>
-            {
-                Data = dtos,
-                TotalRecords = totalRecord,
-            };
-        }
-
         public async Task<List<SimpleRoleDTO>> GetAllRoles(CancellationToken cancellationToken)
         {
             var roles = await _roleManager.Roles

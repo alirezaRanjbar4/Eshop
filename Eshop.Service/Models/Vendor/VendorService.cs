@@ -1,14 +1,13 @@
 ﻿using AutoMapper;
-using Eshop.Common.Exceptions;
 using Eshop.DTO.Identities.User;
 using Eshop.DTO.Models.Vendor;
+using Eshop.Entity.Identities;
 using Eshop.Entity.Models;
-using Eshop.Common.Enum;
 using Eshop.Repository.Models.Vendor;
 using Eshop.Service.General;
 using Eshop.Service.Identity.User;
 using Eshop.Service.Identity.UserRole;
-using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 
 namespace Eshop.Service.Models.Vendor
 {
@@ -16,14 +15,17 @@ namespace Eshop.Service.Models.Vendor
     {
         private readonly IUserService _userService;
         private readonly IUserRoleService _userRoleService;
+        private readonly UserManager<UserEntity> _userManager;
         public VendorService(
             IMapper mapper,
             IVendorRepository VendorRepository,
             IUserService userService,
-            IUserRoleService userRoleService) : base(VendorRepository, mapper)
+            IUserRoleService userRoleService,
+            UserManager<UserEntity> userManager) : base(VendorRepository, mapper)
         {
             _userService = userService;
             _userRoleService = userRoleService;
+            _userManager = userManager;
         }
 
 
@@ -52,7 +54,7 @@ namespace Eshop.Service.Models.Vendor
 
         public async Task<bool> UpdateVendor(VendorUserDTO vendorUser, CancellationToken cancellationToken)
         {
-            var user = _mapper.Map<EditUserDTO>(vendorUser);
+            var user = _mapper.Map<AddUserDTO>(vendorUser);
             user.Id = vendorUser.UserId;
             var editUserResult = await _userService.EditUser(user, cancellationToken);
             if (!editUserResult.Data)

@@ -32,9 +32,15 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpGet(nameof(GetAllService))]
-        public async Task<List<ServiceDTO>> GetAllService(CancellationToken cancellationToken)
+        public async Task<List<GetAllServiceDTO>> GetAllService(CancellationToken cancellationToken)
         {
-            return await _serviceService.GetAllAsync<ServiceDTO>(x => x.StoreId == CurrentUserStoreId, null, null, false, cancellationToken);
+            return await _serviceService.GetAllAsync<GetAllServiceDTO>(
+                x => x.StoreId == CurrentUserStoreId,
+                i => i.Include(x => x.ServiceCategories).ThenInclude(x => x.Category)
+                      .Include(x => x.ServicePrices),
+                o => o.OrderByDescending(x => x.CreateDate),
+                false,
+                cancellationToken);
         }
 
 

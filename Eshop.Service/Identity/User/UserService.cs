@@ -27,7 +27,7 @@ namespace Eshop.Service.Identity.User
             return await _userRepository.AddUser(dto, cancellationToken);
         }
 
-        public async Task<OperationResult<bool>> EditUser(EditUserDTO dto, CancellationToken cancellationToken)
+        public async Task<OperationResult<bool>> EditUser(AddUserDTO dto, CancellationToken cancellationToken)
         {
             return await _userRepository.EditUser(dto, cancellationToken);
         }

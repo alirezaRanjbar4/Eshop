@@ -16,25 +16,17 @@ using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Eshop.Api.Controllers.Identity
+namespace Eshop.Api.Controllers.Models.Admin
 {
     [ApiVersion(VersionProperties.V1)]
     [Authorize]
-    [DisplayName("Role")]
-    public class RoleController : BaseController
+    [DisplayName("AdminRole")]
+    public class AdminRoleController : BaseController
     {
         private readonly IRoleService _roleService;
-        public RoleController(IRoleService roleService)
+        public AdminRoleController(IRoleService roleService)
         {
             _roleService = roleService;
-        }
-
-
-        [HttpPost(nameof(GetAllRolesWithTotal)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
-        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<OperationResult<List<RoleDTO>>> GetAllRolesWithTotal([FromBody] BaseSearchDTO baseSearch, CancellationToken cancellationToken)
-        {
-            return await _roleService.GetAllRolesWithTotal(baseSearch, cancellationToken);
         }
 
 
@@ -43,14 +35,6 @@ namespace Eshop.Api.Controllers.Identity
         public async Task<List<SimpleRoleDTO>> GetAllRoles(CancellationToken cancellationToken)
         {
             return await _roleService.GetAllRoles(cancellationToken);
-        }
-
-
-        [HttpGet(nameof(GetById)), DisplayName(nameof(PermissionResourceEnums.GetPermission))]
-        [Authorize(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<RoleDTO> GetById([FromQuery] Guid id, CancellationToken cancellatinToken)
-        {
-            return await _roleService.Get(id, cancellatinToken);
         }
 
 

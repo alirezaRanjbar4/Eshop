@@ -10,8 +10,6 @@ namespace Eshop.Api.Controllers.General
     [ServiceFilter(typeof(UserActionFilter))]
     public class BaseController : ControllerBase
     {
-        public const string AdministratorUser = "ADMINISTRATOR";
-
         protected Guid CurrentUserStoreId
         {
             get
