@@ -6,5 +6,6 @@ namespace Eshop.DTO.Models.Vendor
     {
         public string Name { get; set; }
         public string Role { get; set; }
+        public string StoreName { get; set; }
     }
 }

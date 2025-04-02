@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Eshop.Common.ActionFilters.Response;
 using Eshop.Common.Authorization;
-using Eshop.DTO.General;
 using Eshop.DTO.Identities.DynamicAccess;
 using Eshop.DTO.Identities.Role;
 using Eshop.Entity.Identities;
@@ -18,7 +17,12 @@ namespace Eshop.Service.Identity.Role
     {
         public readonly IMvcActionsDiscoveryService _mvcActionsDiscovery;
         private RoleManager<RoleEntity> _roleManager;
-        public RoleService(RoleManager<RoleEntity> roleManager, IMapper mapper, IRoleRepository roleRepository, IMvcActionsDiscoveryService mvcActionsDiscovery) : base(roleRepository, mapper)
+
+        public RoleService(
+            RoleManager<RoleEntity> roleManager,
+            IMapper mapper,
+            IRoleRepository roleRepository,
+            IMvcActionsDiscoveryService mvcActionsDiscovery) : base(roleRepository, mapper)
         {
             _roleManager = roleManager;
             _mvcActionsDiscovery = mvcActionsDiscovery;
@@ -33,22 +37,6 @@ namespace Eshop.Service.Identity.Role
                              .ToListAsync(cancellationToken);
 
             return _mapper.Map<List<SimpleRoleDTO>>(roles);
-        }
-
-        public async Task<RoleDTO> Get(Guid id, CancellationToken cancellationToken)
-        {
-            var existing = await _roleManager.Roles.Include(x => x.UserRoles).FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
-            var dto = _mapper.Map<RoleDTO>(existing);
-            var claims = await _roleManager.GetClaimsAsync(existing);
-            dto.Claims = _mapper.Map<List<ClaimDTO>>(claims);
-
-            return dto;
-        }
-
-        public async Task<RoleDTO> GetRoleByNameAsync(string name, CancellationToken cancellationToken)
-        {
-            var result = await _baseRepository.GetAsync(x => x.Name == name || x.NormalizedName == name, null, false, cancellationToken);
-            return _mapper.Map<RoleDTO>(result);
         }
 
         public async Task<OperationResult<Guid>> Add(AddRoleDTO role)

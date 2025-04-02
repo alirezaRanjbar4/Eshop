@@ -12,8 +12,6 @@ namespace Eshop.Service.Identity.Role
     {
         Task<List<SimpleRoleDTO>> GetAllRoles(CancellationToken cancellationToken);
         Task<IdentityResult> AddOrUpdateClaimsAsync(Guid roleId, string roleClaimType, IList<string> selectedRoleClaimValues);
-        Task<RoleDTO> Get(Guid id, CancellationToken cancellationToken);
-        Task<RoleDTO> GetRoleByNameAsync(string name, CancellationToken cancellationToken);
         Task<OperationResult<Guid>> Add(AddRoleDTO role);
         Task<OperationResult<bool>> Update(Guid id, AddRoleDTO role);
         Task<OperationResult<bool>> DeleteRole(Guid roleid);

@@ -66,13 +66,15 @@ namespace Eshop.Service.Models.Vendor
                 return false;
 
             var userRole = await _userRoleService.GetAsync<UserRoleDTO>(x => x.UserId == vendorUser.UserId, null, false, cancellationToken);
-            if (userRole != null)
+            if (userRole != null && userRole.Id != vendorUser.RoleId)
+            {
                 await _userRoleService.DeleteAsync(userRole.Id, true, true, true, cancellationToken);
 
-            var newuserRole = new UserRoleDTO() { UserId = user.Id, RoleId = vendorUser.RoleId };
-            var editUserRoleResult = await _userRoleService.AddAsync(newuserRole, true, cancellationToken);
+                var newuserRole = new UserRoleDTO() { UserId = user.Id, RoleId = vendorUser.RoleId };
+                var editUserRoleResult = await _userRoleService.AddAsync(newuserRole, true, cancellationToken);
+            }
 
-            return editUserRoleResult != null;
+            return true;
         }
     }
 }

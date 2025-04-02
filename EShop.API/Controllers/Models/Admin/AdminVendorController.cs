@@ -2,7 +2,9 @@
 using Eshop.Api.Components;
 using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters;
+using Eshop.Common.ActionFilters.Response;
 using Eshop.Common.Enum;
+using Eshop.DTO.General;
 using Eshop.DTO.Models.Vendor;
 using Eshop.Service.Models.Vendor;
 using Microsoft.AspNetCore.Authorization;
@@ -11,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,23 +21,27 @@ namespace Eshop.Api.Controllers.Models
 {
     [ApiVersion(VersionProperties.V1)]
     [Authorize]
-    [DisplayName("Vendor")]
-    public class VendorController : BaseController
+    [DisplayName("AdminVendor")]
+    public class AdminVendorController : BaseController
     {
         private readonly IVendorService _vendorService;
-        public VendorController(IVendorService vendorService)
+        public AdminVendorController(IVendorService vendorService)
         {
             _vendorService = vendorService;
         }
 
 
-        [HttpGet(nameof(GetAllVendor))]
-        public async Task<List<VendorUserDTO>> GetAllVendor(CancellationToken cancellationToken)
+        [HttpPost(nameof(GetAllVendorWithTotal))]
+        public async Task<OperationResult<List<VendorUserDTO>>> GetAllVendorWithTotal([FromBody] BaseSearchDTO searchDTO, CancellationToken cancellationToken)
         {
-            return await _vendorService.GetAllAsync<VendorUserDTO>(
-                x => x.StoreId == CurrentUserStoreId,
-                i => i.Include(x => x.User),
-                null,
+            return await _vendorService.GetAllAsyncWithTotal<VendorUserDTO>(
+                searchDTO,
+                x => string.IsNullOrEmpty(searchDTO.SearchTerm) ||
+                     x.Name.Contains(searchDTO.SearchTerm) ||
+                     (x.Store != null && x.Store.Name.Contains(searchDTO.SearchTerm)) ||
+                     (x.User != null && x.User.UserName.Contains(searchDTO.SearchTerm)),
+                i => i.Include(x => x.User).Include(x => x.Store),
+                o => o.OrderByDescending(x => x.CreateDate),
                 false,
                 cancellationToken);
         }
