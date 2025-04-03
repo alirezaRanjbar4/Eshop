@@ -40,7 +40,7 @@ namespace Eshop.Api.Controllers.Models
 
         [HttpPost(nameof(GetAllWarehouseWithTotal)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
         //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<OperationResult<List<WarehouseDTO>>> GetAllWarehouseWithTotal(BaseSearchDTO searchDTO, CancellationToken cancellationToken)
+        public async Task<OperationResult<List<WarehouseDTO>>> GetAllWarehouseWithTotal([FromBody] BaseSearchDTO searchDTO, CancellationToken cancellationToken)
         {
             return await _warehouseService.GetAllAsyncWithTotal<WarehouseDTO>(
                 searchDTO,

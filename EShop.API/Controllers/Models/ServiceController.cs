@@ -46,7 +46,7 @@ namespace Eshop.Api.Controllers.Models
 
         [HttpPost(nameof(GetAllServiceWithTotal)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
         //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<OperationResult<List<GetAllServiceDTO>>> GetAllServiceWithTotal(BaseSearchDTO searchDTO, CancellationToken cancellationToken)
+        public async Task<OperationResult<List<GetAllServiceDTO>>> GetAllServiceWithTotal([FromBody] BaseSearchDTO searchDTO, CancellationToken cancellationToken)
         {
             return await _serviceService.GetAllAsyncWithTotal<GetAllServiceDTO>(
                 searchDTO,

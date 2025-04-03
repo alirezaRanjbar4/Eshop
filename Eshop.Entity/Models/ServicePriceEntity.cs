@@ -8,6 +8,6 @@ namespace Eshop.Entity.Models
         public DateTime? ExpiryDate { get; set; }
 
         public Guid ServiceId { get; set; }
-        public virtual ServiceEntity Service { get; set; }
+        public ServiceEntity Service { get; set; }
     }
 }

@@ -38,7 +38,7 @@ namespace Eshop.Api.Controllers.Models
 
         [HttpPost(nameof(GetAllAccountPartyWithTotal)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
         //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<OperationResult<List<AccountPartyDTO>>> GetAllAccountPartyWithTotal(AccountPartySearchDTO searchDTO, CancellationToken cancellationToken)
+        public async Task<OperationResult<List<AccountPartyDTO>>> GetAllAccountPartyWithTotal([FromBody] AccountPartySearchDTO searchDTO, CancellationToken cancellationToken)
         {
             return await _accountPartyService.GetAllAsyncWithTotal<AccountPartyDTO>(
             searchDTO,

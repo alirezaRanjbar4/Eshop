@@ -31,7 +31,7 @@ namespace Eshop.Api.Controllers.Models
 
         [HttpPost(nameof(GetAllReceiptWithTotal)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
         //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<OperationResult<List<ReceiptDTO>>> GetAllReceiptWithTotal(SearchReceiptDTO searchDTO, CancellationToken cancellationToken)
+        public async Task<OperationResult<List<ReceiptDTO>>> GetAllReceiptWithTotal([FromBody] SearchReceiptDTO searchDTO, CancellationToken cancellationToken)
         {
             return await _receiptService.GetAllAsyncWithTotal<ReceiptDTO>(
                 searchDTO,

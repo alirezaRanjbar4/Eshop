@@ -11,16 +11,16 @@ namespace Eshop.Mapper.Models
         {
             CreateMap<ServiceEntity, ServiceDTO>()
                 .ForMember(des => des.ServiceCategoryIds, option => option.MapFrom(src => src.ServiceCategories != null ? src.ServiceCategories.Select(x => x.CategoryId) : null))
-                .ForMember(des => des.Price, option => option.MapFrom(src => src.ServicePrices != null ? src.ServicePrices.OrderByDescending(x => x.CreateDate).First(x => x.ExpiryDate == null).Price : 0))
+                .ForMember(des => des.Price, option => option.MapFrom(src => src.ServicePrices != null && src.ServicePrices.Any(x => x.ExpiryDate == null) ? src.ServicePrices.OrderByDescending(x => x.CreateDate).First(x => x.ExpiryDate == null).Price : 0))
                 .ReverseMap();
 
             CreateMap<ServiceEntity, GetServiceDTO>()
-               .ForMember(des => des.Price, option => option.MapFrom(src => src.ServicePrices != null ? src.ServicePrices.Last().Price : 0))
+               .ForMember(des => des.Price, option => option.MapFrom(src => src.ServicePrices != null && src.ServicePrices.Any(x => x.ExpiryDate == null) ? src.ServicePrices.OrderByDescending(x => x.CreateDate).First(x => x.ExpiryDate == null).Price : 0))
                .ReverseMap();
 
             CreateMap<ServiceEntity, GetAllServiceDTO>()
-                .ForMember(des => des.Category, option => option.MapFrom(src => src.ServiceCategories != null && src.ServiceCategories.Any(x => x.Category != null) ? string.Join(",", src.ServiceCategories.Where(x => x.Category != null).Select(x => x.Category.Name)) : string.Empty))
-                .ForMember(des => des.Price, option => option.MapFrom(src => src.ServicePrices != null ? src.ServicePrices.Last().Price : 0));
+                .ForMember(des => des.Category, option => option.MapFrom(src => src.ServiceCategories != null ? string.Join(",", src.ServiceCategories.Select(x => x.Category.Name)) : string.Empty))
+                .ForMember(des => des.Price, option => option.MapFrom(src => src.ServicePrices != null && src.ServicePrices.Any(x => x.ExpiryDate == null) ? src.ServicePrices.OrderByDescending(x => x.CreateDate).First(x => x.ExpiryDate == null).Price : 0));
 
             CreateMap<ServicePriceEntity, ServicePriceDTO>().ReverseMap();
 

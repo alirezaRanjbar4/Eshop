@@ -31,7 +31,7 @@ namespace Eshop.Api.Controllers.Models
 
         [HttpPost(nameof(GetAllFinancialDocumentWithTotal)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
         //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<OperationResult<List<GetFinancialDocumentDTO>>> GetAllFinancialDocumentWithTotal(SearchFinancialDocumentDTO searchDTO, CancellationToken cancellationToken)
+        public async Task<OperationResult<List<GetFinancialDocumentDTO>>> GetAllFinancialDocumentWithTotal([FromBody] SearchFinancialDocumentDTO searchDTO, CancellationToken cancellationToken)
         {
             return await _financialDocumentService.GetAllAsyncWithTotal<GetFinancialDocumentDTO>(
                 searchDTO,

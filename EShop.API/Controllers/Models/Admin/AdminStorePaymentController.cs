@@ -40,7 +40,7 @@ namespace Eshop.Api.Controllers.Models.Admin
 
         [HttpPost(nameof(GetAllStorePaymentWithTotal)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
         //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<OperationResult<List<StorePaymentDTO>>> GetAllStorePaymentWithTotal(SearchStorePaymentDTO searchDTO, CancellationToken cancellationToken)
+        public async Task<OperationResult<List<StorePaymentDTO>>> GetAllStorePaymentWithTotal([FromBody] SearchStorePaymentDTO searchDTO, CancellationToken cancellationToken)
         {
             return await _storePaymentService.GetAllAsyncWithTotal<StorePaymentDTO>(
                 searchDTO,

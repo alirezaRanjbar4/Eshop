@@ -32,7 +32,7 @@ namespace Eshop.Api.Controllers.Models
 
         [HttpPost(nameof(GetAllTransferReceiptWithTotal)), DisplayName(nameof(PermissionResourceEnums.GetAllPermission))]
         //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
-        public async Task<OperationResult<List<TransferReceiptDTO>>> GetAllTransferReceiptWithTotal(BaseSearchDTO searchDTO, CancellationToken cancellationToken)
+        public async Task<OperationResult<List<TransferReceiptDTO>>> GetAllTransferReceiptWithTotal([FromBody] BaseSearchDTO searchDTO, CancellationToken cancellationToken)
         {
             return await _transferReceiptService.GetAllAsyncWithTotal<TransferReceiptDTO>(
                 searchDTO,

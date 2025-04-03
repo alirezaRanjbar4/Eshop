@@ -15,17 +15,14 @@ namespace Eshop.Service.Models.Vendor
     {
         private readonly IUserService _userService;
         private readonly IUserRoleService _userRoleService;
-        private readonly UserManager<UserEntity> _userManager;
         public VendorService(
             IMapper mapper,
             IVendorRepository VendorRepository,
             IUserService userService,
-            IUserRoleService userRoleService,
-            UserManager<UserEntity> userManager) : base(VendorRepository, mapper)
+            IUserRoleService userRoleService) : base(VendorRepository, mapper)
         {
             _userService = userService;
             _userRoleService = userRoleService;
-            _userManager = userManager;
         }
 
 

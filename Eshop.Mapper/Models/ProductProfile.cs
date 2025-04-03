@@ -12,12 +12,12 @@ namespace Eshop.Mapper.Models
         public ProductProfile()
         {
             CreateMap<ProductEntity, ProductDTO>()
-                .ForMember(des => des.Price, option => option.MapFrom(src => src.ProductPrices != null ? src.ProductPrices.Last().Price : 0))
+                .ForMember(des => des.Price, option => option.MapFrom(src => src.ProductPrices != null && src.ProductPrices.Any(x => x.ExpiryDate == null) ? src.ProductPrices.OrderByDescending(x => x.CreateDate).First(x => x.ExpiryDate == null).Price : 0))
                 .ForMember(des => des.ProductCategoryIds, option => option.MapFrom(src => src.ProductCategories != null ? src.ProductCategories.Select(x => x.CategoryId) : null))
                 .ReverseMap();
 
             CreateMap<ProductEntity, GetProductDTO>()
-               .ForMember(des => des.Price, option => option.MapFrom(src => src.ProductPrices != null ? src.ProductPrices.Last().Price : 0))
+               .ForMember(des => des.Price, option => option.MapFrom(src => src.ProductPrices != null && src.ProductPrices.Any(x => x.ExpiryDate == null) ? src.ProductPrices.OrderByDescending(x => x.CreateDate).First(x => x.ExpiryDate == null).Price : 0))
                .ReverseMap();
 
             CreateMap<ProductEntity, GetAllProductDTO>()
