@@ -11,7 +11,7 @@ namespace Eshop.Mapper.Models
         {
             CreateMap<WarehouseEntity, WarehouseDTO>().ReverseMap();
 
-            CreateMap<AddWarehouseDTO, WarehouseEntity>();
+            CreateMap<AddWarehouseDTO, WarehouseEntity>().ReverseMap();
 
             CreateMap<AddWarehouseDTO, WarehouseDTO>();
 

@@ -10,6 +10,7 @@ using Eshop.DTO.Models.Warehouse;
 using Eshop.Service.Models.Warehouse;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -48,6 +49,13 @@ namespace Eshop.Api.Controllers.Models
                 null,
                 o => o.OrderByDescending(x => x.CreateDate),
                 false, cancellationToken);
+        }
+
+
+        [HttpGet(nameof(GetWarehouse))]
+        public async Task<AddWarehouseDTO> GetWarehouse(Guid warehouseId, CancellationToken cancellationToken)
+        {
+            return await _warehouseService.GetAsync<AddWarehouseDTO>(x => x.Id == warehouseId && x.StoreId == CurrentUserStoreId, i => i.Include(x => x.WarehouseLocations), false, cancellationToken);
         }
 
 
