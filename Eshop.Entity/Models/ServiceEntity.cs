@@ -13,6 +13,7 @@ namespace Eshop.Entity.Models
         public virtual ICollection<ServiceCategoryEntity> ServiceCategories { get; set; }
         public virtual ICollection<ImageEntity> Images { get; set; }
         public virtual ICollection<ServicePriceEntity> ServicePrices { get; set; }
+        public virtual ICollection<ReceiptServiceItemEntity> ReceiptServiceItems { get; set; }
 
     }
 }

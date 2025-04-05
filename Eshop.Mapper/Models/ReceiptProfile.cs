@@ -14,7 +14,9 @@ namespace Eshop.Mapper.Models
 
             CreateMap<AddReceiptDTO, ReceiptDTO>();
 
-            CreateMap<ReceiptItemEntity, ReceiptItemDTO>().ReverseMap();
+            CreateMap<ReceiptProductItemEntity, ReceiptProductItemDTO>().ReverseMap();
+
+            CreateMap<ReceiptServiceItemEntity, ReceiptServiceItemDTO>().ReverseMap();
         }
     }
 }

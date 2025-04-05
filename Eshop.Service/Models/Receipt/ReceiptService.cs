@@ -6,22 +6,24 @@ using Eshop.Entity.Models;
 using Eshop.Repository.Models.Receipt;
 using Eshop.Service.General;
 using Eshop.Service.Models.ProductWarehouseLocation;
-using Eshop.Service.Models.ReceiptItem;
 using Microsoft.EntityFrameworkCore;
 
 namespace Eshop.Service.Models.Receipt
 {
     public class ReceiptService : BaseService<ReceiptEntity>, IReceiptService
     {
-        private readonly IReceiptItemService _receiptItemService;
+        private readonly IBaseService<ReceiptProductItemEntity> _receiptProductItemService;
+        private readonly IBaseService<ReceiptServiceItemEntity> _receiptServiceItemService;
         private readonly IProductWarehouseLocationService _productWarehouseLocationService;
         public ReceiptService(
-            IReceiptItemService receiptItemService,
+            IBaseService<ReceiptProductItemEntity> receiptProductItemService,
+            IBaseService<ReceiptServiceItemEntity> receiptServiceItemService,
             IProductWarehouseLocationService productWarehouseLocationService,
             IMapper mapper,
             IReceiptRepository ReceiptRepository) : base(ReceiptRepository, mapper)
         {
-            _receiptItemService = receiptItemService;
+            _receiptProductItemService = receiptProductItemService;
+            _receiptServiceItemService = receiptServiceItemService;
             _productWarehouseLocationService = productWarehouseLocationService;
         }
 
@@ -30,16 +32,29 @@ namespace Eshop.Service.Models.Receipt
             var model = _mapper.Map<ReceiptDTO>(dto);
             var updateResult = await UpdateAsync(model, true, true, cancellationToken);
 
-            var existedItems = await _receiptItemService.GetAllAsync<ReceiptItemDTO>(x => x.ReceiptId == dto.Id, null, null, false, cancellationToken);
+            var existedItems = await _receiptProductItemService.GetAllAsync<ReceiptProductItemDTO>(x => x.ReceiptId == dto.Id, null, null, false, cancellationToken);
 
-            var addlist = dto.Items.Where(x => x.Id == Guid.Empty).ToList();
-            await _receiptItemService.AddRangeAsync(addlist, true, cancellationToken);
+            #region Product Items
+            var addProductItemslist = dto.ProductItems.Where(x => x.Id == Guid.Empty).ToList();
+            await _receiptProductItemService.AddRangeAsync(addProductItemslist, true, cancellationToken);
 
-            var updatelist = existedItems.Where(x => dto.Items.Select(x => x.Id).Contains(x.Id)).ToList();
-            await _receiptItemService.UpdateRangeAsync(updatelist, true, cancellationToken);
+            var updateProductItemslist = existedItems.Where(x => dto.ProductItems.Select(x => x.Id).Contains(x.Id)).ToList();
+            await _receiptProductItemService.UpdateRangeAsync(updateProductItemslist, true, cancellationToken);
 
-            var deleteList = existedItems.Where(x => !dto.Items.Select(x => x.Id).Contains(x.Id)).ToList();
-            await _receiptItemService.DeleteRangeAsync(deleteList, true, true, cancellationToken);
+            var deleteProductItemsList = existedItems.Where(x => !dto.ProductItems.Select(x => x.Id).Contains(x.Id)).ToList();
+            await _receiptProductItemService.DeleteRangeAsync(deleteProductItemsList, true, true, cancellationToken);
+            #endregion
+
+            #region Service Items
+            var addServiceItemslist = dto.ServiceItems.Where(x => x.Id == Guid.Empty).ToList();
+            await _receiptServiceItemService.AddRangeAsync(addServiceItemslist, true, cancellationToken);
+
+            var updateServiceItemslist = existedItems.Where(x => dto.ServiceItems.Select(x => x.Id).Contains(x.Id)).ToList();
+            await _receiptServiceItemService.UpdateRangeAsync(updateServiceItemslist, true, cancellationToken);
+
+            var deleteServiceItemsList = existedItems.Where(x => !dto.ServiceItems.Select(x => x.Id).Contains(x.Id)).ToList();
+            await _receiptServiceItemService.DeleteRangeAsync(deleteServiceItemsList, true, true, cancellationToken);
+            #endregion
 
             return true;
         }
@@ -51,8 +66,8 @@ namespace Eshop.Service.Models.Receipt
                 return false;
             receipt.IsFinalized = true;
 
-            var items = await _receiptItemService.GetAllAsync<ReceiptItemDTO>(x => x.ReceiptId == receipId, null, null, false, cancellationToken);
-            foreach (var item in items)
+            var productItems = await _receiptProductItemService.GetAllAsync<ReceiptProductItemDTO>(x => x.ReceiptId == receipId, null, null, false, cancellationToken);
+            foreach (var item in productItems)
             {
                 var productWarehouseLocation = await _productWarehouseLocationService.GetAsync<ProductWarehouseLocationDTO>(
                     x => x.ProductId == item.ProductId && x.WarehouseLocationId == item.WarehouseLocationId,

@@ -10,6 +10,7 @@ namespace Eshop.DTO.Models.Receipt
         public ReceiptType Type { get; set; }
         public Guid AccountPartyId { get; set; }
         public Guid StoreId { get; set; }
-        public List<ReceiptItemDTO> Items { get; set; }
+        public List<ReceiptProductItemDTO> ProductItems { get; set; }
+        public List<ReceiptServiceItemDTO> ServiceItems { get; set; }
     }
 }

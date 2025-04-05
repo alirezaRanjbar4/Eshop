@@ -16,7 +16,8 @@ namespace Eshop.Entity.Models
         public Guid StoreId { get; set; }
         public virtual StoreEntity Store { get; set; }
 
-        public virtual ICollection<ReceiptItemEntity> Items { get; set; }
+        public virtual ICollection<ReceiptProductItemEntity>? ProductItems { get; set; }
+        public virtual ICollection<ReceiptServiceItemEntity>? ServiceItems { get; set; }
         public virtual ICollection<ReceiptFinancialDocumentEntity>? ReceiptFinancialDocuments { get; set; }
     }
 }

@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Rasam.Data.ModelConfiguration.Models
 {
-    public class ReceiptItemConfiguration : IEntityTypeConfiguration<ReceiptProductItemEntity>
+    public class ReceiptServiceItemConfiguration : IEntityTypeConfiguration<ReceiptServiceItemEntity>
     {
-        public void Configure(EntityTypeBuilder<ReceiptProductItemEntity> builder)
+        public void Configure(EntityTypeBuilder<ReceiptServiceItemEntity> builder)
         {
-            builder.ToTable("ReceiptProductItem", DbSchema.Model.ToString());
+            builder.ToTable("ReceiptServiceItem", DbSchema.Model.ToString());
             builder.HasKey(t => t.Id);
             builder.Property(x => x.Id).HasDefaultValueSql("newsequentialid()");
             builder.Property(x => x.CreateDate).HasColumnType(DataTypes.Datetime.ToString());
@@ -24,25 +24,18 @@ namespace Rasam.Data.ModelConfiguration.Models
             builder.Property(x => x.DiscountPercent).HasColumnType(DataTypes.Int.ToString()).IsRequired(false);
             builder.Property(x => x.ValueAdded).HasColumnType(DataTypes.Int.ToString()).IsRequired(false);
             builder.Property(x => x.ReceiptId).HasColumnType(DataTypes.UniqueIdentifier.ToString());
-            builder.Property(x => x.ProductId).HasColumnType(DataTypes.UniqueIdentifier.ToString());
-            builder.Property(x => x.WarehouseLocationId).HasColumnType(DataTypes.UniqueIdentifier.ToString());
+            builder.Property(x => x.ServiceId).HasColumnType(DataTypes.UniqueIdentifier.ToString());
 
             builder
                 .HasOne(x => x.Receipt)
-                .WithMany(x => x.ProductItems)
+                .WithMany(x => x.ServiceItems)
                 .HasForeignKey(x => x.ReceiptId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder
-               .HasOne(x => x.Product)
-               .WithMany(x => x.ReceiptProductItems)
-               .HasForeignKey(x => x.ProductId)
-               .OnDelete(DeleteBehavior.Restrict);
-
-            builder
-               .HasOne(x => x.WarehouseLocation)
-               .WithMany(x => x.ReceiptProductItems)
-               .HasForeignKey(x => x.WarehouseLocationId)
+               .HasOne(x => x.Service)
+               .WithMany(x => x.ReceiptServiceItems)
+               .HasForeignKey(x => x.ServiceId)
                .OnDelete(DeleteBehavior.Restrict);
         }
     }

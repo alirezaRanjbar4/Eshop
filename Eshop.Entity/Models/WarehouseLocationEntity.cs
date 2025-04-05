@@ -12,7 +12,7 @@ namespace Eshop.Entity.Models
 
         public virtual ICollection<ProductWarehouseLocationEntity> ProductWarehouseLocations { get; set; }
         public virtual ICollection<ProductTransferEntity> ProductTransfers { get; set; }
-        public virtual ICollection<ReceiptItemEntity> ReceiptItems { get; set; }
+        public virtual ICollection<ReceiptProductItemEntity> ReceiptProductItems { get; set; }
         public virtual ICollection<TransferReceiptItemEntity> EnteredTransferReceiptItems { get; set; }
         public virtual ICollection<TransferReceiptItemEntity> ExitedTransferReceiptItems { get; set; }
     }

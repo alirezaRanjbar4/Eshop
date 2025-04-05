@@ -1,9 +1,8 @@
 ﻿using Eshop.Entity.General;
-using Eshop.Common.Enum;
 
 namespace Eshop.Entity.Models
 {
-    public class ReceiptItemEntity : BaseTrackedModel, IBaseEntity
+    public class ReceiptProductItemEntity : BaseTrackedModel, IBaseEntity
     {
         public string? Description { get; set; }
         public float Count { get; set; }
