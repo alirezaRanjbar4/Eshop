@@ -36,7 +36,7 @@ namespace Eshop.Service.Models.Warehouse
             var updateList = dto.WarehouseLocations.Where(x => x.Id != Guid.Empty);
             await _warehouseLocationService.UpdateRangeAsync(updateList, true, cancellationToken);
 
-            var deleteList = existedWarehouseLocations.Where(x => dto.WarehouseLocations.Select(z => z.Id).Contains(x.Id));
+            var deleteList = existedWarehouseLocations.Where(x => !dto.WarehouseLocations.Select(z => z.Id).Contains(x.Id));
             await _warehouseLocationService.DeleteRangeAsync(deleteList, true, true, cancellationToken);
 
             return true;

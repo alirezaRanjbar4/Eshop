@@ -163,7 +163,10 @@ public class BaseRepository<TModel> : IBaseRepository<TModel> where TModel : cla
                 return true;
 
             var changes = await _dataContext.SaveChangesAsync(cancellationToken);
-            _dataContext.Entry(models).State = EntityState.Detached;
+            foreach (var item in models)
+            {
+                _dataContext.Entry(item).State = EntityState.Detached;
+            }
 
             return changes > 0;
         }
@@ -203,7 +206,10 @@ public class BaseRepository<TModel> : IBaseRepository<TModel> where TModel : cla
                 return true;
 
             var changes = await _dataContext.SaveChangesAsync(cancellationToken);
-            _dataContext.Entry(models).State = EntityState.Detached;
+            foreach (var item in models)
+            {
+                _dataContext.Entry(item).State = EntityState.Detached;
+            }
 
             return changes > 0;
         }
@@ -249,7 +255,10 @@ public class BaseRepository<TModel> : IBaseRepository<TModel> where TModel : cla
                 return await _dataContext.SaveChangesAsync() > 0 ? true : false;
 
             var changes = logicalDelete ? await _dataContext.SaveChangesAsync(cancellationToken) : await _dataContext.PhysicalDeleteSaveChanges(cancellationToken);
-            _dataContext.Entry(models).State = EntityState.Detached;
+            foreach (var item in models)
+            {
+                _dataContext.Entry(item).State = EntityState.Detached;
+            }
 
             return changes > 0;
         }

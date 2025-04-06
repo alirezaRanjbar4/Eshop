@@ -110,10 +110,17 @@ public class BaseService<TModel> : IBaseService<TModel> where TModel : class, IB
         return model;
     }
 
-    public virtual async Task<bool> UpdateRangeAsync<T>(IEnumerable<T> models, bool isSave = true, CancellationToken cancellationToken = default)
+    public virtual async Task<bool> UpdateRangeAsync<T>(IEnumerable<T> models, bool isSave = true, CancellationToken cancellationToken = default) where T : BaseDto
     {
-        var resultMap = _mapper.Map<IList<TModel>>(models);
-        return await _baseRepository.UpdateRangeAsync(resultMap, isSave, cancellationToken);
+        var entityResult = await _baseRepository.GetAllAsync(x => models.Select(m => m.Id).Contains(x.Id), null, null, false, cancellationToken);
+        foreach (var item in entityResult)
+        {
+            var model = models.FirstOrDefault(x => x.Id == item.Id);
+            if (model == null)
+                continue;
+            _mapper.Map(model, item);
+        }
+        return await _baseRepository.UpdateRangeAsync(entityResult, isSave, cancellationToken);
     }
 
     public async virtual Task<bool> DeleteAsync(Guid id, bool isSave = true, bool ignoreFilter = true, bool LogicalDelete = true, CancellationToken cancellationToken = default)
@@ -125,10 +132,10 @@ public class BaseService<TModel> : IBaseService<TModel> where TModel : class, IB
         return await _baseRepository.DeleteAsync(findResult, LogicalDelete, isSave, cancellationToken);
     }
 
-    public async Task<bool> DeleteRangeAsync<T>(IEnumerable<T> models, bool isSave = true, bool logicalDelete = true, CancellationToken cancellationToken = default)
+    public async Task<bool> DeleteRangeAsync<T>(IEnumerable<T> models, bool isSave = true, bool logicalDelete = true, CancellationToken cancellationToken = default) where T : BaseDto
     {
-        var resultMap = _mapper.Map<IList<TModel>>(models);
-        return await _baseRepository.DeleteRangeAsync(resultMap, logicalDelete, isSave, cancellationToken);
+        var entityResult = await _baseRepository.GetAllAsync(x => models.Select(m => m.Id).Contains(x.Id), null, null, false, cancellationToken);
+        return await _baseRepository.DeleteRangeAsync(entityResult, logicalDelete, isSave, cancellationToken);
     }
 
     #endregion

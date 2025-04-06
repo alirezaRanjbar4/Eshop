@@ -23,9 +23,9 @@ public interface IBaseService<TModel> : IScopedDependency, IDisposable
     Task<bool> AddRangeAsync<T>(IEnumerable<T> models, bool isSave = true, CancellationToken cancellationToken = default);
 
     Task<T> UpdateAsync<T>(T model, bool isSave = true, bool ignoreFilter = true, CancellationToken cancellationToken = default) where T : BaseDto;
-    Task<bool> UpdateRangeAsync<T>(IEnumerable<T> models, bool isSave = true, CancellationToken cancellationToken = default);
+    Task<bool> UpdateRangeAsync<T>(IEnumerable<T> models, bool isSave = true, CancellationToken cancellationToken = default) where T : BaseDto;
 
     Task<bool> DeleteAsync(Guid id, bool isSave = true, bool ignoreFilter = true, bool LogicalDelete = true, CancellationToken cancellationToken = default);
-    Task<bool> DeleteRangeAsync<T>(IEnumerable<T> models, bool logicalDelete = true, bool isSave = true, CancellationToken cancellationToken = default);
+    Task<bool> DeleteRangeAsync<T>(IEnumerable<T> models, bool logicalDelete = true, bool isSave = true, CancellationToken cancellationToken = default) where T : BaseDto;
     #endregion
 }
