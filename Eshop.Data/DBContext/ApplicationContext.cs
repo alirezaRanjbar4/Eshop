@@ -50,27 +50,28 @@ namespace Rasam.Data.DBContext
         {
             try
             {
-                var currentUser = _currentUserProvider.UserId;
+                var currentUserId = _currentUserProvider.UserId;
                 foreach (var entity in ChangeTracker.Entries())
                 {
                     if (_currentUserProvider.UserId == Guid.Empty)
-                        currentUser = Guid.Parse(entity.Property(nameof(IBaseEntity.CreateById)).CurrentValue.ToString());
+                        if (!Guid.TryParse(entity.Property(nameof(IBaseEntity.CreateById)).CurrentValue.ToString(), out currentUserId) || currentUserId == Guid.Empty)
+                            currentUserId = Guid.Parse("a1029412-3954-4fab-b5ec-0d102b12a94c");//tempUserId
 
                     switch (entity.State)
                     {
                         case EntityState.Added when entity.Entity is IBaseEntity:
-                            entity.Property(nameof(IBaseEntity.CreateById)).CurrentValue = currentUser;
+                            entity.Property(nameof(IBaseEntity.CreateById)).CurrentValue = currentUserId;
                             entity.Property(nameof(IBaseEntity.CreateDate)).CurrentValue = DateTime.UtcNow;
                             entity.Property(nameof(IBaseEntity.Deleted)).CurrentValue = false;
                             break;
 
                         case EntityState.Modified when entity.Entity is IBaseEntity:
-                            entity.Property(nameof(IBaseEntity.ModifiedById)).CurrentValue = currentUser;
+                            entity.Property(nameof(IBaseEntity.ModifiedById)).CurrentValue = currentUserId;
                             entity.Property(nameof(IBaseEntity.ModifiedDate)).CurrentValue = DateTime.UtcNow;
                             break;
 
                         case EntityState.Deleted when entity.Entity is IBaseEntity:
-                            entity.Property(nameof(IBaseEntity.ModifiedById)).CurrentValue = currentUser;
+                            entity.Property(nameof(IBaseEntity.ModifiedById)).CurrentValue = currentUserId;
                             entity.Property(nameof(IBaseEntity.ModifiedDate)).CurrentValue = DateTime.UtcNow;
                             entity.Property(nameof(IBaseEntity.Deleted)).CurrentValue = true;
                             entity.State = EntityState.Modified;

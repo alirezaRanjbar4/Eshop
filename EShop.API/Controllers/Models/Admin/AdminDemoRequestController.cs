@@ -6,8 +6,7 @@ using Eshop.Common.ActionFilters.Response;
 using Eshop.Common.Enum;
 using Eshop.DTO.General;
 using Eshop.DTO.Models.DemoRequest;
-using Eshop.Entity.Models;
-using Eshop.Service.General;
+using Eshop.Service.Models.DemoRequest;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -24,8 +23,8 @@ namespace Eshop.Api.Controllers.Models
     [DisplayName("DemoRequest")]
     public class AdminDemoRequestController : BaseController
     {
-        private readonly IBaseService<DemoRequestEntity> _demoRequestService;
-        public AdminDemoRequestController(IBaseService<DemoRequestEntity> demoRequestService)
+        private readonly IDemoRequestService _demoRequestService;
+        public AdminDemoRequestController(IDemoRequestService demoRequestService)
         {
             _demoRequestService = demoRequestService;
         }
