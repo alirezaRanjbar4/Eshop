@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
+using Eshop.Common.Enum;
+using Eshop.Common.Exceptions;
+using Eshop.Common.Helpers.Utilities.Utilities;
 using Eshop.DTO.Models.Product;
 using Eshop.Entity.Models;
-using Eshop.Common.Enum;
-using Eshop.Common.Helpers.Utilities.Utilities;
-using Eshop.Common.Exceptions;
-using Eshop.DTO.General;
 
 namespace Eshop.Mapper.Models
 {
@@ -17,7 +16,8 @@ namespace Eshop.Mapper.Models
                 .ForMember(des => des.ProductCategoryIds, option => option.MapFrom(src => src.ProductCategories != null ? src.ProductCategories.Select(x => x.CategoryId) : null))
                 .ReverseMap();
 
-            CreateMap<ProductEntity, SimpleDTO>()
+            CreateMap<ProductEntity, SimpleProductDTO>()
+               .ForMember(des => des.Price, option => option.MapFrom(src => src.ProductPrices != null && src.ProductPrices.Any(x => x.ExpiryDate == null) ? src.ProductPrices.OrderByDescending(x => x.CreateDate).First(x => x.ExpiryDate == null).Price : 0))
                .ForMember(des => des.Key, option => option.MapFrom(src => $"{src.Name} {src.SKU}"))
                .ForMember(des => des.Value, option => option.MapFrom(src => src.Id));
 
