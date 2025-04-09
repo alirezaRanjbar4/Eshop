@@ -32,13 +32,15 @@ namespace Eshop.Service.Identity.JWT
             var encrytionKey = Encoding.UTF8.GetBytes(_appSettingData.JWTSettings.EncryptKey);
             var encryptingCredentials = new EncryptingCredentials(new SymmetricSecurityKey(encrytionKey), SecurityAlgorithms.Aes128KW, SecurityAlgorithms.Aes128CbcHmacSha256);
 
+            var now = DateTime.Now;
+
             var tokenDescriptor = new SecurityTokenDescriptor()
             {
                 Issuer = _appSettingData.JWTSettings.Issuer,
                 Audience = _appSettingData.JWTSettings.Audience,
-                IssuedAt = DateTime.Now,
-                NotBefore = DateTime.Now.AddTicks(-1),
-                Expires = DateTime.Now.AddMinutes(Convert.ToDouble(_appSettingData.JWTSettings.ExpirationMinutes)),
+                IssuedAt = now,
+                NotBefore = now,
+                Expires = now.AddMinutes(Convert.ToDouble(_appSettingData.JWTSettings.ExpirationMinutes)),
                 SigningCredentials = signingCredentials,
                 Subject = new ClaimsIdentity(await GetClaimsAsync(user)),
                 EncryptingCredentials = encryptingCredentials,
