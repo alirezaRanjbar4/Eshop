@@ -7,6 +7,7 @@ using Eshop.Common.Enum;
 using Eshop.DTO.General;
 using Eshop.DTO.Models.Product;
 using Eshop.Service.Models.Product;
+using Eshop.Service.Models.ProductWarehouseLocation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -25,16 +26,20 @@ namespace Eshop.Api.Controllers.Models
     public class ProductController : BaseController
     {
         private readonly IProductService _productService;
-        public ProductController(IProductService productService)
+        private readonly IProductWarehouseLocationService _productWarehouseLocationService;
+        public ProductController(
+            IProductService productService,
+            IProductWarehouseLocationService productWarehouseLocationService)
         {
             _productService = productService;
+            _productWarehouseLocationService = productWarehouseLocationService;
         }
 
 
         [HttpGet(nameof(GetAllProduct))]
-        public async Task<List<ProductDTO>> GetAllProduct(CancellationToken cancellationToken)
+        public async Task<List<SimpleDTO>> GetAllProduct(CancellationToken cancellationToken)
         {
-            return await _productService.GetAllAsync<ProductDTO>(x => x.StoreId == CurrentUserStoreId, null, null, false, cancellationToken);
+            return await _productService.GetAllAsync<SimpleDTO>(x => x.StoreId == CurrentUserStoreId, null, null, false, cancellationToken);
         }
 
 
@@ -93,6 +98,18 @@ namespace Eshop.Api.Controllers.Models
         public async Task<bool> DeleteProduct(Guid productId, CancellationToken cancellationToken)
         {
             return await _productService.DeleteAsync(productId, true, true, true, cancellationToken);
+        }
+
+
+        [HttpGet(nameof(GetAllProductWarehouseLocation))]
+        public async Task<List<SimpleDTO>> GetAllProductWarehouseLocation(Guid productId, CancellationToken cancellationToken)
+        {
+            return await _productWarehouseLocationService.GetAllAsync<SimpleDTO>(
+                x => x.ProductId == productId,
+                i => i.Include(x => x.WarehouseLocation).ThenInclude(x => x.Warehouse),
+                null,
+                false,
+                cancellationToken);
         }
 
     }

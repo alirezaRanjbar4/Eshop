@@ -1,6 +1,6 @@
 ﻿namespace Eshop.DTO.General
 {
-    public class BaseDto
+    public class BaseDTO
     {
         public Guid Id { get; set; }
     }

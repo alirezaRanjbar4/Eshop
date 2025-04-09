@@ -2,7 +2,7 @@
 
 namespace Eshop.DTO.Identities.Authentication
 {
-    public class RefreshTokenDTO : BaseDto
+    public class RefreshTokenDTO : BaseDTO
     {
         public string Token { get; set; }
         public DateTime Expire { get; set; }

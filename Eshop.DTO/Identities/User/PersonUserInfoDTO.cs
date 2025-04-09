@@ -2,7 +2,7 @@
 
 namespace Eshop.DTO.Identities.User
 {
-    public class PersonUserInfoDTO : BaseDto
+    public class PersonUserInfoDTO : BaseDTO
     {
         public string PersonFullName { get; set; }
         public string UserName { get; set; }

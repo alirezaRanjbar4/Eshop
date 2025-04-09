@@ -2,7 +2,7 @@
 
 namespace Eshop.DTO.Models.Receipt
 {
-    public class ReceiptProductItemDTO : BaseDto
+    public class ReceiptProductItemDTO : BaseDTO
     {
         public string? Description { get; set; }
         public float Count { get; set; }

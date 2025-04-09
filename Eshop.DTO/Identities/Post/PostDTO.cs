@@ -2,7 +2,7 @@
 
 namespace Eshop.DTO.Identities.Post
 {
-    public class PostDTO : BaseDto
+    public class PostDTO : BaseDTO
     {
         /// <summary>
         /// نام

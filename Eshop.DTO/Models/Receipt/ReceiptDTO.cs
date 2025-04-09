@@ -3,7 +3,7 @@ using Eshop.Common.Enum;
 
 namespace Eshop.DTO.Models.Receipt
 {
-    public class ReceiptDTO : BaseDto
+    public class ReceiptDTO : BaseDTO
     {
         public DateTime Date { get; set; }
         public string? Description { get; set; }

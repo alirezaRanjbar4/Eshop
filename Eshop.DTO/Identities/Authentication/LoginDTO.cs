@@ -5,7 +5,7 @@ using Eshop.Common.Enum;
 
 namespace Eshop.DTO.Identities.Authentication
 {
-    public class LoginDTO : BaseDto
+    public class LoginDTO : BaseDTO
     {
         public string Name { get; set; }
         public UserType UserType { get; set; }

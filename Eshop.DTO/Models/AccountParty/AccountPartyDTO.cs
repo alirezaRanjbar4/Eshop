@@ -3,7 +3,7 @@ using Eshop.Common.Enum;
 
 namespace Eshop.DTO.Models.AccountParty
 {
-    public class AccountPartyDTO : BaseDto
+    public class AccountPartyDTO : BaseDTO
     {
         public string Name { get; set; }
         public string Address { get; set; }

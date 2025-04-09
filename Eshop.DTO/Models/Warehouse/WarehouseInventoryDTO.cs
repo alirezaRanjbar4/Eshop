@@ -2,7 +2,7 @@
 
 namespace Eshop.DTO.Models.Warehouse
 {
-    public class WarehouseInventoryDTO : BaseDto
+    public class WarehouseInventoryDTO : BaseDTO
     {
         public string Product { get; set; }
         public string WarehouseLocation { get; set; }

@@ -2,7 +2,7 @@
 
 namespace Eshop.DTO.Identities.User
 {
-    public class EditUserDTO : BaseDto
+    public class EditUserDTO : BaseDTO
     {
         public string UserName { get; set; }
         public string? Email { get; set; }

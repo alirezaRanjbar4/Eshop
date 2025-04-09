@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Eshop.DTO.General;
 using Eshop.DTO.Models.Product;
 using Eshop.DTO.Models.Warehouse;
 using Eshop.Entity.Models;
@@ -18,6 +19,10 @@ namespace Eshop.Mapper.Models
             CreateMap<WarehouseLocationEntity, WarehouseLocationDTO>().ReverseMap();
 
             CreateMap<ProductWarehouseLocationEntity, ProductWarehouseLocationDTO>().ReverseMap();
+
+            CreateMap<ProductWarehouseLocationEntity, SimpleDTO>()
+                .ForMember(des => des.Key, option => option.MapFrom(src => src.WarehouseLocation != null && src.WarehouseLocation.Warehouse != null ? $"{src.WarehouseLocation.Name}/{src.WarehouseLocation.Warehouse.Name}/{src.Count}" : string.Empty))
+                .ForMember(des => des.Value, option => option.MapFrom(src => src.Id));
 
             CreateMap<ProductWarehouseLocationEntity, GetAllProductWarehouseLocationDTO>()
                    .ForMember(des => des.WarehouseLocation, option => option.MapFrom(src => src.WarehouseLocation != null ? src.WarehouseLocation.Name : string.Empty))

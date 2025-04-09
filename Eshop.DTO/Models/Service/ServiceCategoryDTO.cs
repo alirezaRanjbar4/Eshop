@@ -2,7 +2,7 @@
 
 namespace Eshop.DTO.Models.Service
 {
-    public class ServiceCategoryDTO : BaseDto
+    public class ServiceCategoryDTO : BaseDTO
     {
         public Guid ServiceId { get; set; }
         public Guid CategoryId { get; set; }

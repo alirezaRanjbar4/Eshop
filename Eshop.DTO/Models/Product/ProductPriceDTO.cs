@@ -2,7 +2,7 @@
 
 namespace Eshop.DTO.Models.Product
 {
-    public class ProductPriceDTO : BaseDto
+    public class ProductPriceDTO : BaseDTO
     {
         public long Price { get; set; }
         public DateTime? ExpiryDate { get; set; }

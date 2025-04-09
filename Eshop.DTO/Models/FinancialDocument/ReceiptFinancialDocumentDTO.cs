@@ -2,7 +2,7 @@
 
 namespace Eshop.DTO.Models.FinancialDocument
 {
-    public class ReceiptFinancialDocumentDTO : BaseDto
+    public class ReceiptFinancialDocumentDTO : BaseDTO
     {
         public Guid ReceiptId { get; set; }
         public Guid FinancialDocumentId { get; set; }

@@ -2,7 +2,7 @@
 
 namespace Eshop.DTO.Identities.PostType
 {
-    public class PostTypeDTO : BaseDto
+    public class PostTypeDTO : BaseDTO
     {
         /// <summary>
         /// عنوان

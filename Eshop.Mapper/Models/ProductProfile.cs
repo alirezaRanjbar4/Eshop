@@ -4,6 +4,7 @@ using Eshop.Entity.Models;
 using Eshop.Common.Enum;
 using Eshop.Common.Helpers.Utilities.Utilities;
 using Eshop.Common.Exceptions;
+using Eshop.DTO.General;
 
 namespace Eshop.Mapper.Models
 {
@@ -15,6 +16,10 @@ namespace Eshop.Mapper.Models
                 .ForMember(des => des.Price, option => option.MapFrom(src => src.ProductPrices != null && src.ProductPrices.Any(x => x.ExpiryDate == null) ? src.ProductPrices.OrderByDescending(x => x.CreateDate).First(x => x.ExpiryDate == null).Price : 0))
                 .ForMember(des => des.ProductCategoryIds, option => option.MapFrom(src => src.ProductCategories != null ? src.ProductCategories.Select(x => x.CategoryId) : null))
                 .ReverseMap();
+
+            CreateMap<ProductEntity, SimpleDTO>()
+               .ForMember(des => des.Key, option => option.MapFrom(src => $"{src.Name} {src.SKU}"))
+               .ForMember(des => des.Value, option => option.MapFrom(src => src.Id));
 
             CreateMap<ProductEntity, GetProductDTO>()
                .ForMember(des => des.Price, option => option.MapFrom(src => src.ProductPrices != null && src.ProductPrices.Any(x => x.ExpiryDate == null) ? src.ProductPrices.OrderByDescending(x => x.CreateDate).First(x => x.ExpiryDate == null).Price : 0))
@@ -28,13 +33,11 @@ namespace Eshop.Mapper.Models
 
             CreateMap<ImageEntity, ImageDTO>().ReverseMap();
 
-
             CreateMap<ProductPriceEntity, ProductPriceDTO>().ReverseMap();
 
             CreateMap<ProductPriceEntity, CompleteProductPriceDTO>()
                 .ForMember(des => des.ExpiryDate, option => option.MapFrom(src => src.ExpiryDate.HasValue ? Utility.CalandarProvider.MiladiToShamsi(src.ExpiryDate.Value, false) : string.Empty))
                 .ForMember(des => des.StartDate, option => option.MapFrom(src => Utility.CalandarProvider.UTCToShamsiWithIranTime(src.CreateDate, false)));
-
 
             CreateMap<ProductTransferEntity, ProductTransferDTO>().ReverseMap();
 

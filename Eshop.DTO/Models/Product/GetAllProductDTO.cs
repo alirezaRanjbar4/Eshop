@@ -2,7 +2,7 @@
 
 namespace Eshop.DTO.Models.Product
 {
-    public class GetAllProductDTO : BaseDto
+    public class GetAllProductDTO : BaseDTO
     {
         public string Name { get; set; }
         public string SKU { get; set; }

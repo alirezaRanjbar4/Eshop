@@ -2,7 +2,7 @@
 
 namespace Eshop.DTO.Models.TransferReceipt
 {
-    public class AddTransferReceiptDTO : BaseDto
+    public class AddTransferReceiptDTO : BaseDTO
     {
         public DateTime Date { get; set; }
         public string? Description { get; set; }

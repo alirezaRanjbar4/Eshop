@@ -2,7 +2,7 @@
 
 namespace Eshop.DTO.Models.Service
 {
-    public class CompleteServicePriceDTO : BaseDto
+    public class CompleteServicePriceDTO : BaseDTO
     {
         public long Price { get; set; }
         public string StartDate { get; set; }

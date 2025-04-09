@@ -58,7 +58,7 @@ namespace Eshop.DTO.Identities.User
         public bool desc { get; set; }
     }
 
-    public class UserRoleDTO : BaseDto
+    public class UserRoleDTO : BaseDTO
     {
 
         public Guid UserId { get; set; }

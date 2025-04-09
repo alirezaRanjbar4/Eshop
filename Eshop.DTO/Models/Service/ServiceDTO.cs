@@ -2,7 +2,7 @@
 
 namespace Eshop.DTO.Models.Service
 {
-    public class ServiceDTO : BaseDto
+    public class ServiceDTO : BaseDTO
     {
         public string Name { get; set; }
         public string? Description { get; set; }

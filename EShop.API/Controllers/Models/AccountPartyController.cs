@@ -4,6 +4,7 @@ using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters;
 using Eshop.Common.ActionFilters.Response;
 using Eshop.Common.Enum;
+using Eshop.DTO.General;
 using Eshop.DTO.Models.AccountParty;
 using Eshop.Service.Models.Customer;
 using Microsoft.AspNetCore.Authorization;
@@ -30,9 +31,9 @@ namespace Eshop.Api.Controllers.Models
 
 
         [HttpGet(nameof(GetAllAccountParty))]
-        public async Task<List<AccountPartyDTO>> GetAllAccountParty(AccountPartyType type, CancellationToken cancellationToken)
+        public async Task<List<SimpleDTO>> GetAllAccountParty(AccountPartyType type, CancellationToken cancellationToken)
         {
-            return await _accountPartyService.GetAllAsync<AccountPartyDTO>(x => x.StoreId == CurrentUserStoreId && x.Type == type, null, null, false, cancellationToken);
+            return await _accountPartyService.GetAllAsync<SimpleDTO>(x => x.StoreId == CurrentUserStoreId && x.Type == type, null, null, false, cancellationToken);
         }
 
 

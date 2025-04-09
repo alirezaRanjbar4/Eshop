@@ -3,7 +3,7 @@ using Eshop.DTO.General;
 
 namespace Eshop.DTO.Models.Store
 {
-    public class StoreDTO : BaseDto
+    public class StoreDTO : BaseDTO
     {
         public string Name { get; set; }
         public string EnglishName { get; set; }

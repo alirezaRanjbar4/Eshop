@@ -3,7 +3,7 @@ using Eshop.Common.Enum;
 
 namespace Eshop.DTO.Models.Product
 {
-    public class ProductDTO : BaseDto
+    public class ProductDTO : BaseDTO
     {
         public string Name { get; set; }
         public string SKU { get; set; }

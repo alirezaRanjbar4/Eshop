@@ -2,7 +2,7 @@
 
 namespace Eshop.DTO.Models.DemoRequest
 {
-    public class LimitedDemoRequestDTO : BaseDto
+    public class LimitedDemoRequestDTO : BaseDTO
     {
         public string? Name { get; set; }
         public string? StoreName { get; set; }

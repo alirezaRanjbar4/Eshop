@@ -2,7 +2,7 @@
 
 namespace Eshop.DTO.Models.Product
 {
-    public class ImageDTO : BaseDto
+    public class ImageDTO : BaseDTO
     {
         public string Name { get; set; }
         public string URL { get; set; }

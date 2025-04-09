@@ -2,7 +2,7 @@
 
 namespace Eshop.DTO.Models.Vendor
 {
-    public class VendorDTO : BaseDto
+    public class VendorDTO : BaseDTO
     {
         public string Name { get; set; }
         public Guid UserId { get; set; }

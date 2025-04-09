@@ -2,7 +2,7 @@
 
 namespace Eshop.DTO.Models.Product
 {
-    public class CompleteProductTransferDTO : BaseDto
+    public class CompleteProductTransferDTO : BaseDTO
     {
         public int Count { get; set; }
         public string? Description { get; set; }

@@ -3,7 +3,7 @@ using Eshop.DTO.Models.Product;
 
 namespace Eshop.DTO.Models.Service
 {
-    public class GetServiceDTO : BaseDto
+    public class GetServiceDTO : BaseDTO
     {
         public string Name { get; set; }
         public string? Description { get; set; }

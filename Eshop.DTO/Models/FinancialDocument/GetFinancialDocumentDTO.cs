@@ -3,7 +3,7 @@ using Eshop.Common.Enum;
 
 namespace Eshop.DTO.Models.FinancialDocument
 {
-    public class GetFinancialDocumentDTO : BaseDto
+    public class GetFinancialDocumentDTO : BaseDTO
     {
         public string? Description { get; set; }
         public long Amount { get; set; }
