@@ -18,7 +18,7 @@ namespace Eshop.Mapper.Models
 
             CreateMap<ProductEntity, SimpleProductDTO>()
                .ForMember(des => des.Price, option => option.MapFrom(src => src.ProductPrices != null && src.ProductPrices.Any(x => x.ExpiryDate == null) ? src.ProductPrices.OrderByDescending(x => x.CreateDate).First(x => x.ExpiryDate == null).Price : 0))
-               .ForMember(des => des.Key, option => option.MapFrom(src => $"{src.Name} {src.SKU}"))
+               .ForMember(des => des.Key, option => option.MapFrom(src => $"{src.Name}/{src.SKU}"))
                .ForMember(des => des.Value, option => option.MapFrom(src => src.Id));
 
             CreateMap<ProductEntity, GetProductDTO>()

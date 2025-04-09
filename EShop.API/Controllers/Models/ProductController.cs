@@ -39,7 +39,12 @@ namespace Eshop.Api.Controllers.Models
         [HttpGet(nameof(GetAllProduct))]
         public async Task<List<SimpleDTO>> GetAllProduct(CancellationToken cancellationToken)
         {
-            return await _productService.GetAllAsync<SimpleDTO>(x => x.StoreId == CurrentUserStoreId, null, null, false, cancellationToken);
+            return await _productService.GetAllAsync<SimpleDTO>(
+                x => x.StoreId == CurrentUserStoreId,
+                i => i.Include(x => x.ProductPrices),
+                o => o.OrderBy(x => x.Name),
+                false,
+                cancellationToken);
         }
 
 

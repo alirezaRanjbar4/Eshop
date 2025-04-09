@@ -37,7 +37,7 @@ namespace Eshop.Api.Controllers.Models
             return await _serviceService.GetAllAsync<SimpleServiceDTO>(
                 x => x.StoreId == CurrentUserStoreId,
                 i => i.Include(x => x.ServicePrices),
-                o => o.OrderByDescending(x => x.Name),
+                o => o.OrderBy(x => x.Name),
                 false,
                 cancellationToken);
         }
