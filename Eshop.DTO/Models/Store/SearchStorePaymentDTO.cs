@@ -1,7 +1,7 @@
 ﻿using Eshop.DTO.General;
 using Eshop.Common.Enum;
 
-namespace Eshop.DTO.Models.FinancialDocument
+namespace Eshop.DTO.Models.Store
 {
     public class SearchStorePaymentDTO : BaseSearchDTO
     {

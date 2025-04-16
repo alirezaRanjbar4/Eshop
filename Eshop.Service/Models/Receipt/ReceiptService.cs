@@ -6,18 +6,20 @@ using Eshop.Entity.Models;
 using Eshop.Repository.Models.Receipt;
 using Eshop.Service.General;
 using Eshop.Service.Models.ProductWarehouseLocation;
+using Eshop.Service.Models.ReceiptProductItem;
+using Eshop.Service.Models.ReceiptServiceItem;
 using Microsoft.EntityFrameworkCore;
 
 namespace Eshop.Service.Models.Receipt
 {
     public class ReceiptService : BaseService<ReceiptEntity>, IReceiptService
     {
-        private readonly IBaseService<ReceiptProductItemEntity> _receiptProductItemService;
-        private readonly IBaseService<ReceiptServiceItemEntity> _receiptServiceItemService;
+        private readonly IReceiptProductItemService _receiptProductItemService;
+        private readonly IReceiptServiceItemService _receiptServiceItemService;
         private readonly IProductWarehouseLocationService _productWarehouseLocationService;
         public ReceiptService(
-            IBaseService<ReceiptProductItemEntity> receiptProductItemService,
-            IBaseService<ReceiptServiceItemEntity> receiptServiceItemService,
+            IReceiptProductItemService receiptProductItemService,
+            IReceiptServiceItemService receiptServiceItemService,
             IProductWarehouseLocationService productWarehouseLocationService,
             IMapper mapper,
             IReceiptRepository ReceiptRepository) : base(ReceiptRepository, mapper)

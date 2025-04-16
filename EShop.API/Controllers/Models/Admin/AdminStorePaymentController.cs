@@ -4,7 +4,6 @@ using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters;
 using Eshop.Common.ActionFilters.Response;
 using Eshop.Common.Enum;
-using Eshop.DTO.Models.FinancialDocument;
 using Eshop.DTO.Models.Store;
 using Eshop.Entity.Models;
 using Eshop.Service.General;

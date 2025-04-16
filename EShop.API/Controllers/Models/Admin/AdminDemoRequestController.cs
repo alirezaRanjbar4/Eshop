@@ -16,7 +16,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Eshop.Api.Controllers.Models
+namespace Eshop.Api.Controllers.Models.Admin
 {
     [ApiVersion(VersionProperties.V1)]
     [Authorize]

@@ -17,7 +17,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Eshop.Api.Controllers.Models
+namespace Eshop.Api.Controllers.Models.Admin
 {
     [ApiVersion(VersionProperties.V1)]
     [Authorize]
@@ -38,8 +38,8 @@ namespace Eshop.Api.Controllers.Models
                 searchDTO,
                 x => string.IsNullOrEmpty(searchDTO.SearchTerm) ||
                      x.Name.Contains(searchDTO.SearchTerm) ||
-                     (x.Store != null && x.Store.Name.Contains(searchDTO.SearchTerm)) ||
-                     (x.User != null && x.User.UserName.Contains(searchDTO.SearchTerm)),
+                     x.Store != null && x.Store.Name.Contains(searchDTO.SearchTerm) ||
+                     x.User != null && x.User.UserName.Contains(searchDTO.SearchTerm),
                 i => i.Include(x => x.User).Include(x => x.Store),
                 o => o.OrderByDescending(x => x.CreateDate),
                 false,

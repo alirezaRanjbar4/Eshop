@@ -6,7 +6,7 @@ using Eshop.Common.ActionFilters.Response;
 using Eshop.Common.Enum;
 using Eshop.DTO.General;
 using Eshop.DTO.Models.AccountParty;
-using Eshop.Service.Models.Customer;
+using Eshop.Service.Models.AccountParty;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;

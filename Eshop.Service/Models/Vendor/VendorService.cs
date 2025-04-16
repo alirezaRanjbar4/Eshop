@@ -1,13 +1,11 @@
 ﻿using AutoMapper;
 using Eshop.DTO.Identities.User;
 using Eshop.DTO.Models.Vendor;
-using Eshop.Entity.Identities;
 using Eshop.Entity.Models;
 using Eshop.Repository.Models.Vendor;
 using Eshop.Service.General;
 using Eshop.Service.Identity.User;
 using Eshop.Service.Identity.UserRole;
-using Microsoft.AspNetCore.Identity;
 
 namespace Eshop.Service.Models.Vendor
 {

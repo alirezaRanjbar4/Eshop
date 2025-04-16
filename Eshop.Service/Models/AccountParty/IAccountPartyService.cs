@@ -1,9 +1,8 @@
 ﻿using Eshop.Common.Helpers.Utilities.Interface;
-using Eshop.DTO.Models.Vendor;
 using Eshop.Entity.Models;
 using Eshop.Service.General;
 
-namespace Eshop.Service.Models.Customer
+namespace Eshop.Service.Models.AccountParty
 {
     public interface IAccountPartyService : IBaseService<AccountPartyEntity>, IScopedDependency
     {

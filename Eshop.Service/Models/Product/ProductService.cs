@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Eshop.DTO.Models.Product;
-using Eshop.DTO.Models.Service;
 using Eshop.Entity.Models;
 using Eshop.Repository.Models.Product;
 using Eshop.Service.General;
