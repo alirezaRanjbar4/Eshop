@@ -1,5 +1,4 @@
-﻿using Eshop.Common.Helpers.AppSetting;
-using Eshop.Common.Helpers.AppSetting.Models;
+﻿using Eshop.Common.Helpers.AppSetting.Models;
 using System.Linq;
 
 namespace Eshop.Common.Helpers.AppSetting.Mapper

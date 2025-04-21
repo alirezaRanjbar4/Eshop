@@ -6,6 +6,6 @@ namespace Eshop.Service.Identity.UserRole
 {
     public interface IUserRoleService : IBaseService<UserRoleEntity>, IScopedDependency
     {
-        
+
     }
 }

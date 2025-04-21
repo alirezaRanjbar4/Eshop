@@ -5,7 +5,6 @@ using Eshop.Common.Helpers.Utilities.Utilities;
 using Eshop.DTO.Identities.User;
 using Eshop.Entity.Identities;
 using Eshop.Repository.General;
-using Eshop.Repository.Identities.Role;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Rasam.Data.DBContext;
@@ -125,7 +124,8 @@ namespace Eshop.Repository.Identities.User
                     result.Data = false;
                     result.Message = string.Join(",", TranslateIdentityErrors(addResult.Errors));
                     return result;
-                };
+                }
+                ;
                 userDto.Id = user.Id;
 
                 return result;

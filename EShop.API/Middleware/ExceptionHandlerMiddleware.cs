@@ -53,7 +53,7 @@ namespace Eshop.Api.Middleware
                 // _logger.LogError(exception, exception.Message);
                 httpStatusCode = exception.HttpStatus;
                 message = exception.Message;
-               // _logger.ErrorLoggerProvider(message, dic, exception);
+                // _logger.ErrorLoggerProvider(message, dic, exception);
 
                 SetUnAuthorizeResponse(message, exception);
             }
@@ -86,7 +86,7 @@ namespace Eshop.Api.Middleware
                     message = exception.Message;
                 }
 
-               // _logger.ErrorLoggerProvider(message, dic, exception);
+                // _logger.ErrorLoggerProvider(message, dic, exception);
                 await WriteToResponseAsync(new ResourceKeyResult { ResultType = ResultType.Error, ResourceKeyList = null });
             }
             catch (UiValidationException exception)

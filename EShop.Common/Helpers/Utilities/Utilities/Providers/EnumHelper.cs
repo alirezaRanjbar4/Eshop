@@ -1,7 +1,7 @@
-﻿using System.Reflection;
-using System;
-using System.Linq;
+﻿using System;
 using System.ComponentModel;
+using System.Linq;
+using System.Reflection;
 namespace Eshop.Common.Helpers.Utilities.Utilities.Providers
 {
     public class EnumHelper

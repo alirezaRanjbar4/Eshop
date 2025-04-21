@@ -66,7 +66,7 @@ namespace Eshop.DTO.Identities.User
         [Display(Name = "فعال / غیرفعال"), JsonPropertyName("IsActive")]
         public bool IsActive { get; set; }
 
-       
+
 
         [JsonPropertyName("جنسیت")]
         public string GenderName { get; set; }

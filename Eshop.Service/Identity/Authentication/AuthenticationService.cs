@@ -6,7 +6,6 @@ using Eshop.Common.Helpers.Utilities.Utilities;
 using Eshop.DTO.Identities.Authentication;
 using Eshop.DTO.Identities.User;
 using Eshop.Entity.Identities;
-using Eshop.Service.Identity.Authentication.Interface;
 using Eshop.Service.Identity.JWT;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -14,7 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
-namespace Eshop.Service.Identity.Authentication.Service
+
+namespace Eshop.Service.Identity.Authentication
 {
     public class AuthenticationService : IAuthenticationService
     {

@@ -23,7 +23,7 @@ namespace Eshop.Api
                // For application running on Kestrel:
                .ConfigureKestrel((context, options) =>
                {
-                    options.Limits.MaxRequestBodySize = 737280000;
+                   options.Limits.MaxRequestBodySize = 737280000;
                })
               .UseStartup<Startup>();
     }

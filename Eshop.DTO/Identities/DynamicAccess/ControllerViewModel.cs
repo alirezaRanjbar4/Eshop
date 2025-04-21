@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Eshop.DTO.Identities.DynamicAccess
+﻿namespace Eshop.DTO.Identities.DynamicAccess
 {
     public class ControllerViewModel
     {

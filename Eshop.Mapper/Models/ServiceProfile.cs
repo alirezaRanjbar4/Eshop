@@ -12,8 +12,8 @@ namespace Eshop.Mapper.Models
             CreateMap<ServiceEntity, ServiceDTO>()
                 .ForMember(des => des.ServiceCategoryIds, option => option.MapFrom(src => src.ServiceCategories != null ? src.ServiceCategories.Select(x => x.CategoryId) : null))
                 .ForMember(des => des.Price, option => option.MapFrom(src => src.ServicePrices != null && src.ServicePrices.Any(x => x.ExpiryDate == null) ? src.ServicePrices.OrderByDescending(x => x.CreateDate).First(x => x.ExpiryDate == null).Price : 0))
-                .ReverseMap(); 
-            
+                .ReverseMap();
+
             CreateMap<ServiceEntity, SimpleServiceDTO>()
                 .ForMember(des => des.Key, option => option.MapFrom(src => src.Name))
                 .ForMember(des => des.Value, option => option.MapFrom(src => src.Id))

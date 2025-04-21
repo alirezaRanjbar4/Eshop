@@ -5,7 +5,6 @@ using Eshop.DTO.Identities.DynamicAccess;
 using Eshop.DTO.Identities.Role;
 using Eshop.DTO.Identities.User;
 using Eshop.Entity.Identities;
-using Ganss.Xss;
 using System.Security.Claims;
 
 namespace Eshop.Mapper.Identities
@@ -14,8 +13,6 @@ namespace Eshop.Mapper.Identities
     {
         public UserProfile()
         {
-            var htmlSanitizer = new HtmlSanitizer();
-
             // make sure all datetime values are UTC
             ValueTransformers.Add<DateTime>(val => !((DateTime?)val).HasValue ? val : DateTime.SpecifyKind(val, DateTimeKind.Utc));
             ValueTransformers.Add<DateTime?>(val => val.HasValue ? DateTime.SpecifyKind(val.Value, DateTimeKind.Utc) : val);
@@ -56,7 +53,7 @@ namespace Eshop.Mapper.Identities
             CreateMap<UserRoleDTO, UserRoleEntity>();
 
             CreateMap<RoleEntity, RoleDTO>();
-           // CreateMap<RoleEntity, SimpleRoleDTO>();
+            // CreateMap<RoleEntity, SimpleRoleDTO>();
 
             CreateMap<RoleEntity, GetRoleDTO>();
             CreateMap<RoleDTO, RoleEntity>();

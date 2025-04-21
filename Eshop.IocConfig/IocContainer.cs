@@ -35,7 +35,7 @@ public static class IocContainer
                 var classObject = typesQuery.Where(x => x.IsClass && type.IsAssignableFrom(x));
                 if (classObject.Count() > 1)
                 {
-                    throw new Exception("every class should inplemented one interface");
+                    throw new Exception("every class should implemented one interface");
                 }
                 if (typeof(T).Name == nameof(IScopedDependency))
                 {

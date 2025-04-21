@@ -4,7 +4,7 @@ using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters.Response;
 using Eshop.DTO.Identities.Authentication;
 using Eshop.DTO.Identities.User;
-using Eshop.Service.Identity.Authentication.Interface;
+using Eshop.Service.Identity.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading;

@@ -4,8 +4,6 @@ using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters;
 using Eshop.Common.ActionFilters.Response;
 using Eshop.Common.Enum;
-using Eshop.DTO.General;
-using Eshop.DTO.Identities.DynamicAccess;
 using Eshop.DTO.Models.Category;
 using Eshop.Service.Models.Category;
 using Microsoft.AspNetCore.Authorization;

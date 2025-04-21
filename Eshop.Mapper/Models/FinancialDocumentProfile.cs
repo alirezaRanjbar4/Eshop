@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Eshop.Common.Exceptions;
+using Eshop.Common.Helpers.Utilities.Utilities;
 using Eshop.DTO.Models.FinancialDocument;
 using Eshop.Entity.Models;
-using Eshop.Common.Helpers.Utilities.Utilities;
 
 namespace Eshop.Mapper.Models
 {

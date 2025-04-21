@@ -1,5 +1,4 @@
 ﻿using Eshop.DTO.General;
-using Eshop.Common.Enum;
 
 namespace Eshop.DTO.Models.Store
 {

@@ -5,7 +5,7 @@ using Eshop.DTO.Identities.User;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
-namespace Eshop.Service.Identity.Authentication.Interface
+namespace Eshop.Service.Identity.Authentication
 {
     public interface IAuthenticationService : IScopedDependency
     {

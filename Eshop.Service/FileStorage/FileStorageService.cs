@@ -1,15 +1,14 @@
 ﻿using Eshop.Common.Helpers.Utilities.Utilities.Providers;
-using Eshop.Service.FileStorage.Interface;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 
-namespace Eshop.Service.FileStorage.Service
+namespace Eshop.Service.FileStorage
 {
-    public class InAppStorageService : IFileStorageService
+    public class FileStorageService : IFileStorageService
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        public InAppStorageService(IWebHostEnvironment webHostEnvironment, IHttpContextAccessor httpContextAccessor)
+        public FileStorageService(IWebHostEnvironment webHostEnvironment, IHttpContextAccessor httpContextAccessor)
         {
             _webHostEnvironment = webHostEnvironment;
             _httpContextAccessor = httpContextAccessor;

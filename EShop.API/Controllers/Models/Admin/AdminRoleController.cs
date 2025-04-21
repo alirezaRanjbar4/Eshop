@@ -2,10 +2,7 @@
 using Eshop.Api.Components;
 using Eshop.Api.Controllers.General;
 using Eshop.Common.ActionFilters;
-using Eshop.Common.ActionFilters.Response;
 using Eshop.Common.Enum;
-using Eshop.DTO.General;
-using Eshop.DTO.Identities.DynamicAccess;
 using Eshop.DTO.Identities.Role;
 using Eshop.Service.Identity.Role;
 using Microsoft.AspNetCore.Authorization;

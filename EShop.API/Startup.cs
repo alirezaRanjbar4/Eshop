@@ -6,24 +6,18 @@ using Eshop.Common.Helpers.Utilities.Interface;
 using Eshop.Common.Helpers.Utilities.Utilities;
 using Eshop.DTO.Identities.DynamicAccess;
 using Eshop.IocConfig;
-using Eshop.Service.FileStorage.Interface;
-using Eshop.Service.FileStorage.Service;
+using Eshop.Service.FileStorage;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using Rasam.Data.DBContext;
 using System;
 using System.Globalization;
 using System.IO;
@@ -50,68 +44,44 @@ namespace Eshop.Api
               .AddJsonFile("appsettings.json")
               .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", true)
               .Build();
-            // Application Insights
+
             services.AddApplicationInsightsTelemetry(Configuration);
+
             services.AppSetting(configuration);
-            // enable caching
+
             services.AddMemoryCache();
+
             services.AddHttpContextAccessor();
 
-            // Register the Swagger generator, defining 1 or more Swagger documents
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1",
-                    new OpenApiInfo
-                    {
-                        Title = "Sweet System API",
-                        Version = "v1",
-                        Description = "API for handling user/content data",
-                        // TermsOfService = new Uri("https://example.com/terms"),
-                        Contact = new OpenApiContact
-                        {
-                            Name = "Alireza",
-                            Email = "arranjbar2@gmail.com",
-                            Url = new Uri("https://webartdesign.ir"),
-                        },
-                    });
+            services.AddSwagger();
 
-                var filePath = Path.Combine(AppContext.BaseDirectory, "RainstormTech.API.xml");
-                c.IncludeXmlComments(filePath);
-            });
-
-            // define SQL Server connection string
-            services.AddDbContext<ApplicationContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), o => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
-            );
+            services.AddDbContext(configuration);
 
             // as of 3.1.1 the internal .net core JSON doens't handle referenceloophandling so we still need to use Newtonsoft
             services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
-            // add identity services
             services.AddIdentityServiceConfiguration();
 
-            // enable CORS
-            services.AddCors(options =>
-                             options.AddPolicy("CorsPolicy", policy =>
-                             {
-                                 policy.AllowAnyHeader()
-                                       .WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                                       .WithOrigins("http://192.168.247.233", "http://192.168.43.154", "http://192.168.43.244", "http://192.168.4.143:3000", "http://192.168.5.134:3000", "http://localhost:3000", "http://192.168.5.129", "http://192.168.43.154:3000")
-                                       .AllowCredentials();
-                             }));
-
+            services.AddCorss();
 
             // add appsettings availability
             services.AddSingleton(Configuration);
 
             // ability to grab httpcontext
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddSingleton<IFileStorageService, InAppStorageService>();
+
+            services.AddSingleton<IFileStorageService, FileStorageService>();
+
             services.AddScoped<UserActionFilter>();
+
             services.Injector();
+
             services.AddApiVersioning();
+
             services.AddAutomapperServiceConfiguration();
+
             services.AddDynamicPermission();
+
             services.AddMvc();
 
             JsonConvert.DefaultSettings = () => new JsonSerializerSettings
@@ -120,40 +90,20 @@ namespace Eshop.Api
                 ContractResolver = new CamelCasePropertyNamesContractResolver()
             };
 
-            services.AddLogging(loggingBuilder =>
-            {
-                loggingBuilder.AddConfiguration(Configuration.GetSection("Logging"));
-                loggingBuilder.AddConsole();
-                loggingBuilder.AddDebug();
-
-            });
+            services.AddLoggings(configuration);
 
             // configure jwt authentication
             services.AddCustomAuthentication();
 
-            services.Configure<IdentityOptions>(options =>
-            {
-                options.Password.RequireDigit = false;
-                options.Password.RequiredLength = 0;
-                options.Password.RequireLowercase = false;
-                options.Password.RequireUppercase = false;
-                options.Password.RequireNonAlphanumeric = false;
-                options.User.AllowedUserNameCharacters =
-                    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+اآبثجحخدذرزسشصضطظعغفقكلمنهويةءئإألآلأاآت ب ث پ ج ح چ خ دذرزس ش ص ض ط ظ ع غ ف ق ك ک ل م ن ه وي ةءئ إألآلأ";
-            });
+            services.AddIdentityOption();
 
             services.AddScoped<ICurrentUserProvider, CurrentUserProvider>();
+
             services.AddScoped<IUtility, Utility>();
 
             services.AddAuthorization(options =>
             {
                 options.AddPolicy(ConstantPolicies.DynamicPermission, policy => policy.Requirements.Add(new DynamicPermissionRequirement()));
-            });
-
-            services.AddSignalR(option =>
-            {
-                option.EnableDetailedErrors = true;
-                option.MaximumReceiveMessageSize = 5000000;
             });
 
             services.AddLocalization();

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Eshop.Mapper;
-using Eshop.Mapper.Models;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -16,10 +15,7 @@ namespace Eshop.IocConfig
                 cfg.AddMaps(assembly);
             });
             var mapper = configuration.CreateMapper();
-            services.AddAutoMapper(typeof(AccountPartyProfile));
-
             services.AddAutoMapper(assembly);
-
         }
     }
 }

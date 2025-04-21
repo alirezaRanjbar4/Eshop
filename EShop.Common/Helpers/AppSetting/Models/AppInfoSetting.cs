@@ -1,6 +1,4 @@
-﻿using System.Security.Principal;
-
-namespace Eshop.Common.Helpers.AppSetting.Models
+﻿namespace Eshop.Common.Helpers.AppSetting.Models
 {
     public class AppInfoSetting : BaseSettingModel<AppInfoSetting>
     {

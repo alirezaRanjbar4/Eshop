@@ -1,5 +1,5 @@
-﻿using Eshop.DTO.General;
-using Eshop.Common.Enum;
+﻿using Eshop.Common.Enum;
+using Eshop.DTO.General;
 
 namespace Eshop.DTO.Models.Product
 {
