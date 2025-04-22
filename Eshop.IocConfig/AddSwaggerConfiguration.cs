@@ -19,7 +19,7 @@ namespace Eshop.IocConfig
                         {
                             Name = "Alireza",
                             Email = "arranjbar2@gmail.com",
-                            Url = new Uri("arranjbar2@gmail.com"),
+                            //Url = new Uri("arranjbar2@gmail.com"),
                         },
                     });
 
