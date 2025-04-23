@@ -4,7 +4,7 @@ using System;
 
 namespace Eshop.Presentation.Controllers.General
 {
-    [Route($"api/v{{version:apiVersion}}/[controller]")]
+    [Route($"api/[controller]")]
     [ApiController]
     [ApiResultFilter]
     [ServiceFilter(typeof(UserActionFilter))]

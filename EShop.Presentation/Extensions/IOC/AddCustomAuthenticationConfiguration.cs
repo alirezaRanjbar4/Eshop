@@ -6,13 +6,16 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Linq;
 using System.Net;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 
-namespace Eshop.IocConfig
+namespace Eshop.Presentation.Extensions.IOC
 {
-    public static class AddCustomAuthenticationExtentions
+    public static class AddCustomAuthenticationConfiguration
     {
         public static IServiceCollection AddCustomAuthentication(this IServiceCollection services)
         {
@@ -57,7 +60,7 @@ namespace Eshop.IocConfig
                         {
                             if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
                             {
-                                context.Fail("TokenExpire.");
+                                context.Fail("توکن منقضی شده است.");
                             }
                         }
                         return Task.CompletedTask;

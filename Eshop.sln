@@ -2,8 +2,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32901.226
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eshop.IocConfig", "Eshop.IocConfig\Eshop.IocConfig.csproj", "{4422B21C-5715-410D-B890-9E833FA57633}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eshop.Resource", "Eshop.Resource\Eshop.Resource.csproj", "{736A69A0-F889-4EA7-AA67-93ACD4DB095D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eshop.Infrastructure", "Eshop.Infrastructure\Eshop.Infrastructure.csproj", "{C4C9C8B3-9E1B-3230-2A79-86E08377DB5C}"
@@ -22,10 +20,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4422B21C-5715-410D-B890-9E833FA57633}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4422B21C-5715-410D-B890-9E833FA57633}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4422B21C-5715-410D-B890-9E833FA57633}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4422B21C-5715-410D-B890-9E833FA57633}.Release|Any CPU.Build.0 = Release|Any CPU
 		{736A69A0-F889-4EA7-AA67-93ACD4DB095D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{736A69A0-F889-4EA7-AA67-93ACD4DB095D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{736A69A0-F889-4EA7-AA67-93ACD4DB095D}.Release|Any CPU.ActiveCfg = Release|Any CPU

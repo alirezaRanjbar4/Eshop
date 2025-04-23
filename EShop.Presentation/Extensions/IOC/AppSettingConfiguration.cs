@@ -2,9 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Eshop.IocConfig
+namespace Eshop.Presentation.Extensions.IOC
 {
-    public static class AppSettingExtention
+    public static class AppSettingConfiguration
     {
         public static void AppSetting(this IServiceCollection builder, IConfiguration configuration)
         {

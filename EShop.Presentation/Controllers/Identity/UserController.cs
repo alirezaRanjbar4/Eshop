@@ -1,7 +1,5 @@
-﻿using Asp.Versioning;
-using Eshop.Application.DTO.Identities.User;
+﻿using Eshop.Application.DTO.Identities.User;
 using Eshop.Application.Service.Identity.User;
-using Eshop.Presentation.Components;
 using Eshop.Presentation.Controllers.General;
 using Eshop.Share.ActionFilters;
 using Eshop.Share.ActionFilters.Response;
@@ -14,7 +12,6 @@ using System.Threading.Tasks;
 
 namespace Eshop.Presentation.Controllers.Identity
 {
-    [ApiVersion(VersionProperties.V1)]
     [Authorize]
     [DisplayName(nameof(User))]
     public class UserController : BaseController

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Controllers;
 
-namespace Eshop.IocConfig
+namespace Eshop.Application.Service.Identity
 {
     public class DynamicPermissionRequirement : IAuthorizationRequirement
     {

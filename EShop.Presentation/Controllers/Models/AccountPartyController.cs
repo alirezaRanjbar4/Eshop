@@ -1,9 +1,7 @@
-﻿using Asp.Versioning;
-using Eshop.Application.DTO.General;
+﻿using Eshop.Application.DTO.General;
 using Eshop.Application.DTO.Models.AccountParty;
 using Eshop.Application.Service.General;
 using Eshop.Domain.Models;
-using Eshop.Presentation.Components;
 using Eshop.Presentation.Controllers.General;
 using Eshop.Share.ActionFilters;
 using Eshop.Share.ActionFilters.Response;
@@ -19,7 +17,6 @@ using System.Threading.Tasks;
 
 namespace Eshop.Presentation.Controllers.Models
 {
-    [ApiVersion(VersionProperties.V1)]
     [Authorize]
     [DisplayName("AccountParty")]
     public class AccountPartyController : BaseController

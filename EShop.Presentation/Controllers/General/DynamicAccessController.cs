@@ -1,7 +1,5 @@
-﻿using Asp.Versioning;
-using Eshop.Application.DTO.Identities.DynamicAccess;
+﻿using Eshop.Application.DTO.Identities.DynamicAccess;
 using Eshop.Application.Service.Identity.Role;
-using Eshop.Presentation.Components;
 using Eshop.Share.ActionFilters.Response;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace Eshop.Presentation.Controllers.General
 {
-    [ApiVersion(VersionProperties.V1)]
     [Authorize]
     public class DynamicAccessController : BaseController
     {

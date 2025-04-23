@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
-namespace Eshop.IocConfig
+namespace Eshop.Presentation.Extensions.IOC
 {
     public static class AddSwaggerConfiguration
     {
@@ -19,12 +19,8 @@ namespace Eshop.IocConfig
                         {
                             Name = "Alireza",
                             Email = "arranjbar2@gmail.com",
-                            //Url = new Uri("arranjbar2@gmail.com"),
                         },
                     });
-
-                var filePath = Path.Combine(AppContext.BaseDirectory, "RainstormTech.API.xml");
-                c.IncludeXmlComments(filePath);
             });
 
             return services;

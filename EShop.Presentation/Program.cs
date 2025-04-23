@@ -1,30 +1,22 @@
-using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
+using Eshop.Presentation.Extensions;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using System.IO;
 
-namespace Eshop.Presentation
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            // CreateHostBuilder(args).Build().Run();
-            CreateWebHostBuilder(args).Build().Run();
-        }
+var builder = WebApplication.CreateBuilder(args);
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-           WebHost.CreateDefaultBuilder(args)
-               .ConfigureLogging((hostingContext, logging) =>
-               {
-                   logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
-               })
-               // For application running on Kestrel:
-               .ConfigureKestrel((context, options) =>
-               {
-                   options.Limits.MaxRequestBodySize = 737280000;
-               })
-              .UseStartup<Startup>();
-    }
-}
+// Config loading (customized to mirror Startup behavior)
+builder.Configuration
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json")
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
+    .AddEnvironmentVariables();
+
+builder.Services.AddServices(builder.Configuration, builder.Environment);
+
+var app = builder.Build();
+
+// Use all middlewares via extension method
+app.UseMiddlewares(builder.Environment);
+
+app.Run();

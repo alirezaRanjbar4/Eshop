@@ -3,11 +3,11 @@ using Eshop.Application.Mapping;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace Eshop.IocConfig
+namespace Eshop.Presentation.Extensions.IOC
 {
-    public static class AutomapperServiceCollectionExtention
+    public static class AddAutomapperConfiguration
     {
-        public static void AddAutomapperServiceConfiguration(this IServiceCollection services)
+        public static void AddAutomapper(this IServiceCollection services)
         {
             Assembly assembly = typeof(MappingProfile).Assembly;
             var configuration = new MapperConfiguration(cfg =>

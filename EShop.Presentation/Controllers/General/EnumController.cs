@@ -1,6 +1,4 @@
-﻿using Asp.Versioning;
-using Eshop.Presentation.Components;
-using Eshop.Share.Enum;
+﻿using Eshop.Share.Enum;
 using Eshop.Share.Enum.EnumConverter;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +9,6 @@ using System.Reflection;
 
 namespace Eshop.Presentation.Controllers.General
 {
-    [ApiVersion(VersionProperties.V1)]
     [Authorize]
     public class EnumController : BaseController
     {

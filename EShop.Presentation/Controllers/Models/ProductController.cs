@@ -1,10 +1,8 @@
-﻿using Asp.Versioning;
-using Eshop.Application.DTO.General;
+﻿using Eshop.Application.DTO.General;
 using Eshop.Application.DTO.Models.Product;
 using Eshop.Application.Service.General;
 using Eshop.Application.Service.Models.Product;
 using Eshop.Domain.Models;
-using Eshop.Presentation.Components;
 using Eshop.Presentation.Controllers.General;
 using Eshop.Share.ActionFilters;
 using Eshop.Share.ActionFilters.Response;
@@ -21,7 +19,6 @@ using System.Threading.Tasks;
 
 namespace Eshop.Presentation.Controllers.Models
 {
-    [ApiVersion(VersionProperties.V1)]
     [Authorize]
     [DisplayName("Product")]
     public class ProductController : BaseController

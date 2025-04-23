@@ -1,7 +1,5 @@
-﻿using Asp.Versioning;
-using Eshop.Application.DTO.Models.Receipt;
+﻿using Eshop.Application.DTO.Models.Receipt;
 using Eshop.Application.Service.Models.Receipt;
-using Eshop.Presentation.Components;
 using Eshop.Presentation.Controllers.General;
 using Eshop.Share.ActionFilters;
 using Eshop.Share.ActionFilters.Response;
@@ -17,7 +15,6 @@ using System.Threading.Tasks;
 
 namespace Eshop.Presentation.Controllers.Models
 {
-    [ApiVersion(VersionProperties.V1)]
     [Authorize]
     [DisplayName("Receipt")]
     public class ReceiptController : BaseController

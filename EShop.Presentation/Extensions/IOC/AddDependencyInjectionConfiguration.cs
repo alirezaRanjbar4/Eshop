@@ -1,15 +1,35 @@
-﻿using Eshop.Application.Service.General;
+﻿using Eshop.Application.Service.FileStorage;
+using Eshop.Application.Service.General;
+using Eshop.Application.Service.Identity;
+using Eshop.Application.Service.Identity.Authentication;
+using Eshop.Application.Service.Identity.JWT;
+using Eshop.Application.Service.Identity.Role;
+using Eshop.Application.Service.Identity.User;
+using Eshop.Application.Service.Models.FinancialDocument;
+using Eshop.Application.Service.Models.Product;
+using Eshop.Application.Service.Models.Receipt;
+using Eshop.Application.Service.Models.Service;
+using Eshop.Application.Service.Models.TransferReceipt;
+using Eshop.Application.Service.Models.Vendor;
+using Eshop.Application.Service.Models.Warehouse;
+using Eshop.Application.Service.Security;
 using Eshop.Domain.Identities;
 using Eshop.Domain.Models;
 using Eshop.Infrastructure.Repository.General;
+using Eshop.Infrastructure.Repository.Identities.User;
+using Eshop.Infrastructure.Repository.Models.AccountParty;
+using Eshop.Presentation.Components;
+using Eshop.Share.ActionFilters;
 using Eshop.Share.Helpers.Utilities.Interface;
+using Eshop.Share.Helpers.Utilities.Utilities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Eshop.IocConfig;
+namespace Eshop.Presentation.Extensions.IOC;
 
-public static class IocContainer
+public static class AddDependencyInjectionConfiguration
 {
-    public static void Injector(this IServiceCollection services)
+    public static void AddDependencyInjection(this IServiceCollection services)
     {
         services.AddInjection<IScopedDependency>();
         services.AddInjection<ITransientDependency>();
@@ -18,6 +38,20 @@ public static class IocContainer
 
     public static void AddInjection<T>(this IServiceCollection services)
     {
+        services.AddScoped<IFileStorageService, FileStorageService>();
+        services.AddScoped<UserActionFilter>();
+        services.AddScoped<ICurrentUserProvider, CurrentUserProvider>();
+        services.AddScoped<IUtility, Utility>();
+        services.AddScoped<IAuthenticationService, AuthenticationService>();
+        services.AddScoped<IJWTService, JWTService>();
+        services.AddSingleton<IAuthorizationHandler, DynamicPermissionsAuthorizationHandler>();
+        services.AddSingleton<IMvcActionsDiscoveryService, MvcActionsDiscoveryService>();
+        services.AddSingleton<ISecurityTrimmingService, SecurityTrimmingService>();
+
+
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IAccountPartyRepository, AccountPartyRepository>();
+        services.AddScoped<IBaseRepository<RoleEntity>, BaseRepository<RoleEntity>>();
         services.AddScoped<IBaseRepository<RoleEntity>, BaseRepository<RoleEntity>>();
         services.AddScoped<IBaseRepository<UserRoleEntity>, BaseRepository<UserRoleEntity>>();
         services.AddScoped<IBaseRepository<AccountPartyEntity>, BaseRepository<AccountPartyEntity>>();
@@ -47,6 +81,16 @@ public static class IocContainer
 
 
 
+
+        services.AddScoped<IRoleService, RoleService>();
+        services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IFinancialDocumentService, FinancialDocumentService>();
+        services.AddScoped<IProductService, ProductService>();
+        services.AddScoped<IReceiptService, ReceiptService>();
+        services.AddScoped<IServiceService, ServiceService>();
+        services.AddScoped<ITransferReceiptService, TransferReceiptService>();
+        services.AddScoped<IVendorService, VendorService>();
+        services.AddScoped<IWarehouseService, WarehouseService>();
         services.AddScoped<IBaseService<RoleEntity>, BaseService<RoleEntity>>();
         services.AddScoped<IBaseService<UserRoleEntity>, BaseService<UserRoleEntity>>();
         services.AddScoped<IBaseService<AccountPartyEntity>, BaseService<AccountPartyEntity>>();
@@ -75,39 +119,5 @@ public static class IocContainer
         services.AddScoped<IBaseService<WarehouseLocationEntity>, BaseService<WarehouseLocationEntity>>();
 
 
-        var assemblyService = typeof(IBaseService<>).Assembly;
-        var assemblyRepository = typeof(IBaseRepository<>).Assembly;
-
-        IEnumerable<Type?> typesService = assemblyService.GetTypes().Where(x => x.IsClass || x.IsInterface);
-        IEnumerable<Type?> typesRepository = assemblyRepository.GetTypes().Where(x => x.IsClass || x.IsInterface);
-
-        List<Type?> typesQuery = new List<Type?>();
-
-        typesQuery.AddRange(typesRepository);
-        typesQuery.AddRange(typesService);
-
-        foreach (Type? type in typesQuery)
-        {
-            if (type.IsInterface && !type.IsGenericType && typeof(T).IsAssignableFrom(type) && type.Name != nameof(T))
-            {
-                var interfaceObject = type;
-                var classObject = typesQuery.Where(x => x.IsClass && type.IsAssignableFrom(x));
-                if (classObject.Count() > 1)
-                {
-                    throw new Exception("every class should implemented one interface");
-                }
-                if (typeof(T).Name == nameof(IScopedDependency))
-                {
-                    services.AddScoped(interfaceObject, classObject.SingleOrDefault()!);
-                }
-                else if (typeof(T).Name == nameof(ISingletonDependency))
-                {
-                    services.AddSingleton(interfaceObject, classObject.SingleOrDefault());
-                }
-                else
-                    services.AddTransient(interfaceObject, classObject.SingleOrDefault());
-
-            }
-        }
     }
 }

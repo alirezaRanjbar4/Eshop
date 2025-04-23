@@ -1,7 +1,5 @@
-﻿using Asp.Versioning;
-using Eshop.Application.DTO.Models.Service;
+﻿using Eshop.Application.DTO.Models.Service;
 using Eshop.Application.Service.Models.Service;
-using Eshop.Presentation.Components;
 using Eshop.Presentation.Controllers.General;
 using Eshop.Share.ActionFilters;
 using Eshop.Share.ActionFilters.Response;
@@ -18,7 +16,6 @@ using System.Threading.Tasks;
 
 namespace Eshop.Presentation.Controllers.Models
 {
-    [ApiVersion(VersionProperties.V1)]
     [Authorize]
     [DisplayName("Service")]
     public class ServiceController : BaseController

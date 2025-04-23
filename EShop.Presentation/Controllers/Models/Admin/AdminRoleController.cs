@@ -1,7 +1,5 @@
-﻿using Asp.Versioning;
-using Eshop.Application.DTO.Identities.Role;
+﻿using Eshop.Application.DTO.Identities.Role;
 using Eshop.Application.Service.Identity.Role;
-using Eshop.Presentation.Components;
 using Eshop.Presentation.Controllers.General;
 using Eshop.Share.ActionFilters;
 using Eshop.Share.Enum;
@@ -15,7 +13,6 @@ using System.Threading.Tasks;
 
 namespace Eshop.Presentation.Controllers.Models.Admin
 {
-    [ApiVersion(VersionProperties.V1)]
     [Authorize]
     [DisplayName("AdminRole")]
     public class AdminRoleController : BaseController

@@ -1,8 +1,6 @@
-﻿using Asp.Versioning;
-using Eshop.Application.DTO.Models.DemoRequest;
+﻿using Eshop.Application.DTO.Models.DemoRequest;
 using Eshop.Application.Service.General;
 using Eshop.Domain.Models;
-using Eshop.Presentation.Components;
 using Eshop.Presentation.Controllers.General;
 using Eshop.Share.ActionFilters;
 using Eshop.Share.Enum;
@@ -13,7 +11,6 @@ using System.Threading.Tasks;
 
 namespace Eshop.Presentation.Controllers.Models
 {
-    [ApiVersion(VersionProperties.V1)]
     [DisplayName("DemoRequest")]
     public class DemoRequestController : BaseController
     {

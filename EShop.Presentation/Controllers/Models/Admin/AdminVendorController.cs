@@ -1,7 +1,5 @@
-﻿using Asp.Versioning;
-using Eshop.Application.DTO.Models.Vendor;
+﻿using Eshop.Application.DTO.Models.Vendor;
 using Eshop.Application.Service.Models.Vendor;
-using Eshop.Presentation.Components;
 using Eshop.Presentation.Controllers.General;
 using Eshop.Share.ActionFilters;
 using Eshop.Share.ActionFilters.Response;
@@ -18,7 +16,6 @@ using System.Threading.Tasks;
 
 namespace Eshop.Presentation.Controllers.Models.Admin
 {
-    [ApiVersion(VersionProperties.V1)]
     [Authorize]
     [DisplayName("AdminVendor")]
     public class AdminVendorController : BaseController

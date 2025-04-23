@@ -1,8 +1,6 @@
-﻿using Asp.Versioning;
-using Eshop.Application.DTO.Identities.Authentication;
+﻿using Eshop.Application.DTO.Identities.Authentication;
 using Eshop.Application.DTO.Identities.User;
 using Eshop.Application.Service.Identity.Authentication;
-using Eshop.Presentation.Components;
 using Eshop.Presentation.Controllers.General;
 using Eshop.Share.ActionFilters.Response;
 using Microsoft.AspNetCore.Authorization;
@@ -12,7 +10,6 @@ using System.Threading.Tasks;
 
 namespace Eshop.Presentation.Controllers.Identity
 {
-    [ApiVersion(VersionProperties.V1)]
     public class AuthenticationController : BaseController
     {
         private readonly IAuthenticationService _authService;
