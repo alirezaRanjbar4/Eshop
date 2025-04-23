@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Eshop.Mapper;
+using Eshop.Application.Mapping;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 

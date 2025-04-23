@@ -1,7 +1,7 @@
-﻿using Eshop.Common.Exceptions;
-using Eshop.Common.Helpers.AppSetting.Mapper;
-using Eshop.Entity.Identities;
-using Eshop.Service.Identity.User;
+﻿using Eshop.Application.Service.Identity.User;
+using Eshop.Domain.Identities;
+using Eshop.Share.Exceptions;
+using Eshop.Share.Helpers.AppSetting.Mapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;

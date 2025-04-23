@@ -1,4 +1,4 @@
-﻿using Eshop.Common.Helpers.AppSetting;
+﻿using Eshop.Share.Helpers.AppSetting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

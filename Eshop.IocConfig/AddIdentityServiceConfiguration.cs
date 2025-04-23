@@ -1,7 +1,7 @@
-﻿using Eshop.Entity.Identities;
+﻿using Eshop.Domain.Identities;
+using Eshop.Infrastructure.DBContext;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using Rasam.Data.DBContext;
 
 namespace Eshop.IocConfig
 {

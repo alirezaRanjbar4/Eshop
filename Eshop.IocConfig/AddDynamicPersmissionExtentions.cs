@@ -1,4 +1,4 @@
-﻿using Eshop.Service.Security;
+﻿using Eshop.Application.Service.Security;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 
