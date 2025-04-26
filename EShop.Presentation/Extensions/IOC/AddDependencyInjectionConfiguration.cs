@@ -1,6 +1,5 @@
 ﻿using Eshop.Application.Service.FileStorage;
 using Eshop.Application.Service.General;
-using Eshop.Application.Service.Identity;
 using Eshop.Application.Service.Identity.Authentication;
 using Eshop.Application.Service.Identity.JWT;
 using Eshop.Application.Service.Identity.Role;
@@ -78,6 +77,7 @@ public static class AddDependencyInjectionConfiguration
         services.AddScoped<IBaseRepository<VendorEntity>, BaseRepository<VendorEntity>>();
         services.AddScoped<IBaseRepository<WarehouseEntity>, BaseRepository<WarehouseEntity>>();
         services.AddScoped<IBaseRepository<WarehouseLocationEntity>, BaseRepository<WarehouseLocationEntity>>();
+        services.AddScoped<IBaseRepository<RefreshTokenEntity>, BaseRepository<RefreshTokenEntity>>();
 
 
 

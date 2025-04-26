@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Eshop.Infrastructure.ModelConfiguration.Identities
 {
-    public class Identity_UserRolesConfiguration : IEntityTypeConfiguration<UserRoleEntity>
+    public class UserRolesConfiguration : IEntityTypeConfiguration<UserRoleEntity>
     {
         public void Configure(EntityTypeBuilder<UserRoleEntity> builder)
         {

@@ -1,6 +1,7 @@
 ﻿using Eshop.Application.DTO.Identities.DynamicAccess;
 using Eshop.Application.DTO.Identities.User;
 using Eshop.Domain.Identities;
+using Eshop.Infrastructure.Repository.General;
 using Eshop.Share.Enum;
 using Eshop.Share.Helpers.AppSetting.Mapper;
 using Microsoft.AspNetCore.Identity;
@@ -17,10 +18,15 @@ namespace Eshop.Application.Service.Identity.JWT
         protected UserManager<UserEntity> _userManager;
         protected RoleManager<RoleEntity> _roleManager;
         private AppSettingData _appSettingData;
-        public JWTService(UserManager<UserEntity> userManager, RoleManager<RoleEntity> roleManage)
+        private readonly IBaseRepository<RefreshTokenEntity> _refreshToken;
+        public JWTService(
+            UserManager<UserEntity> userManager,
+            RoleManager<RoleEntity> roleManage,
+            IBaseRepository<RefreshTokenEntity> refreshToken)
         {
             _userManager = userManager;
             _roleManager = roleManage;
+            _refreshToken = refreshToken;
             _appSettingData = new AppSettingData();
         }
 
@@ -51,6 +57,52 @@ namespace Eshop.Application.Service.Identity.JWT
 
             return tokenHandler.WriteToken(securityToken);
         }
+
+        public async Task<string> GenerateRefreshTokenAsync(UserEntity user, string ipAddress)
+        {
+            var refreshToken = new RefreshTokenEntity()
+            {
+                Token = Guid.NewGuid().ToString("N") + Guid.NewGuid().ToString("N"),
+                ExpiresAt = DateTime.UtcNow.AddDays(30),
+                CreatedAt = DateTime.UtcNow,
+                CreatedByIp = ipAddress,
+                UserId = user.Id
+            };
+
+            await _refreshToken.AddAsync(refreshToken);
+
+            return refreshToken.Token;
+        }
+
+        public ClaimsPrincipal? GetPrincipalFromExpiredToken(string token)
+        {
+            var secretKey = Encoding.UTF8.GetBytes(_appSettingData.JWTSettings.SecretKey);
+
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateIssuerSigningKey = true,
+                ValidateLifetime = false, // NOTE: مهمه که Expiration بررسی نشه!
+                ValidIssuer = _appSettingData.JWTSettings.Issuer,
+                ValidAudience = _appSettingData.JWTSettings.Audience,
+                IssuerSigningKey = new SymmetricSecurityKey(secretKey)
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out _);
+            return principal;
+        }
+
+        public async Task<RefreshTokenEntity?> GetRefreshToken(string refreshToken)
+        {
+            return await _refreshToken.GetAsync(x => x.Token == refreshToken, null, false);
+        }
+
+
+
+
+
 
         public async Task<IEnumerable<Claim>> GetClaimsAsync(UserEntity user)
         {
@@ -99,43 +151,6 @@ namespace Eshop.Application.Service.Identity.JWT
             };
         }
 
-        public string GetClaimJWT(string tokenString, string claimType)
-        {
-            var secretKey = Encoding.UTF8.GetBytes(_appSettingData.JWTSettings.SecretKey);
-            var encrytionKey = Encoding.UTF8.GetBytes(_appSettingData.JWTSettings.EncryptKey);
-
-
-            var tokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(secretKey),
-                TokenDecryptionKey = new SymmetricSecurityKey(encrytionKey),
-                ValidateIssuer = false,
-                ValidateAudience = false,
-                ValidateLifetime = false,
-                ValidIssuer = _appSettingData.JWTSettings.Issuer,
-                ValidAudience = _appSettingData.JWTSettings.Audience,
-                ClockSkew = TimeSpan.FromMinutes(5)
-            };
-
-            var tokenHandler = new JwtSecurityTokenHandler();
-
-            try
-            {
-                SecurityToken validatedToken;
-                var principal = tokenHandler.ValidateToken(tokenString, tokenValidationParameters, out validatedToken);
-
-                var jwtToken = (JwtSecurityToken)validatedToken;
-
-                var claimValue = jwtToken.Claims.FirstOrDefault(c => c.Type == claimType)?.Value;
-                return claimValue;
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception("Error reading token.", ex);
-            }
-        }
 
         public string GetClaimsDecryptJWT(string token, string claimTypes)
         {

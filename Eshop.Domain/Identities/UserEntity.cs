@@ -29,5 +29,6 @@ namespace Eshop.Domain.Identities
         public virtual ICollection<UserLoginEntity> Logins { get; set; }
         public virtual ICollection<UserTokenEntity> Tokens { get; set; }
         public virtual ICollection<UserRoleEntity> UserRoles { get; set; }
+        public virtual ICollection<RefreshTokenEntity> RefreshTokens { get; set; }
     }
 }

@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using System.Security.Claims;
 
 
 namespace Eshop.Application.Service.Identity.Authentication
@@ -96,6 +97,7 @@ namespace Eshop.Application.Service.Identity.Authentication
                             dto.SecureClaims = Utility.SecurityHelper.CompressString(claimsJson);
                             dto.Claims = null;
                             dto.Token = await _jwtService.GenerateTokenAsync(user);
+                            dto.RefreshToken = await _jwtService.GenerateRefreshTokenAsync(user, model.IPAddress);
                             user.LastLoginOn = DateTime.UtcNow;
                             user.Deleted = false;
                             await _userManager.UpdateAsync(user);
@@ -124,6 +126,40 @@ namespace Eshop.Application.Service.Identity.Authentication
             {
                 throw;
             }
+        }
+
+
+        public async Task<LoginDTO?> RefreshToken(TokenRequestDTO request, CancellationToken cancellationToken)
+        {
+            var principal = _jwtService.GetPrincipalFromExpiredToken(request.AccessToken);
+            if (principal == null)
+                return null;
+
+            var userId = principal.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+            if (string.IsNullOrEmpty(userId))
+                return null;
+
+            var user = await _userManager.Users
+                .Include(x => x.UserRoles.Where(x => !x.Deleted)).ThenInclude(x => x.Role).ThenInclude(x => x.RoleClaims.Where(x => !x.Deleted))
+                .Include(x => x.Vendor).ThenInclude(x => x.Store)
+                .Include(x => x.AccountParty)
+                .FirstOrDefaultAsync(x => x.Id == Guid.Parse(userId), cancellationToken);
+
+            if (user == null)
+                return null;
+
+            var refreshTokenEntity = await _jwtService.GetRefreshToken(request.RefreshToken);
+            if (refreshTokenEntity == null || refreshTokenEntity.UserId != user.Id || refreshTokenEntity.ExpiresAt < DateTime.UtcNow)
+                return null;
+
+            var dto = _mapper.Map<LoginDTO>(user);
+            var claimsJson = JsonConvert.SerializeObject(dto.Claims);
+            dto.SecureClaims = Utility.SecurityHelper.CompressString(claimsJson);
+            dto.Claims = null;
+            dto.Token = await _jwtService.GenerateTokenAsync(user);
+            dto.RefreshToken = await _jwtService.GenerateRefreshTokenAsync(user, refreshTokenEntity.CreatedByIp);
+
+            return dto;
         }
 
         public async Task<OperationResult<string>> Logout(HttpContext httpContext)

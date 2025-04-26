@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Eshop.Infrastructure.ModelConfiguration.Identities
 {
-    public class Identoty_UserTokensConfiguration : IEntityTypeConfiguration<UserTokenEntity>
+    public class UserTokensConfiguration : IEntityTypeConfiguration<UserTokenEntity>
     {
         public void Configure(EntityTypeBuilder<UserTokenEntity> builder)
         {

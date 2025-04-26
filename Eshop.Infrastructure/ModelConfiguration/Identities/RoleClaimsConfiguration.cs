@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Eshop.Infrastructure.ModelConfiguration.Identities
 {
-    public class Identity_RoleClaimsConfiguration : IEntityTypeConfiguration<RoleClaimEntity>
+    public class RoleClaimsConfiguration : IEntityTypeConfiguration<RoleClaimEntity>
     {
         public void Configure(EntityTypeBuilder<RoleClaimEntity> builder)
         {

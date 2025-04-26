@@ -10,6 +10,7 @@ namespace Eshop.Application.Service.Identity.Authentication
     public interface IAuthenticationService : IScopedDependency
     {
         Task<LoginDTO> Login(Login model, HttpContext httpContext, CancellationToken cancellationToken);
+        Task<LoginDTO?> RefreshToken(TokenRequestDTO request, CancellationToken cancellationToken);
         Task<OperationResult<string>> Logout(HttpContext httpContext);
         Task<IdentityResult> ResetPassword(ResetPassword resetPassword);
     }

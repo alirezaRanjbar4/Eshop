@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Eshop.Infrastructure.ModelConfiguration.Identities
 {
-    public class Identity_UserLoginsConfiguration : IEntityTypeConfiguration<UserLoginEntity>
+    public class UserLoginsConfiguration : IEntityTypeConfiguration<UserLoginEntity>
     {
         public void Configure(EntityTypeBuilder<UserLoginEntity> builder)
         {

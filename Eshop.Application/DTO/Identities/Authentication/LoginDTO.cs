@@ -16,6 +16,7 @@ namespace Eshop.Application.DTO.Identities.Authentication
 
         public bool NeedCaptcha { get; set; }
         public string Token { get; set; }
+        public string RefreshToken { get; set; }
         public List<LoginUserRolesDTO> UserRoles { get; set; }
         [System.Text.Json.Serialization.JsonIgnore]
         public List<ControllerDTO>? Claims { get; set; }

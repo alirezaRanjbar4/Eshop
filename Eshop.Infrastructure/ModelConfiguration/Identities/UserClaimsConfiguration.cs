@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Eshop.Infrastructure.ModelConfiguration.Identities
 {
-    public class Identity_UserClaimsConfiguration : IEntityTypeConfiguration<UserClaimEntity>
+    public class UserClaimsConfiguration : IEntityTypeConfiguration<UserClaimEntity>
     {
         public void Configure(EntityTypeBuilder<UserClaimEntity> builder)
         {

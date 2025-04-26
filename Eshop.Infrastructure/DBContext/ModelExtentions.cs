@@ -54,7 +54,7 @@ public static class ModelExtentions
 
     public static void RegisterEntityTypeConfiguration(this ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(Identity_UserConfiguration).GetTypeInfo().Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserConfiguration).GetTypeInfo().Assembly);
     }
 
     public static void IgnorePropertyOfEntity(this ModelBuilder modelBuilder, string propertyName, Type propertyType)

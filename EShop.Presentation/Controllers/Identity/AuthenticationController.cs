@@ -29,6 +29,14 @@ namespace Eshop.Presentation.Controllers.Identity
 
 
         [AllowAnonymous]
+        [HttpPost(nameof(RefreshToken))]
+        public async Task<LoginDTO> RefreshToken([FromBody] TokenRequestDTO refreshToken, CancellationToken cancellationToken)
+        {
+            return await _authService.RefreshToken(refreshToken, cancellationToken);
+        }
+
+
+        [AllowAnonymous]
         [HttpPost(nameof(ResetPassword))]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPassword resetPassword) =>
             Ok(await _authService.ResetPassword(resetPassword));

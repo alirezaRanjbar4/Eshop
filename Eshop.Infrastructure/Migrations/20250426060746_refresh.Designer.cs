@@ -4,6 +4,7 @@ using Eshop.Infrastructure.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Rasam.Data.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20250426060746_refresh")]
+    partial class refresh
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,7 +43,6 @@ namespace Rasam.Data.Migrations
 
                     b.Property<string>("CreatedByIp")
                         .IsRequired()
-                        .HasMaxLength(50)
                         .HasColumnType("Nvarchar");
 
                     b.Property<bool>("Deleted")
@@ -59,7 +61,6 @@ namespace Rasam.Data.Migrations
 
                     b.Property<string>("ReplacedByToken")
                         .IsRequired()
-                        .HasMaxLength(4000)
                         .HasColumnType("Nvarchar");
 
                     b.Property<DateTime?>("RevokedAt")
@@ -67,12 +68,10 @@ namespace Rasam.Data.Migrations
 
                     b.Property<string>("RevokedByIp")
                         .IsRequired()
-                        .HasMaxLength(50)
                         .HasColumnType("Nvarchar");
 
                     b.Property<string>("Token")
                         .IsRequired()
-                        .HasMaxLength(4000)
                         .HasColumnType("Nvarchar");
 
                     b.Property<Guid>("UserId")
