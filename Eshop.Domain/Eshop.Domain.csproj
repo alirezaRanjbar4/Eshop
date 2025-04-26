@@ -14,13 +14,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.4" />
-		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="8.1.1" />
+		<PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="9.0.4" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Eshop.Share\Eshop.Share.csproj" />
-		<ProjectReference Include="..\Eshop.Application\Eshop.Application.csproj" />
+	  <ProjectReference Include="..\Eshop.Share\Eshop.Share.csproj" />
 	</ItemGroup>
 
 </Project>
