@@ -18,6 +18,7 @@ namespace Eshop.IocConfig
                                                     "http://192.168.5.134:3000",
                                                     "http://localhost:3000",
                                                     "http://192.168.5.129",
+                                                    "http://185.8.173.51",
                                                     "http://192.168.43.154:3000")
                                        .AllowCredentials();
                              }));
