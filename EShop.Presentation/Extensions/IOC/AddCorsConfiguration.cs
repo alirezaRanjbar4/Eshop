@@ -14,7 +14,7 @@ namespace Eshop.Presentation.Extensions.IOC
                 {
                     policy.WithOrigins(allowedOrigins)
                           .AllowAnyHeader()
-                          .WithMethods()
+                          .WithMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                           .AllowCredentials();
                 }));
 
