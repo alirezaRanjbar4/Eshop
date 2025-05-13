@@ -6,6 +6,7 @@ using Eshop.Application.Service.Identity.User;
 using Eshop.Domain.Identities;
 using Eshop.Domain.Models;
 using Eshop.Infrastructure.Repository.General;
+using Eshop.Share.Enum;
 
 namespace Eshop.Application.Service.Models.Vendor
 {
@@ -27,6 +28,7 @@ namespace Eshop.Application.Service.Models.Vendor
         public async Task<bool> AddVendor(VendorUserDTO vendorUser, CancellationToken cancellationToken)
         {
             var user = _mapper.Map<AddUserDTO>(vendorUser);
+            user.UserType = UserType.Vendor;
             var addUserResult = await _userService.AddUser(user, cancellationToken);
 
             var vendor = _mapper.Map<VendorDTO>(vendorUser);

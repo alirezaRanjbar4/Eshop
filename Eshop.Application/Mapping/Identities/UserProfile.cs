@@ -31,10 +31,7 @@ namespace Eshop.Application.Mapping.Identities
                .ForMember(dest => dest.ClaimValue, opt => opt.MapFrom(src => src.ClaimValue))
                .ReverseMap();
 
-            CreateMap<AddUserDTO, UserEntity>();
-
-            CreateMap<UserEntity, AddUserDTO>()
-               .ForMember(des => des.UserName, opt => opt.MapFrom(src => src.UserName));
+            CreateMap<AddUserDTO, UserEntity>().ReverseMap();
 
             CreateMap<UserEntity, EditUserDTO>();
 
