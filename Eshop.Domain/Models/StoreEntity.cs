@@ -25,5 +25,6 @@ namespace Eshop.Domain.Models
         public virtual ICollection<TransferReceiptEntity> TransferReceipts { get; set; }
         public virtual ICollection<FinancialDocumentEntity> FinancialDocuments { get; set; }
         public virtual ICollection<StorePaymentEntity> StorePayments { get; set; }
+        public virtual ICollection<AdditionalCostEntity> AdditionalCosts { get; set; }
     }
 }

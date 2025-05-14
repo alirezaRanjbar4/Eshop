@@ -45,7 +45,8 @@ namespace Eshop.Presentation.Controllers.Models
                 (string.IsNullOrEmpty(searchDTO.SearchTerm) || x.Name.Contains(searchDTO.SearchTerm)),
                 null,
                 o => o.OrderByDescending(x => x.CreateDate),
-                false, cancellationToken);
+                false,
+                cancellationToken);
         }
 
 

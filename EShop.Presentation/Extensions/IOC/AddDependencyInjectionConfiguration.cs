@@ -78,6 +78,7 @@ public static class AddDependencyInjectionConfiguration
         services.AddScoped<IBaseRepository<WarehouseEntity>, BaseRepository<WarehouseEntity>>();
         services.AddScoped<IBaseRepository<WarehouseLocationEntity>, BaseRepository<WarehouseLocationEntity>>();
         services.AddScoped<IBaseRepository<RefreshTokenEntity>, BaseRepository<RefreshTokenEntity>>();
+        services.AddScoped<IBaseRepository<AdditionalCostEntity>, BaseRepository<AdditionalCostEntity>>();
 
 
 
@@ -117,6 +118,7 @@ public static class AddDependencyInjectionConfiguration
         services.AddScoped<IBaseService<VendorEntity>, BaseService<VendorEntity>>();
         services.AddScoped<IBaseService<WarehouseEntity>, BaseService<WarehouseEntity>>();
         services.AddScoped<IBaseService<WarehouseLocationEntity>, BaseService<WarehouseLocationEntity>>();
+        services.AddScoped<IBaseService<AdditionalCostEntity>, BaseService<AdditionalCostEntity>>();
 
 
     }
