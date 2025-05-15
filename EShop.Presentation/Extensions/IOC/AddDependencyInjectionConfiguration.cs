@@ -17,6 +17,7 @@ using Eshop.Domain.Models;
 using Eshop.Infrastructure.Repository.General;
 using Eshop.Infrastructure.Repository.Identities.User;
 using Eshop.Infrastructure.Repository.Models.AccountParty;
+using Eshop.Infrastructure.Repository.Models.Receipt;
 using Eshop.Presentation.Components;
 using Eshop.Share.ActionFilters;
 using Eshop.Share.Helpers.Utilities.Interface;
@@ -50,6 +51,7 @@ public static class AddDependencyInjectionConfiguration
 
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IAccountPartyRepository, AccountPartyRepository>();
+        services.AddScoped<IReceiptRepository, ReceiptRepository>();
         services.AddScoped<IBaseRepository<RoleEntity>, BaseRepository<RoleEntity>>();
         services.AddScoped<IBaseRepository<RoleEntity>, BaseRepository<RoleEntity>>();
         services.AddScoped<IBaseRepository<UserRoleEntity>, BaseRepository<UserRoleEntity>>();
@@ -63,7 +65,6 @@ public static class AddDependencyInjectionConfiguration
         services.AddScoped<IBaseRepository<ProductPriceEntity>, BaseRepository<ProductPriceEntity>>();
         services.AddScoped<IBaseRepository<ProductTransferEntity>, BaseRepository<ProductTransferEntity>>();
         services.AddScoped<IBaseRepository<ProductWarehouseLocationEntity>, BaseRepository<ProductWarehouseLocationEntity>>();
-        services.AddScoped<IBaseRepository<ReceiptEntity>, BaseRepository<ReceiptEntity>>();
         services.AddScoped<IBaseRepository<ReceiptFinancialDocumentEntity>, BaseRepository<ReceiptFinancialDocumentEntity>>();
         services.AddScoped<IBaseRepository<ReceiptProductItemEntity>, BaseRepository<ReceiptProductItemEntity>>();
         services.AddScoped<IBaseRepository<ReceiptServiceItemEntity>, BaseRepository<ReceiptServiceItemEntity>>();
