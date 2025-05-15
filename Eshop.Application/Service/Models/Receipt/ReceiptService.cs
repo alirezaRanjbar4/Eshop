@@ -3,7 +3,7 @@ using Eshop.Application.DTO.Models.Product;
 using Eshop.Application.DTO.Models.Receipt;
 using Eshop.Application.Service.General;
 using Eshop.Domain.Models;
-using Eshop.Infrastructure.Repository.General;
+using Eshop.Infrastructure.Repository.Models.Receipt;
 using Eshop.Share.Enum;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,17 +14,28 @@ namespace Eshop.Application.Service.Models.Receipt
         private readonly IBaseService<ReceiptProductItemEntity> _receiptProductItemService;
         private readonly IBaseService<ReceiptServiceItemEntity> _receiptServiceItemService;
         private readonly IBaseService<ProductWarehouseLocationEntity> _productWarehouseLocationService;
+        private readonly IReceiptRepository _receiptRepository;
         public ReceiptService(
             IBaseService<ReceiptProductItemEntity> receiptProductItemService,
             IBaseService<ReceiptServiceItemEntity> receiptServiceItemService,
             IBaseService<ProductWarehouseLocationEntity> productWarehouseLocationService,
             IMapper mapper,
-            IBaseRepository<ReceiptEntity> ReceiptRepository) : base(ReceiptRepository, mapper)
+            IReceiptRepository receiptRepository) : base(receiptRepository, mapper)
         {
             _receiptProductItemService = receiptProductItemService;
             _receiptServiceItemService = receiptServiceItemService;
             _productWarehouseLocationService = productWarehouseLocationService;
+            _receiptRepository = receiptRepository;
         }
+
+        public async Task<bool> AddReceipt(AddReceiptDTO dto, CancellationToken cancellationToken)
+        {
+            var lastReceiptNumber = await _receiptRepository.GetLastReceiptNumber(dto.StoreId, cancellationToken);
+            dto.ReceiptNumber = lastReceiptNumber + 1;
+            var result = await AddAsync(dto, true, cancellationToken);
+            return result != null;
+        }
+
 
         public async Task<bool> UpdateReceipt(AddReceiptDTO dto, CancellationToken cancellationToken)
         {

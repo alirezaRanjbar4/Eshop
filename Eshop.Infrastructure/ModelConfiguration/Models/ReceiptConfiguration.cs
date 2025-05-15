@@ -19,6 +19,8 @@ namespace Eshop.Infrastructure.ModelConfiguration.Models
 
             builder.Property(x => x.Date).HasColumnType(DataTypes.Datetime.ToString());
             builder.Property(x => x.Description).HasColumnType(DataTypes.Nvarchar.ToString()).HasMaxLength(4000).IsRequired(false);
+            builder.Property(x => x.ReceiptSerial).HasColumnType(DataTypes.Nvarchar.ToString()).HasMaxLength(50).IsRequired(false);
+            builder.Property(x => x.ReceiptNumber).HasColumnType(DataTypes.Int.ToString());
             builder.Property(x => x.IsFinalized).HasColumnType(DataTypes.Bit.ToString());
             builder.Property(x => x.Type).HasColumnType(DataTypes.Tinyint.ToString());
             builder.Property(x => x.StoreId).HasColumnType(DataTypes.UniqueIdentifier.ToString()).IsRequired(true);

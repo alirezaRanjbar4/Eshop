@@ -10,6 +10,9 @@ namespace Eshop.Application.Mapping.Models
         {
             CreateMap<ReceiptEntity, ReceiptDTO>().ReverseMap();
 
+            CreateMap<ReceiptEntity, SimpleReceiptDTO>()
+                .ForMember(des => des.AccountParty, option => option.MapFrom(src => src.AccountParty != null ? src.AccountParty.Name : string.Empty));
+
             CreateMap<AddReceiptDTO, ReceiptEntity>();
 
             CreateMap<AddReceiptDTO, ReceiptDTO>();

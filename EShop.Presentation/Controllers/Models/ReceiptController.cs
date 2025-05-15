@@ -6,6 +6,7 @@ using Eshop.Share.ActionFilters.Response;
 using Eshop.Share.Enum;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,7 +38,23 @@ namespace Eshop.Presentation.Controllers.Models
                 (searchDTO.AccountPartyId == null || searchDTO.AccountPartyId == Guid.Empty || x.AccountPartyId == searchDTO.AccountPartyId),
                 null,
                 o => o.OrderByDescending(x => x.CreateDate),
-                false, cancellationToken);
+                false,
+                cancellationToken);
+        }
+
+
+        [HttpPost(nameof(GetAllReceipt)), /*DisplayName(nameof(PermissionResourceEnums.GetAllPermission))*/]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        public async Task<List<SimpleReceiptDTO>> GetAllReceipt([FromBody] SimpleSearchReceiptDTO searchDTO, CancellationToken cancellationToken)
+        {
+            return await _receiptService.GetAllAsync<SimpleReceiptDTO>(
+                x => x.StoreId == CurrentUserStoreId &&
+                (searchDTO.Type == null || x.Type == searchDTO.Type) &&
+                (string.IsNullOrEmpty(searchDTO.SearchTerm) || x.AccountParty.Name.Contains(searchDTO.SearchTerm) || x.ReceiptSerial.Contains(searchDTO.SearchTerm)),
+                i => i.Include(x => x.AccountParty),
+                o => o.OrderByDescending(x => x.CreateDate),
+                false,
+                cancellationToken);
         }
 
 
@@ -46,8 +63,7 @@ namespace Eshop.Presentation.Controllers.Models
         [SuccessFilter(ResourceKey = GlobalResourceEnums.AddComplete, ResultType = ResultType.Success)]
         public async Task<bool> AddReceipt([FromBody] AddReceiptDTO receipt, CancellationToken cancellationToken)
         {
-            var result = await _receiptService.AddAsync(receipt, true, cancellationToken);
-            return result != null;
+            return await _receiptService.AddReceipt(receipt, cancellationToken);
         }
 
 

@@ -5,6 +5,8 @@ namespace Eshop.Application.DTO.Models.Receipt
 {
     public class ReceiptDTO : BaseDTO
     {
+        public int ReceiptNumber { get; set; }
+        public string? ReceiptSerial { get; set; }
         public DateTime Date { get; set; }
         public string? Description { get; set; }
         public bool IsFinalized { get; set; }

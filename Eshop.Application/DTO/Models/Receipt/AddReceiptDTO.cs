@@ -6,6 +6,8 @@ namespace Eshop.Application.DTO.Models.Receipt
     public class AddReceiptDTO : BaseDTO
     {
         public DateTime Date { get; set; }
+        public int ReceiptNumber { get; set; }
+        public string? ReceiptSerial { get; set; }
         public string? Description { get; set; }
         public ReceiptType Type { get; set; }
         public Guid AccountPartyId { get; set; }

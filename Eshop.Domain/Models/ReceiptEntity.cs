@@ -7,6 +7,8 @@ namespace Eshop.Domain.Models
     {
         public DateTime Date { get; set; }
         public string? Description { get; set; }
+        public int ReceiptNumber { get; set; }
+        public string? ReceiptSerial { get; set; }
         public bool IsFinalized { get; set; }
         public ReceiptType Type { get; set; }
 
