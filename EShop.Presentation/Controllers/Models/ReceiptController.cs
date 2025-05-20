@@ -50,6 +50,7 @@ namespace Eshop.Presentation.Controllers.Models
             return await _receiptService.GetAllAsync<SimpleReceiptDTO>(
                 x => x.StoreId == CurrentUserStoreId &&
                 (searchDTO.Type == null || x.Type == searchDTO.Type) &&
+                (searchDTO.AccountPartyId == null || searchDTO.AccountPartyId == Guid.Empty || x.AccountPartyId == searchDTO.AccountPartyId) &&
                 (string.IsNullOrEmpty(searchDTO.SearchTerm) || x.AccountParty.Name.Contains(searchDTO.SearchTerm) || x.ReceiptSerial.Contains(searchDTO.SearchTerm)),
                 i => i.Include(x => x.AccountParty),
                 o => o.OrderByDescending(x => x.CreateDate),
