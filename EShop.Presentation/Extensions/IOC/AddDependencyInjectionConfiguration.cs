@@ -7,6 +7,7 @@ using Eshop.Application.Service.Identity.User;
 using Eshop.Application.Service.Models.FinancialDocument;
 using Eshop.Application.Service.Models.Product;
 using Eshop.Application.Service.Models.Receipt;
+using Eshop.Application.Service.Models.SchedulerTask;
 using Eshop.Application.Service.Models.Service;
 using Eshop.Application.Service.Models.TransferReceipt;
 using Eshop.Application.Service.Models.Vendor;
@@ -80,6 +81,8 @@ public static class AddDependencyInjectionConfiguration
         services.AddScoped<IBaseRepository<WarehouseLocationEntity>, BaseRepository<WarehouseLocationEntity>>();
         services.AddScoped<IBaseRepository<RefreshTokenEntity>, BaseRepository<RefreshTokenEntity>>();
         services.AddScoped<IBaseRepository<AdditionalCostEntity>, BaseRepository<AdditionalCostEntity>>();
+        services.AddScoped<IBaseRepository<SchedulerTaskEntity>, BaseRepository<SchedulerTaskEntity>>();
+        services.AddScoped<IBaseRepository<SchedulerTaskVendorEntity>, BaseRepository<SchedulerTaskVendorEntity>>();
 
 
 
@@ -93,6 +96,8 @@ public static class AddDependencyInjectionConfiguration
         services.AddScoped<ITransferReceiptService, TransferReceiptService>();
         services.AddScoped<IVendorService, VendorService>();
         services.AddScoped<IWarehouseService, WarehouseService>();
+        services.AddScoped<ISchedulerTaskService, SchedulerTaskService>();
+        services.AddScoped<ISchedulerTaskVendorService, SchedulerTaskVendorService>();
         services.AddScoped<IBaseService<RoleEntity>, BaseService<RoleEntity>>();
         services.AddScoped<IBaseService<UserRoleEntity>, BaseService<UserRoleEntity>>();
         services.AddScoped<IBaseService<AccountPartyEntity>, BaseService<AccountPartyEntity>>();

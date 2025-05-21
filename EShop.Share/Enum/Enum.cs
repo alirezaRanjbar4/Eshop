@@ -101,4 +101,52 @@ namespace Eshop.Share.Enum
         [Description("چک بانکی")]
         Cheque = 4
     }
+
+    public enum SchedulerTaskType
+    {
+        [Description("بدون فرم")]
+        NoForm = 1,
+
+        [Description("سفارش")]
+        Order = 2,
+
+        [Description("مشتری")]
+        Customer = 3,
+
+        [Description("سرنخ فروش")]
+        SalesLead = 4
+    }
+
+    public enum SchedulerTaskRepetType
+    {
+        [Description("روزانه")]
+        Daily = 1,
+
+        [Description("هفتگی")]
+        Weekly = 2,
+
+        [Description("ماهانه")]
+        Monthly = 3,
+
+        [Description("هر 3 ماه")]
+        Every3Month = 4,
+
+        [Description("هر 6 ماه")]
+        Every6Month = 5,
+
+        [Description("سالانه")]
+        Yearly = 6,
+    }
+
+    public enum SchedulerTaskPriority
+    {
+        [Description("عادی")]
+        Normal = 1,
+
+        [Description("فوری")]
+        Immediate = 2,
+
+        [Description("بسیار فوری")]
+        VeryImmediate = 3
+    }
 }

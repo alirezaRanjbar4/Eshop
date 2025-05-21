@@ -12,5 +12,7 @@ namespace Eshop.Domain.Models
 
         public Guid StoreId { get; set; }
         public virtual StoreEntity Store { get; set; }
+
+        public virtual ICollection<SchedulerTaskVendorEntity> SchedulerTaskVendors { get; set; }
     }
 }
