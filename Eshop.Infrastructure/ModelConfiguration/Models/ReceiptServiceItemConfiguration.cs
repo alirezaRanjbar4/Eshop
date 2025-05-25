@@ -18,11 +18,11 @@ namespace Eshop.Infrastructure.ModelConfiguration.Models
             builder.HasOne(x => x.ModifiedBy).WithMany().HasForeignKey(x => x.ModifiedById).IsRequired(false).OnDelete(DeleteBehavior.Restrict);
 
             builder.Property(x => x.Description).HasColumnType(DataTypes.Nvarchar.ToString()).HasMaxLength(4000).IsRequired(false);
-            builder.Property(x => x.Count).HasColumnType(DataTypes.Float.ToString());
+            builder.Property(x => x.Count).HasColumnType(DataTypes.BigInt.ToString());
             builder.Property(x => x.Price).HasColumnType(DataTypes.BigInt.ToString());
             builder.Property(x => x.DiscountPrice).HasColumnType(DataTypes.BigInt.ToString()).IsRequired(false);
             builder.Property(x => x.DiscountPercent).HasColumnType(DataTypes.Int.ToString()).IsRequired(false);
-            builder.Property(x => x.ValueAdded).HasColumnType(DataTypes.Int.ToString()).IsRequired(false);
+            builder.Property(x => x.ValueAddedPercent).HasColumnType(DataTypes.Int.ToString()).IsRequired(false);
             builder.Property(x => x.ReceiptId).HasColumnType(DataTypes.UniqueIdentifier.ToString());
             builder.Property(x => x.ServiceId).HasColumnType(DataTypes.UniqueIdentifier.ToString());
 
