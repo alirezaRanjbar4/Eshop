@@ -11,6 +11,6 @@ namespace Eshop.Application.DTO.Models.Receipt
         public ReceiptType Type { get; set; }
         public string String_Date { get; set; }
         public string String_AccountParty { get; set; }
-        public string String_TotalAmount { get; set; }
+        public string String_TotalFinalPrice { get; set; }
     }
 }

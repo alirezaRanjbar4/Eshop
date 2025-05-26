@@ -37,7 +37,9 @@ namespace Eshop.Presentation.Controllers.Models
                 (searchDTO.Type == null || x.Type == searchDTO.Type) &&
                 (searchDTO.AccountPartyId == null || searchDTO.AccountPartyId == Guid.Empty || x.AccountPartyId == searchDTO.AccountPartyId) &&
                 (string.IsNullOrEmpty(searchDTO.SearchTerm) || x.ReceiptSerial.Contains(searchDTO.SearchTerm)),
-                i => i.Include(x => x.AccountParty),
+                i => i.Include(x => x.AccountParty)
+                      .Include(x => x.ProductItems)
+                      .Include(x => x.ServiceItems),
                 o => o.OrderByDescending(x => x.CreateDate),
                 false,
                 cancellationToken);

@@ -5,6 +5,11 @@ namespace Eshop.Application.DTO.Models.Receipt
 {
     public class GetReceiptDTO : BaseDTO
     {
+        public GetReceiptDTO()
+        {
+            ProductItems = new List<GetReceiptProductItemDTO>();
+            ServiceItems = new List<GetReceiptServiceItemDTO>();
+        }
         public int ReceiptNumber { get; set; }
         public string? ReceiptSerial { get; set; }
         public DateTime Date { get; set; }
@@ -20,7 +25,6 @@ namespace Eshop.Application.DTO.Models.Receipt
 
         public string String_Date { get; set; }
         public string String_AccountParty { get; set; }
-        public string String_Store { get; set; }
 
         public long TotalPrice { get; set; }
         public long TotalDiscountPrice { get; set; }
