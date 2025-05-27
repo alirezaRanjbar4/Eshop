@@ -21,6 +21,8 @@ namespace Eshop.Infrastructure.ModelConfiguration.Models
             builder.Property(x => x.EnglishName).HasColumnType(DataTypes.Nvarchar.ToString()).HasMaxLength(50);
             builder.Property(x => x.Phone).HasColumnType(DataTypes.Nvarchar.ToString()).HasMaxLength(50);
             builder.Property(x => x.Address).HasColumnType(DataTypes.Nvarchar.ToString()).HasMaxLength(50);
+            builder.Property(x => x.Code).HasColumnType(DataTypes.Nvarchar.ToString()).HasMaxLength(50);
+            builder.Property(x => x.DigitalSignature).HasColumnType(DataTypes.Nvarchar.ToString()).HasMaxLength(4000);
             builder.Property(x => x.IsActive).HasColumnType(DataTypes.Bit.ToString());
         }
     }

@@ -8,5 +8,6 @@ namespace Eshop.Application.DTO.Models.Store
         public string EnglishName { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
+        public string? DigitalSignature { get; set; }
     }
 }

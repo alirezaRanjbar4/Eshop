@@ -10,6 +10,7 @@ namespace Eshop.Domain.Models
         public string Phone { get; set; }
         public string Address { get; set; }
         public string Code { get; set; }
+        public string? DigitalSignature { get; set; }
         public bool IsActive { get; set; }
         public StoreType StoreType { get; set; }
         public DateTime NextPaymentDate { get; set; }
