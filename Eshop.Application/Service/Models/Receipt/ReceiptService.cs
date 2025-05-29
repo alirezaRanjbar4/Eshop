@@ -43,7 +43,7 @@ namespace Eshop.Application.Service.Models.Receipt
             var updateResult = await UpdateAsync(model, true, true, cancellationToken);
 
             var existedProductItems = await _receiptProductItemService.GetAllAsync<ReceiptProductItemDTO>(x => x.ReceiptId == dto.Id, null, null, false, cancellationToken);
-            var existedServiceItems = await _receiptServiceItemService.GetAllAsync<ReceiptProductItemDTO>(x => x.ReceiptId == dto.Id, null, null, false, cancellationToken);
+            var existedServiceItems = await _receiptServiceItemService.GetAllAsync<ReceiptServiceItemDTO>(x => x.ReceiptId == dto.Id, null, null, false, cancellationToken);
 
             #region Product Items
             var addProductItemslist = dto.ProductItems.Where(x => x.Id == Guid.Empty).ToList();
