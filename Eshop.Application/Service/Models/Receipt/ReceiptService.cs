@@ -42,16 +42,17 @@ namespace Eshop.Application.Service.Models.Receipt
             var model = _mapper.Map<ReceiptDTO>(dto);
             var updateResult = await UpdateAsync(model, true, true, cancellationToken);
 
-            var existedItems = await _receiptProductItemService.GetAllAsync<ReceiptProductItemDTO>(x => x.ReceiptId == dto.Id, null, null, false, cancellationToken);
+            var existedProductItems = await _receiptProductItemService.GetAllAsync<ReceiptProductItemDTO>(x => x.ReceiptId == dto.Id, null, null, false, cancellationToken);
+            var existedServiceItems = await _receiptServiceItemService.GetAllAsync<ReceiptProductItemDTO>(x => x.ReceiptId == dto.Id, null, null, false, cancellationToken);
 
             #region Product Items
             var addProductItemslist = dto.ProductItems.Where(x => x.Id == Guid.Empty).ToList();
             await _receiptProductItemService.AddRangeAsync(addProductItemslist, true, cancellationToken);
 
-            var updateProductItemslist = existedItems.Where(x => dto.ProductItems.Select(x => x.Id).Contains(x.Id)).ToList();
+            var updateProductItemslist = existedProductItems.Where(x => dto.ProductItems.Select(x => x.Id).Contains(x.Id)).ToList();
             await _receiptProductItemService.UpdateRangeAsync(updateProductItemslist, true, cancellationToken);
 
-            var deleteProductItemsList = existedItems.Where(x => !dto.ProductItems.Select(x => x.Id).Contains(x.Id)).ToList();
+            var deleteProductItemsList = existedProductItems.Where(x => !dto.ProductItems.Select(x => x.Id).Contains(x.Id)).ToList();
             await _receiptProductItemService.DeleteRangeAsync(deleteProductItemsList, true, true, cancellationToken);
             #endregion
 
@@ -59,10 +60,10 @@ namespace Eshop.Application.Service.Models.Receipt
             var addServiceItemslist = dto.ServiceItems.Where(x => x.Id == Guid.Empty).ToList();
             await _receiptServiceItemService.AddRangeAsync(addServiceItemslist, true, cancellationToken);
 
-            var updateServiceItemslist = existedItems.Where(x => dto.ServiceItems.Select(x => x.Id).Contains(x.Id)).ToList();
+            var updateServiceItemslist = existedServiceItems.Where(x => dto.ServiceItems.Select(x => x.Id).Contains(x.Id)).ToList();
             await _receiptServiceItemService.UpdateRangeAsync(updateServiceItemslist, true, cancellationToken);
 
-            var deleteServiceItemsList = existedItems.Where(x => !dto.ServiceItems.Select(x => x.Id).Contains(x.Id)).ToList();
+            var deleteServiceItemsList = existedServiceItems.Where(x => !dto.ServiceItems.Select(x => x.Id).Contains(x.Id)).ToList();
             await _receiptServiceItemService.DeleteRangeAsync(deleteServiceItemsList, true, true, cancellationToken);
             #endregion
 
