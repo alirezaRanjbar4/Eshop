@@ -7,6 +7,7 @@ namespace Eshop.Application.DTO.Models.Receipt
     {
         public int ReceiptNumber { get; set; }
         public string? ReceiptSerial { get; set; }
+        public string? Description { get; set; }
         public bool IsFinalized { get; set; }
         public ReceiptType Type { get; set; }
         public string String_Date { get; set; }
