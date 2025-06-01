@@ -1,5 +1,6 @@
 ﻿using Eshop.Application.Service.General;
 using Eshop.Application.Service.General.FileStorage;
+using Eshop.Application.Service.General.Report;
 using Eshop.Application.Service.General.Security;
 using Eshop.Application.Service.Identity.Authentication;
 using Eshop.Application.Service.Identity.JWT;
@@ -48,6 +49,7 @@ public static class AddDependencyInjectionConfiguration
         services.AddSingleton<IAuthorizationHandler, DynamicPermissionsAuthorizationHandler>();
         services.AddSingleton<IMvcActionsDiscoveryService, MvcActionsDiscoveryService>();
         services.AddSingleton<ISecurityTrimmingService, SecurityTrimmingService>();
+        services.AddSingleton<IReportService, ReportService>();
 
 
         services.AddScoped<IUserRepository, UserRepository>();
