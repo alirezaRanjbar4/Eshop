@@ -1,5 +1,4 @@
 ﻿using Eshop.Application.DTO.Identities.DynamicAccess;
-using Eshop.Application.Service.Identity;
 using Eshop.Presentation.Extensions.IOC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
