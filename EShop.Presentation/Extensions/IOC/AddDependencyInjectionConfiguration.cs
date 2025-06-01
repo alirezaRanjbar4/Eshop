@@ -1,5 +1,6 @@
-﻿using Eshop.Application.Service.FileStorage;
-using Eshop.Application.Service.General;
+﻿using Eshop.Application.Service.General;
+using Eshop.Application.Service.General.FileStorage;
+using Eshop.Application.Service.General.Security;
 using Eshop.Application.Service.Identity.Authentication;
 using Eshop.Application.Service.Identity.JWT;
 using Eshop.Application.Service.Identity.Role;
@@ -12,7 +13,6 @@ using Eshop.Application.Service.Models.Service;
 using Eshop.Application.Service.Models.TransferReceipt;
 using Eshop.Application.Service.Models.Vendor;
 using Eshop.Application.Service.Models.Warehouse;
-using Eshop.Application.Service.Security;
 using Eshop.Domain.Identities;
 using Eshop.Domain.Models;
 using Eshop.Infrastructure.Repository.General;

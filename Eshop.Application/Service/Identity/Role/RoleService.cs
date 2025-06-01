@@ -2,7 +2,7 @@
 using Eshop.Application.DTO.Identities.DynamicAccess;
 using Eshop.Application.DTO.Identities.Role;
 using Eshop.Application.Service.General;
-using Eshop.Application.Service.Security;
+using Eshop.Application.Service.General.Security;
 using Eshop.Domain.Identities;
 using Eshop.Infrastructure.Repository.General;
 using Eshop.Share.ActionFilters.Response;

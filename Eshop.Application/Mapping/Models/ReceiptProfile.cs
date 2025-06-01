@@ -33,49 +33,6 @@ namespace Eshop.Application.Mapping.Models
             CreateMap<ReceiptEntity, SimpleReceiptDTO>()
                 .ForMember(des => des.AccountParty, option => option.MapFrom(src => src.AccountParty != null ? src.AccountParty.Name : string.Empty));
 
-            CreateMap<ReceiptEntity, GetAllReceiptDTO>()
-                .ForMember(des => des.String_AccountParty, option => option.MapFrom(src => src.AccountParty != null ? src.AccountParty.Name : string.Empty))
-                .ForMember(des => des.String_Date, option => option.MapFrom(src => Utility.CalandarProvider.MiladiToShamsi(src.Date, false)))
-                .AfterMap((src, des) =>
-                {
-                    long totalFinalPrice = 0;
-                    if (src.ProductItems != null && src.ProductItems.Any())
-                    {
-                        foreach (var item in src.ProductItems)
-                        {
-                            var Price = item.Price * item.Count;
-                            var DiscountPrice = item.DiscountPrice.HasValue ? item.DiscountPrice.Value : 0;
-                            if (item.DiscountPercent.HasValue)
-                            {
-                                DiscountPrice = Price * item.DiscountPercent.Value / 100;
-                            }
-
-                            var ValueAddedPrice = item.ValueAddedPercent.HasValue ? (Price - DiscountPrice) * item.ValueAddedPercent.Value / 100 : 0;
-                            var final = Price - DiscountPrice + ValueAddedPrice;
-                            totalFinalPrice += final;
-                        }
-                    }
-
-                    if (src.ServiceItems != null && src.ServiceItems.Any())
-                    {
-                        foreach (var item in src.ServiceItems)
-                        {
-                            var Price = item.Price * item.Count;
-                            var DiscountPrice = item.DiscountPrice.HasValue ? item.DiscountPrice.Value : 0;
-                            if (item.DiscountPercent.HasValue)
-                            {
-                                DiscountPrice = Price * item.DiscountPercent.Value / 100;
-                            }
-
-                            var ValueAddedPrice = item.ValueAddedPercent.HasValue ? (Price - DiscountPrice) * item.ValueAddedPercent.Value / 100 : 0;
-                            var final = Price - DiscountPrice + ValueAddedPrice;
-                            totalFinalPrice += final;
-                        }
-                    }
-
-                    des.String_TotalFinalPrice = totalFinalPrice.ToString("N0");
-                });
-
             CreateMap<AddReceiptDTO, ReceiptEntity>();
 
             CreateMap<AddReceiptDTO, ReceiptDTO>();
@@ -86,8 +43,8 @@ namespace Eshop.Application.Mapping.Models
                 .ForMember(des => des.String_Product, option => option.MapFrom(src => src.Product != null ? src.Product.Name : string.Empty))
                 .AfterMap((src, des) =>
                 {
-                    des.TotalFinalPrice = src.Price * src.Count;
-                    des.String_TotalFinalPrice = des.TotalFinalPrice.ToString("N0");
+                    des.TotalPrice = src.Price * src.Count;
+                    des.String_TotalPrice = des.TotalPrice.ToString("N0");
 
                     if (src.DiscountPrice.HasValue)
                     {
@@ -95,7 +52,7 @@ namespace Eshop.Application.Mapping.Models
                     }
                     else if (src.DiscountPercent.HasValue)
                     {
-                        des.FinalDiscountPrice = des.TotalFinalPrice * src.DiscountPercent.Value / 100;
+                        des.FinalDiscountPrice = des.TotalPrice * src.DiscountPercent.Value / 100;
                     }
                     else
                     {
@@ -103,7 +60,7 @@ namespace Eshop.Application.Mapping.Models
                     }
                     des.String_FinalDiscountPrice = des.FinalDiscountPrice.ToString("N0");
 
-                    des.TotalPriceAfterDiscount = des.TotalFinalPrice - des.FinalDiscountPrice;
+                    des.TotalPriceAfterDiscount = des.TotalPrice - des.FinalDiscountPrice;
                     des.String_TotalPriceAfterDiscount = des.TotalPriceAfterDiscount.ToString("N0");
 
                     if (src.ValueAddedPercent.HasValue)
@@ -126,8 +83,8 @@ namespace Eshop.Application.Mapping.Models
                 .ForMember(des => des.String_Service, option => option.MapFrom(src => src.Service != null ? src.Service.Name : string.Empty))
                 .AfterMap((src, des) =>
                 {
-                    des.TotalFinalPrice = src.Price * src.Count;
-                    des.String_TotalFinalPrice = des.TotalFinalPrice.ToString("N0");
+                    des.TotalPrice = src.Price * src.Count;
+                    des.String_TotalPrice = des.TotalPrice.ToString("N0");
 
                     if (src.DiscountPrice.HasValue)
                     {
@@ -135,7 +92,7 @@ namespace Eshop.Application.Mapping.Models
                     }
                     else if (src.DiscountPercent.HasValue)
                     {
-                        des.FinalDiscountPrice = des.TotalFinalPrice * src.DiscountPercent.Value / 100;
+                        des.FinalDiscountPrice = des.TotalPrice * src.DiscountPercent.Value / 100;
                     }
                     else
                     {
@@ -143,7 +100,7 @@ namespace Eshop.Application.Mapping.Models
                     }
                     des.String_FinalDiscountPrice = des.FinalDiscountPrice.ToString("N0");
 
-                    des.TotalPriceAfterDiscount = des.TotalFinalPrice - des.FinalDiscountPrice;
+                    des.TotalPriceAfterDiscount = des.TotalPrice - des.FinalDiscountPrice;
                     des.String_TotalPriceAfterDiscount = des.TotalPriceAfterDiscount.ToString("N0");
 
                     if (src.ValueAddedPercent.HasValue)
@@ -159,6 +116,56 @@ namespace Eshop.Application.Mapping.Models
                     des.TotalFinalPrice = des.TotalPriceAfterDiscount + des.ValueAddedPrice;
                     des.String_TotalFinalPrice = des.TotalFinalPrice.ToString("N0");
                 });
+
+            CreateMap<ReceiptEntity, GetAllReceiptDTO>()
+             .ForMember(des => des.String_AccountParty, option => option.MapFrom(src => src.AccountParty != null ? src.AccountParty.Name : string.Empty))
+             .ForMember(des => des.String_Date, opt => opt.MapFrom(src => Utility.CalandarProvider.MiladiToShamsi(src.Date, false)))
+             .AfterMap((src, des) =>
+             {
+                 var totalFinalPrice =
+                     (src.ProductItems ?? []).Sum(item => CalculateFinalPrice(item.Count, item.Price, item.DiscountPercent, item.DiscountPrice, item.ValueAddedPercent))
+                     +
+                     (src.ServiceItems ?? []).Sum(item => CalculateFinalPrice(item.Count, item.Price, item.DiscountPercent, item.DiscountPrice, item.ValueAddedPercent));
+
+                 des.String_TotalFinalPrice = totalFinalPrice.ToString("N0");
+             });
+
+            CreateMap<ReceiptEntity, ReportReceiptItemDTO>()
+                .AfterMap((src, des) =>
+                {
+                    des.TotalFinalPrice =
+                         (src.ProductItems ?? []).Sum(item => CalculateFinalPrice(item.Count, item.Price, item.DiscountPercent, item.DiscountPrice, item.ValueAddedPercent))
+                         +
+                         (src.ServiceItems ?? []).Sum(item => CalculateFinalPrice(item.Count, item.Price, item.DiscountPercent, item.DiscountPrice, item.ValueAddedPercent));
+                });
+
+            CreateMap<ReceiptServiceItemEntity, ReportReceiptItemDTO>()
+                .ForMember(des => des.Type, option => option.MapFrom(src => src.Receipt.Type))
+                .ForMember(des => des.Date, option => option.MapFrom(src => src.Receipt.Date))
+                .AfterMap((src, des) =>
+                {
+                    des.TotalFinalPrice = CalculateFinalPrice(src.Count, src.Price, src.DiscountPercent, src.DiscountPrice, src.ValueAddedPercent);
+                });
+
+            CreateMap<ReceiptProductItemEntity, ReportReceiptItemDTO>()
+                .ForMember(des => des.Type, option => option.MapFrom(src => src.Receipt.Type))
+                .ForMember(des => des.Date, option => option.MapFrom(src => src.Receipt.Date))
+                .AfterMap((src, des) =>
+                {
+                    des.TotalFinalPrice = CalculateFinalPrice(src.Count, src.Price, src.DiscountPercent, src.DiscountPrice, src.ValueAddedPercent);
+                });
+        }
+
+        private static long CalculateFinalPrice(long count, long price, int? discountPercent, long? discountPrice, int? valueAddedPercent)
+        {
+            long totalPrice = count * price;
+
+            long appliedDiscount = discountPrice ?? (discountPercent.HasValue ? (totalPrice * discountPercent.Value / 100) : 0);
+            long priceAfterDiscount = totalPrice - appliedDiscount;
+
+            long valueAdded = valueAddedPercent.HasValue ? (priceAfterDiscount * valueAddedPercent.Value / 100) : 0;
+
+            return priceAfterDiscount + valueAdded;
         }
     }
 }

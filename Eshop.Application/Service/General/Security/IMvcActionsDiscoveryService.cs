@@ -1,6 +1,6 @@
 ﻿using Eshop.Application.DTO.Identities.DynamicAccess;
 
-namespace Eshop.Application.Service.Security
+namespace Eshop.Application.Service.General.Security
 {
     public interface IMvcActionsDiscoveryService
     {

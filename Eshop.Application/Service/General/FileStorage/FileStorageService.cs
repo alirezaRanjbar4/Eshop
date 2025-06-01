@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 
-namespace Eshop.Application.Service.FileStorage
+namespace Eshop.Application.Service.General.FileStorage
 {
     public class FileStorageService : IFileStorageService
     {

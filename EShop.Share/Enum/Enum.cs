@@ -2,6 +2,18 @@
 
 namespace Eshop.Share.Enum
 {
+    public enum ReportTimeFrame
+    {
+        [Description("روزانه")]
+        Daily,
+
+        [Description("ماهانه")]
+        Monthly,
+
+        [Description("سالانه")]
+        Yearly
+    }
+
     public enum StoreType
     {
         [Description("فروش محصول")]

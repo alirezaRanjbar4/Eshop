@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using System.Net;
 using System.Security.Claims;
 
-namespace Eshop.Application.Service.Security
+namespace Eshop.Application.Service.General.Security
 {
     public class SecurityTrimmingService : ISecurityTrimmingService
     {

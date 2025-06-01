@@ -12,7 +12,7 @@ using System.Globalization;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-namespace Eshop.Application.Service.Security
+namespace Eshop.Application.Service.General.Security
 {
     public class MvcActionsDiscoveryService : IMvcActionsDiscoveryService
     {

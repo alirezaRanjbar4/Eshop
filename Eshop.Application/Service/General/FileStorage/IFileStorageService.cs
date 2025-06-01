@@ -1,7 +1,7 @@
 ﻿using Eshop.Share.Helpers.Utilities.Utilities.Providers;
 using Microsoft.AspNetCore.Http;
 
-namespace Eshop.Application.Service.FileStorage
+namespace Eshop.Application.Service.General.FileStorage
 {
     public interface IFileStorageService
     {
