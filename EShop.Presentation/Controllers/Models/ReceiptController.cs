@@ -62,7 +62,7 @@ namespace Eshop.Presentation.Controllers.Models
         }
 
 
-        [HttpPost(nameof(GetReceipt)), DisplayName(nameof(PermissionResourceEnums.GetPermission))]
+        [HttpGet(nameof(GetReceipt)), DisplayName(nameof(PermissionResourceEnums.GetPermission))]
         //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         public async Task<GetReceiptDTO> GetReceipt(Guid receiptId, CancellationToken cancellationToken)
         {
@@ -71,6 +71,19 @@ namespace Eshop.Presentation.Controllers.Models
                 i => i.Include(x => x.ServiceItems).ThenInclude(x => x.Service)
                       .Include(x => x.ProductItems).ThenInclude(x => x.Product)
                       .Include(x => x.AccountParty),
+                false,
+                cancellationToken);
+        }
+
+
+        [HttpGet(nameof(GetReceiptForEdit))]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        public async Task<AddReceiptDTO> GetReceiptForEdit(Guid receiptId, CancellationToken cancellationToken)
+        {
+            return await _receiptService.GetAsync<AddReceiptDTO>(
+                x => x.Id == receiptId && x.StoreId == CurrentUserStoreId,
+                i => i.Include(x => x.ServiceItems)
+                      .Include(x => x.ProductItems),
                 false,
                 cancellationToken);
         }
