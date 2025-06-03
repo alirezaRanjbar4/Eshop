@@ -37,7 +37,9 @@ namespace Eshop.Application.Mapping.Models
 
             CreateMap<AddReceiptDTO, ReceiptDTO>();
 
-            CreateMap<ReceiptProductItemEntity, ReceiptProductItemDTO>().ReverseMap();
+            CreateMap<ReceiptProductItemEntity, ReceiptProductItemDTO>()
+                .ForMember(des => des.String_Product, option => option.MapFrom(src => src.Product != null ? src.Product.Name : string.Empty))
+                .ReverseMap();
 
             CreateMap<ReceiptProductItemEntity, GetReceiptProductItemDTO>()
                 .ForMember(des => des.String_Product, option => option.MapFrom(src => src.Product != null ? src.Product.Name : string.Empty))
@@ -77,7 +79,9 @@ namespace Eshop.Application.Mapping.Models
                     des.String_TotalFinalPrice = des.TotalFinalPrice.ToString("N0");
                 });
 
-            CreateMap<ReceiptServiceItemEntity, ReceiptServiceItemDTO>().ReverseMap();
+            CreateMap<ReceiptServiceItemEntity, ReceiptServiceItemDTO>()
+                .ForMember(des => des.String_Service, option => option.MapFrom(src => src.Service != null ? src.Service.Name : string.Empty))
+                .ReverseMap();
 
             CreateMap<ReceiptServiceItemEntity, GetReceiptServiceItemDTO>()
                 .ForMember(des => des.String_Service, option => option.MapFrom(src => src.Service != null ? src.Service.Name : string.Empty))

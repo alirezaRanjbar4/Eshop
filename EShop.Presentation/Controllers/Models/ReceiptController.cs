@@ -82,8 +82,8 @@ namespace Eshop.Presentation.Controllers.Models
         {
             return await _receiptService.GetAsync<AddReceiptDTO>(
                 x => x.Id == receiptId && x.StoreId == CurrentUserStoreId,
-                i => i.Include(x => x.ServiceItems)
-                      .Include(x => x.ProductItems),
+                i => i.Include(x => x.ServiceItems).ThenInclude(x => x.Service)
+                      .Include(x => x.ProductItems).ThenInclude(x => x.Product),
                 false,
                 cancellationToken);
         }

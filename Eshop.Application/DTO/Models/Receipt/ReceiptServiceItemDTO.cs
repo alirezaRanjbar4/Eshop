@@ -13,5 +13,7 @@ namespace Eshop.Application.DTO.Models.Receipt
 
         public Guid ReceiptId { get; set; }
         public Guid ServiceId { get; set; }
+
+        public string? String_Service { get; set; }
     }
 }
