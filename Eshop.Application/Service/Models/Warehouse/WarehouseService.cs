@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Eshop.Application.DTO.General;
 using Eshop.Application.DTO.Models.Warehouse;
 using Eshop.Application.Service.General;
 using Eshop.Domain.Models;
@@ -58,6 +59,19 @@ namespace Eshop.Application.Service.Models.Warehouse
             }
 
             return result.OrderBy(x => x.Product).ToList();
+        }
+
+        public async Task<List<SimpleDTO>> GetAllWarehouseLocation(Guid? productId, Guid storeId, CancellationToken cancellationToken)
+        {
+            return await _warehouseLocationService.GetAllAsync<SimpleDTO>(
+                x => x.Warehouse.StoreId == storeId &&
+                     (productId == Guid.Empty || productId == null || (x.ProductWarehouseLocations != null && x.ProductWarehouseLocations.Any(z => z.ProductId == productId && z.Count > 0))),
+                i => i.Include(x => x.ProductWarehouseLocations).
+                       Include(x => x.Warehouse),
+                o => o.OrderBy(x => x.WarehouseId),
+                false,
+                cancellationToken);
+
         }
     }
 }

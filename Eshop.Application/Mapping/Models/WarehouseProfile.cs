@@ -18,6 +18,10 @@ namespace Eshop.Application.Mapping.Models
 
             CreateMap<WarehouseLocationEntity, WarehouseLocationDTO>().ReverseMap();
 
+            CreateMap<WarehouseLocationEntity, SimpleDTO>()
+                .ForMember(des => des.Key, option => option.MapFrom(src => $"{src.Name}/{src.Warehouse.Name}"))
+                .ForMember(des => des.Value, option => option.MapFrom(src => src.Id));
+
             CreateMap<ProductWarehouseLocationEntity, ProductWarehouseLocationDTO>().ReverseMap();
 
             CreateMap<ProductWarehouseLocationEntity, SimpleDTO>()

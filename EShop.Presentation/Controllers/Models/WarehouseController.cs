@@ -1,4 +1,5 @@
-﻿using Eshop.Application.DTO.Models.Warehouse;
+﻿using Eshop.Application.DTO.General;
+using Eshop.Application.DTO.Models.Warehouse;
 using Eshop.Application.Service.Models.Warehouse;
 using Eshop.Presentation.Controllers.General;
 using Eshop.Share.ActionFilters;
@@ -88,5 +89,11 @@ namespace Eshop.Presentation.Controllers.Models
             return await _warehouseService.DeleteAsync(warehouseId, true, true, true, cancellationToken);
         }
 
+
+        [HttpGet(nameof(GetAllWarehouseLocation))]
+        public async Task<List<SimpleDTO>> GetAllWarehouseLocation(Guid? productId, CancellationToken cancellationToken)
+        {
+            return await _warehouseService.GetAllWarehouseLocation(productId, CurrentUserStoreId, cancellationToken);
+        }
     }
 }
