@@ -40,6 +40,7 @@ public class ExceptionHandlerMiddleware
         }
         catch (Exception ex)
         {
+            throw ex;
             await HandleExceptionAsync(context, ex);
         }
     }

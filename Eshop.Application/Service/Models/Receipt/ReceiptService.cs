@@ -49,7 +49,7 @@ namespace Eshop.Application.Service.Models.Receipt
             var addProductItemslist = dto.ProductItems.Where(x => x.Id == Guid.Empty).ToList();
             await _receiptProductItemService.AddRangeAsync(addProductItemslist, true, cancellationToken);
 
-            var updateProductItemslist = existedProductItems.Where(x => dto.ProductItems.Select(x => x.Id).Contains(x.Id)).ToList();
+            var updateProductItemslist = dto.ProductItems.Where(x => x.Id != Guid.Empty).ToList();
             await _receiptProductItemService.UpdateRangeAsync(updateProductItemslist, true, cancellationToken);
 
             var deleteProductItemsList = existedProductItems.Where(x => !dto.ProductItems.Select(x => x.Id).Contains(x.Id)).ToList();
@@ -60,7 +60,7 @@ namespace Eshop.Application.Service.Models.Receipt
             var addServiceItemslist = dto.ServiceItems.Where(x => x.Id == Guid.Empty).ToList();
             await _receiptServiceItemService.AddRangeAsync(addServiceItemslist, true, cancellationToken);
 
-            var updateServiceItemslist = existedServiceItems.Where(x => dto.ServiceItems.Select(x => x.Id).Contains(x.Id)).ToList();
+            var updateServiceItemslist = dto.ServiceItems.Where(x => x.Id != Guid.Empty).ToList();
             await _receiptServiceItemService.UpdateRangeAsync(updateServiceItemslist, true, cancellationToken);
 
             var deleteServiceItemsList = existedServiceItems.Where(x => !dto.ServiceItems.Select(x => x.Id).Contains(x.Id)).ToList();
