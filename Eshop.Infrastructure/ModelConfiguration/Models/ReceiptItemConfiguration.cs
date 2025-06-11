@@ -25,7 +25,7 @@ namespace Eshop.Infrastructure.ModelConfiguration.Models
             builder.Property(x => x.ValueAddedPercent).HasColumnType(DataTypes.Int.ToString()).IsRequired(false);
             builder.Property(x => x.ReceiptId).HasColumnType(DataTypes.UniqueIdentifier.ToString());
             builder.Property(x => x.ProductId).HasColumnType(DataTypes.UniqueIdentifier.ToString());
-            builder.Property(x => x.WarehouseLocationId).HasColumnType(DataTypes.UniqueIdentifier.ToString());
+            builder.Property(x => x.WarehouseLocationId).HasColumnType(DataTypes.UniqueIdentifier.ToString()).IsRequired(false);
 
             builder
                 .HasOne(x => x.Receipt)

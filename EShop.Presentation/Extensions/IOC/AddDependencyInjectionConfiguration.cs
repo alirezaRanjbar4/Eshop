@@ -46,10 +46,10 @@ public static class AddDependencyInjectionConfiguration
         services.AddScoped<IUtility, Utility>();
         services.AddScoped<IAuthenticationService, AuthenticationService>();
         services.AddScoped<IJWTService, JWTService>();
+        services.AddScoped<IReportService, ReportService>();
         services.AddSingleton<IAuthorizationHandler, DynamicPermissionsAuthorizationHandler>();
         services.AddSingleton<IMvcActionsDiscoveryService, MvcActionsDiscoveryService>();
         services.AddSingleton<ISecurityTrimmingService, SecurityTrimmingService>();
-        services.AddSingleton<IReportService, ReportService>();
 
 
         services.AddScoped<IUserRepository, UserRepository>();
