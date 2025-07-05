@@ -7,7 +7,7 @@ namespace Eshop.Application.Service.Models.Receipt
 {
     public interface IReceiptService : IBaseService<ReceiptEntity>, IScopedDependency
     {
-        Task<bool> AddReceipt(AddReceiptDTO dto, CancellationToken cancellationToken);
+        Task<Guid> AddReceipt(AddReceiptDTO dto, CancellationToken cancellationToken);
         Task<bool> UpdateReceipt(AddReceiptDTO dto, CancellationToken cancellationToken);
         Task<bool> FinalizeReceipt(Guid receiptId, CancellationToken cancellationToken);
     }

@@ -28,12 +28,12 @@ namespace Eshop.Application.Service.Models.Receipt
             _receiptRepository = receiptRepository;
         }
 
-        public async Task<bool> AddReceipt(AddReceiptDTO dto, CancellationToken cancellationToken)
+        public async Task<Guid> AddReceipt(AddReceiptDTO dto, CancellationToken cancellationToken)
         {
             var lastReceiptNumber = await _receiptRepository.GetLastReceiptNumber(dto.StoreId, cancellationToken);
             dto.ReceiptNumber = lastReceiptNumber + 1;
             var result = await AddAsync(dto, true, cancellationToken);
-            return result != null;
+            return result.Id;
         }
 
 
