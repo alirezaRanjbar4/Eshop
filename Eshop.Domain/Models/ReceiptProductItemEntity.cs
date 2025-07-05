@@ -17,7 +17,7 @@ namespace Eshop.Domain.Models
         public Guid ProductId { get; set; }
         public virtual ProductEntity Product { get; set; }
 
-        public Guid WarehouseLocationId { get; set; }
-        public virtual WarehouseLocationEntity WarehouseLocation { get; set; }
+        public Guid? WarehouseLocationId { get; set; }
+        public virtual WarehouseLocationEntity? WarehouseLocation { get; set; }
     }
 }
