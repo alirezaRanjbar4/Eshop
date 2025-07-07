@@ -55,17 +55,43 @@ namespace Eshop.Application.Service.Models.TransferReceipt
                     null,
                     false,
                     cancellationToken);
-                enteredWarehouseLocation.Count += item.Count;
+                if (enteredWarehouseLocation != null)
+                {
+                    enteredWarehouseLocation.Count += item.Count;
+                    await _productWarehouseLocationService.UpdateAsync(enteredWarehouseLocation, true, true, cancellationToken);
+                }
+                else
+                {
+                    enteredWarehouseLocation = new ProductWarehouseLocationDTO
+                    {
+                        ProductId = item.ProductId,
+                        WarehouseLocationId = item.EnteredWarehouseLocationId,
+                        Count = item.Count
+                    };
+                    await _productWarehouseLocationService.AddAsync(enteredWarehouseLocation, true, cancellationToken);
+                }  
 
                 var exitedWarehouseLocation = await _productWarehouseLocationService.GetAsync<ProductWarehouseLocationDTO>(
                     x => x.ProductId == item.ProductId && x.WarehouseLocationId == item.ExitedWarehouseLocationId,
                     null,
                     false,
                     cancellationToken);
-                exitedWarehouseLocation.Count -= item.Count;
-
-                await _productWarehouseLocationService.UpdateAsync(enteredWarehouseLocation, true, true, cancellationToken);
-                await _productWarehouseLocationService.UpdateAsync(exitedWarehouseLocation, true, true, cancellationToken);
+                
+                if (exitedWarehouseLocation!=null)
+                {
+                    exitedWarehouseLocation.Count -= item.Count;
+                    await _productWarehouseLocationService.UpdateAsync(exitedWarehouseLocation, true, true, cancellationToken);
+                }
+                else
+                {
+                    exitedWarehouseLocation = new ProductWarehouseLocationDTO
+                    {
+                        ProductId = item.ProductId,
+                        WarehouseLocationId = item.ExitedWarehouseLocationId,
+                        Count = -item.Count
+                    };
+                    await _productWarehouseLocationService.AddAsync(exitedWarehouseLocation, true, cancellationToken);
+                }
             }
 
             await UpdateAsync(transferTransferReceipt, true, true, cancellationToken);

@@ -40,7 +40,7 @@ namespace Eshop.Presentation.Controllers.Models
         public async Task<OperationResult<List<AccountPartyDTO>>> GetAllAccountPartyWithTotal([FromBody] AccountPartySearchDTO searchDTO, CancellationToken cancellationToken)
         {
             return await _accountPartyService.GetAllAsyncWithTotal<AccountPartyDTO>(
-            searchDTO,
+                searchDTO,
                 x => x.StoreId == CurrentUserStoreId && (searchDTO.Type == null || x.Type == searchDTO.Type),
                 null,
                 o => o.OrderByDescending(x => x.CreateDate),

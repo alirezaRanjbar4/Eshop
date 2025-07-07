@@ -86,12 +86,25 @@ namespace Eshop.Application.Service.Models.Receipt
                     false,
                     cancellationToken);
 
-                if (receipt.Type == ReceiptType.Enter)
-                    productWarehouseLocation.Count += item.Count;
-                else
-                    productWarehouseLocation.Count -= item.Count;
+                if (productWarehouseLocation != null)
+                {
+                    if (receipt.Type == ReceiptType.Enter)
+                        productWarehouseLocation.Count += item.Count;
+                    else
+                        productWarehouseLocation.Count -= item.Count;
 
-                await _productWarehouseLocationService.UpdateAsync(productWarehouseLocation, true, true, cancellationToken);
+                    await _productWarehouseLocationService.UpdateAsync(productWarehouseLocation, true, true, cancellationToken);
+                }
+                else
+                {
+                    productWarehouseLocation = new ProductWarehouseLocationDTO
+                    {
+                        ProductId = item.ProductId,
+                        WarehouseLocationId = item.WarehouseLocationId.Value,
+                        Count = receipt.Type == ReceiptType.Enter ? item.Count : -item.Count
+                    };
+                    await _productWarehouseLocationService.AddAsync(productWarehouseLocation, true, cancellationToken);
+                }
             }
 
             await UpdateAsync(receipt, true, true, cancellationToken);
