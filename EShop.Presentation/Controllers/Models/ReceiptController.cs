@@ -81,7 +81,8 @@ namespace Eshop.Presentation.Controllers.Models
         public async Task<AddReceiptDTO> GetReceiptForEdit(Guid receiptId, CancellationToken cancellationToken)
         {
             return await _receiptService.GetAsync<AddReceiptDTO>(
-                x => x.Id == receiptId && x.StoreId == CurrentUserStoreId,
+                x => x.Id == receiptId && x
+                .StoreId == CurrentUserStoreId,
                 i => i.Include(x => x.ServiceItems).ThenInclude(x => x.Service)
                       .Include(x => x.ProductItems).ThenInclude(x => x.Product),
                 false,
@@ -92,7 +93,7 @@ namespace Eshop.Presentation.Controllers.Models
         [HttpPost(nameof(AddReceipt)), DisplayName(nameof(PermissionResourceEnums.AddPermission))]
         //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.AddComplete, ResultType = ResultType.Success)]
-        public async Task<bool> AddReceipt([FromBody] AddReceiptDTO receipt, CancellationToken cancellationToken)
+        public async Task<Guid> AddReceipt([FromBody] AddReceiptDTO receipt, CancellationToken cancellationToken)
         {
             return await _receiptService.AddReceipt(receipt, cancellationToken);
         }
