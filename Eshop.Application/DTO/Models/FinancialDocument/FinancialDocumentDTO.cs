@@ -13,5 +13,7 @@ namespace Eshop.Application.DTO.Models.FinancialDocument
 
         public Guid StoreId { get; set; }
         public Guid? AccountPartyId { get; set; }
+
+        public List<Guid> ReceiptIds { get; set; }
     }
 }

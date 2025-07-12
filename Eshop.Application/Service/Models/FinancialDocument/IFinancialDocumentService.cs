@@ -7,7 +7,7 @@ namespace Eshop.Application.Service.Models.FinancialDocument
 {
     public interface IFinancialDocumentService : IBaseService<FinancialDocumentEntity>, IScopedDependency
     {
-        Task<bool> AddFinancialDocument(AddFinancialDocumentDTO dTO, CancellationToken cancellationToken);
-        Task<bool> UpdateFinancialDocument(AddFinancialDocumentDTO dTO, CancellationToken cancellationToken);
+        Task<bool> AddFinancialDocument(FinancialDocumentDTO dTO, CancellationToken cancellationToken);
+        Task<bool> UpdateFinancialDocument(FinancialDocumentDTO dTO, CancellationToken cancellationToken);
     }
 }

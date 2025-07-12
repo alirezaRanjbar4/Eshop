@@ -6,6 +6,7 @@ using Eshop.Share.ActionFilters.Response;
 using Eshop.Share.Enum;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,10 +44,19 @@ namespace Eshop.Presentation.Controllers.Models
         }
 
 
+        [HttpGet(nameof(GetFinancialDocument)), DisplayName(nameof(PermissionResourceEnums.GetPermission))]
+        //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
+        [SuccessFilter(ResourceKey = GlobalResourceEnums.AddComplete, ResultType = ResultType.Success)]
+        public async Task<FinancialDocumentDTO> GetFinancialDocument(Guid financialDocumentId, CancellationToken cancellationToken)
+        {
+            return await _financialDocumentService.GetAsync<FinancialDocumentDTO>(x => x.Id == financialDocumentId, i => i.Include(x => x.ReceiptFinancialDocuments), false, cancellationToken);
+        }
+
+
         [HttpPost(nameof(AddFinancialDocument)), DisplayName(nameof(PermissionResourceEnums.AddPermission))]
         //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.AddComplete, ResultType = ResultType.Success)]
-        public async Task<bool> AddFinancialDocument([FromBody] AddFinancialDocumentDTO financialDocument, CancellationToken cancellationToken)
+        public async Task<bool> AddFinancialDocument([FromBody] FinancialDocumentDTO financialDocument, CancellationToken cancellationToken)
         {
             return await _financialDocumentService.AddFinancialDocument(financialDocument, cancellationToken);
         }
@@ -55,7 +65,7 @@ namespace Eshop.Presentation.Controllers.Models
         [HttpPost(nameof(UpdateFinancialDocument)), DisplayName(nameof(PermissionResourceEnums.UpdatePermission))]
         //[Authorize(Policy = ConstantPolicies.DynamicPermission)]
         [SuccessFilter(ResourceKey = GlobalResourceEnums.EditComplete, ResultType = ResultType.Success)]
-        public async Task<bool> UpdateFinancialDocument([FromBody] AddFinancialDocumentDTO financialDocument, CancellationToken cancellationToken)
+        public async Task<bool> UpdateFinancialDocument([FromBody] FinancialDocumentDTO financialDocument, CancellationToken cancellationToken)
         {
             return await _financialDocumentService.UpdateFinancialDocument(financialDocument, cancellationToken);
         }

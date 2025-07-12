@@ -17,7 +17,7 @@ namespace Eshop.Application.Service.Models.FinancialDocument
             _receiptFinancialDocumentService = receiptFinancialDocumentService;
         }
 
-        public async Task<bool> AddFinancialDocument(AddFinancialDocumentDTO dTO, CancellationToken cancellationToken)
+        public async Task<bool> AddFinancialDocument(FinancialDocumentDTO dTO, CancellationToken cancellationToken)
         {
             var result = await AddAsync(dTO, true, cancellationToken);
             foreach (var item in dTO.ReceiptIds)
@@ -31,7 +31,7 @@ namespace Eshop.Application.Service.Models.FinancialDocument
             return result != null;
         }
 
-        public async Task<bool> UpdateFinancialDocument(AddFinancialDocumentDTO dTO, CancellationToken cancellationToken)
+        public async Task<bool> UpdateFinancialDocument(FinancialDocumentDTO dTO, CancellationToken cancellationToken)
         {
             var result = await UpdateAsync(dTO, true, true, cancellationToken);
             var existedItems = await _receiptFinancialDocumentService.GetAllAsync<ReceiptFinancialDocumentDTO>(x => x.FinancialDocumentId == dTO.Id, null, null, false, cancellationToken);

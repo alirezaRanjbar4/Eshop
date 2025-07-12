@@ -10,9 +10,9 @@ namespace Eshop.Application.Mapping.Models
     {
         public FinancialDocumentProfile()
         {
-            CreateMap<FinancialDocumentEntity, FinancialDocumentDTO>().ReverseMap();
-
-            CreateMap<AddFinancialDocumentDTO, FinancialDocumentEntity>();
+            CreateMap<FinancialDocumentDTO, FinancialDocumentEntity>()
+                .ReverseMap()
+                .ForMember(des => des.ReceiptIds, option => option.MapFrom(src => src.ReceiptFinancialDocuments != null && src.ReceiptFinancialDocuments.Any() ? src.ReceiptFinancialDocuments.Select(x => x.ReceiptId) : null));
 
             CreateMap<FinancialDocumentEntity, GetFinancialDocumentDTO>()
                  .ForMember(des => des.String_Type, option => option.MapFrom(src => src.Type.GetEnumDescription()))
